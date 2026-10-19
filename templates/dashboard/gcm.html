@@ -1,0 +1,254 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard do GCM
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4 mb-5">
+
+    <!-- TÍTULO -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h2 class="mb-1">
+                Dashboard do GCM
+            </h2>
+
+            <p class="text-muted mb-0">
+                Acesso às atividades operacionais da Ronda Escolar Comunitária.
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- IDENTIFICAÇÃO DO USUÁRIO -->
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <div class="d-flex align-items-center">
+
+                <div class="me-3">
+                    <i class="bi bi-person-badge fs-1 text-primary"></i>
+                </div>
+
+                <div>
+                    <h5 class="mb-1">
+                        {{ usuario.nome }}
+                    </h5>
+
+                    <p class="text-muted mb-0">
+                        Matrícula:
+                        <strong>{{ usuario.matricula }}</strong>
+                    </p>
+
+                    <span class="badge bg-primary mt-2">
+                        Guarda Civil Municipal
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ACESSO RÁPIDO -->
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-header">
+            <strong>
+                Acesso Rápido
+            </strong>
+        </div>
+
+        <div class="card-body">
+
+            <div class="row g-3">
+
+                <!-- CARTÃO PROGRAMA -->
+                <div class="col-md-6 col-lg-3">
+
+                    <button
+                        type="button"
+                        class="btn btn-outline-primary w-100 py-3"
+                        disabled
+                    >
+                        <i class="bi bi-card-checklist me-2"></i>
+                        Meu Cartão Programa
+                    </button>
+
+                </div>
+
+
+                <!-- ESCOLAS -->
+                <div class="col-md-6 col-lg-3">
+
+                    <a
+                        href="{% url 'escolas:listar_escolas' %}"
+                        class="btn btn-outline-primary w-100 py-3"
+                    >
+                        <i class="bi bi-building me-2"></i>
+                        Escolas
+                    </a>
+
+                </div>
+
+
+                <!-- REGISTRAR VISITA -->
+                <div class="col-md-6 col-lg-3">
+
+                    <a
+                        href="{% url 'visitas:cadastrar_visita' %}"
+                        class="btn btn-outline-success w-100 py-3"
+                    >
+                        <i class="bi bi-clipboard-check me-2"></i>
+                        Registrar Visita
+                    </a>
+
+                </div>
+
+
+                <!-- HISTÓRICO DE VISITAS -->
+                <div class="col-md-6 col-lg-3">
+
+                    <button
+                        type="button"
+                        class="btn btn-outline-secondary w-100 py-3"
+                        disabled
+                    >
+                        <i class="bi bi-clock-history me-2"></i>
+                        Histórico de Visitas
+                    </button>
+
+                </div>
+
+
+                <!-- OCORRÊNCIAS -->
+                <div class="col-md-6 col-lg-3">
+
+                    <button
+                        type="button"
+                        class="btn btn-outline-secondary w-100 py-3"
+                        disabled
+                    >
+                        <i class="bi bi-exclamation-octagon me-2"></i>
+                        Ocorrências
+                    </button>
+
+                </div>
+
+
+                <!-- ENCAMINHAMENTOS -->
+                <div class="col-md-6 col-lg-3">
+
+                    <button
+                        type="button"
+                        class="btn btn-outline-secondary w-100 py-3"
+                        disabled
+                    >
+                        <i class="bi bi-send me-2"></i>
+                        Encaminhamentos
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- INFORMAÇÕES OPERACIONAIS -->
+    <div class="row g-4">
+
+        <!-- MISSÕES -->
+        <div class="col-lg-6">
+
+            <div class="card shadow-sm h-100">
+
+                <div class="card-header">
+                    <strong>
+                        <i class="bi bi-card-checklist me-2"></i>
+                        Missões do Cartão Programa
+                    </strong>
+                </div>
+
+                <div class="card-body">
+
+                    <div class="text-center py-4">
+
+                        <i class="bi bi-card-checklist fs-1 text-muted"></i>
+
+                        <p class="text-muted mt-3 mb-0">
+                            As missões atribuídas ao GCM serão exibidas
+                            aqui após a implementação do Cartão Programa.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ATIVIDADES -->
+        <div class="col-lg-6">
+
+            <div class="card shadow-sm h-100">
+
+                <div class="card-header">
+                    <strong>
+                        <i class="bi bi-clipboard-check me-2"></i>
+                        Atividades Operacionais
+                    </strong>
+                </div>
+
+                <div class="card-body">
+
+                    <p class="mb-3">
+                        Neste painel o GCM poderá acompanhar e registrar
+                        suas atividades realizadas nas unidades escolares.
+                    </p>
+
+                    <ul class="mb-0">
+                        <li class="mb-2">
+                            Consultar as missões do Cartão Programa.
+                        </li>
+
+                        <li class="mb-2">
+                            Consultar escolas atendidas pela RECOM.
+                        </li>
+
+                        <li class="mb-2">
+                            Registrar rondas e visitas escolares.
+                        </li>
+
+                        <li class="mb-2">
+                            Consultar o histórico de visitas.
+                        </li>
+
+                        <li>
+                            Registrar ocorrências e encaminhamentos
+                            quando essas funcionalidades estiverem disponíveis.
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,184 @@
+
+{% extends "base.html" %}
+
+{% block title %}{{ titulo }} - RECOM{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+            <!-- CABEÇALHO -->
+            <div class="d-flex align-items-center mb-4">
+
+                <a href="{% url 'cartao_programa:listar_efetivo' plantao.pk viatura.pk %}"
+                   class="btn btn-outline-secondary me-3">
+
+                    <i class="bi bi-arrow-left"></i>
+                    Voltar
+
+                </a>
+
+                <h2 class="mb-0">
+
+                    <i class="bi bi-person-plus me-2"></i>
+                    {{ titulo }}
+
+                </h2>
+
+            </div>
+
+            <!-- FORMULÁRIO -->
+            <div class="card shadow-sm">
+
+                <div class="card-body p-4">
+
+                    <h5 class="mb-3">
+                        <i class="bi bi-truck-front me-2"></i>
+                        Viatura: {{ viatura.identificacao }}
+                    </h5>
+
+                    <p class="text-muted mb-4">
+
+                        <strong>Plantão:</strong>
+                        {{ plantao.data|date:"d/m/Y" }}
+
+                        <br>
+
+                        <strong>Tipo de serviço:</strong>
+                        {{ viatura.get_tipo_servico_display }}
+
+                    </p>
+
+                    <form method="post">
+
+                        {% csrf_token %}
+
+                        <!-- ERROS GERAIS -->
+                        {% if form.non_field_errors %}
+
+                        <div class="alert alert-danger">
+
+                            {{ form.non_field_errors }}
+
+                        </div>
+
+                        {% endif %}
+
+                        <!-- GCM -->
+                        <div class="mb-3">
+
+                            <label for="{{ form.gcm.id_for_label }}"
+                                   class="form-label">
+
+                                GCM
+                                <span class="text-danger">*</span>
+
+                            </label>
+
+                            {{ form.gcm }}
+
+                            {% for error in form.gcm.errors %}
+
+                            <div class="text-danger small mt-1">
+                                {{ error }}
+                            </div>
+
+                            {% endfor %}
+
+                        </div>
+
+                        <!-- FUNÇÃO -->
+                        <div class="mb-3">
+
+                            <label for="{{ form.funcao.id_for_label }}"
+                                   class="form-label">
+
+                                Função na viatura
+                                <span class="text-danger">*</span>
+
+                            </label>
+
+                            {{ form.funcao }}
+
+                            {% for error in form.funcao.errors %}
+
+                            <div class="text-danger small mt-1">
+                                {{ error }}
+                            </div>
+
+                            {% endfor %}
+
+                            <div class="form-text">
+
+                                Funções disponíveis:
+                                Comandante, Motorista,
+                                Patrulheiro 1 e Patrulheiro 2.
+
+                            </div>
+
+                        </div>
+
+                        <!-- OBSERVAÇÃO -->
+                        <div class="mb-4">
+
+                            <label for="{{ form.observacao.id_for_label }}"
+                                   class="form-label">
+
+                                Observação
+
+                            </label>
+
+                            {{ form.observacao }}
+
+                            {% for error in form.observacao.errors %}
+
+                            <div class="text-danger small mt-1">
+                                {{ error }}
+                            </div>
+
+                            {% endfor %}
+
+                            <div class="form-text">
+
+                                Exemplo: substituição temporária
+                                de integrante da equipe.
+
+                            </div>
+
+                        </div>
+
+                        <!-- BOTÕES -->
+                        <div class="d-flex justify-content-end gap-2">
+
+                            <a href="{% url 'cartao_programa:listar_efetivo' plantao.pk viatura.pk %}"
+                               class="btn btn-secondary">
+
+                                Cancelar
+
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-primary">
+
+                                <i class="bi bi-check-circle me-1"></i>
+                                Salvar Integrante
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

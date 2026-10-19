@@ -1,0 +1,340 @@
+
+{% extends "base.html" %}
+
+{% block title %}Viaturas do Plantão - RECOM{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+
+    <!-- CABEÇALHO -->
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+
+        <div>
+            <h2 class="mb-1">
+                <i class="bi bi-truck-front-fill me-2"></i>
+                Viaturas do Plantão
+            </h2>
+
+            <p class="text-muted mb-0">
+                Plantão: {{ plantao.data|date:"d/m/Y" }}
+            </p>
+        </div>
+
+        <div class="d-flex flex-wrap gap-2">
+
+            <!-- VOLTAR -->
+            <a href="{% url 'cartao_programa:listar_plantoes' %}{% if request.GET.fluxo == 'cartao' %}?fluxo=cartao{% endif %}"
+               class="btn btn-outline-secondary">
+
+                <i class="bi bi-arrow-left me-1"></i>
+                Voltar
+
+            </a>
+
+            <!-- NOVA VIATURA -->
+            <a href="{% url 'cartao_programa:criar_viatura' plantao.pk %}{% if request.GET.fluxo == 'cartao' %}?fluxo=cartao{% endif %}"
+               class="btn btn-primary">
+
+                <i class="bi bi-plus-circle me-1"></i>
+                Nova Viatura
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- INDICADOR DO FLUXO GUIADO -->
+    {% if request.GET.fluxo == 'cartao' %}
+
+        <div class="alert alert-primary mb-4">
+
+            <div class="d-flex align-items-center gap-2">
+
+                <i class="bi bi-diagram-3 fs-5"></i>
+
+                <div>
+                    <strong>
+                        Cartão Programa — Etapa 2 de 3
+                    </strong>
+
+                    <div class="small">
+                        Plantão →
+                        <strong>Viaturas e Efetivo</strong> →
+                        Cartão Programa e Missões
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    {% endif %}
+
+    <!-- INFORMAÇÕES DO PLANTÃO -->
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <div class="row g-3">
+
+                <div class="col-md-4">
+                    <strong>Data:</strong>
+                    {{ plantao.data|date:"d/m/Y" }}
+                </div>
+
+                <div class="col-md-4">
+                    <strong>Local de descanso:</strong>
+                    {{ plantao.local_descanso|default:"Não informado" }}
+                </div>
+
+                <div class="col-md-4">
+                    <strong>Total de viaturas:</strong>
+                    {{ viaturas|length }}
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- LISTAGEM DE VIATURAS -->
+    <div class="card shadow-sm">
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-striped table-hover align-middle">
+
+                    <thead class="table-dark">
+
+                        <tr>
+                            <th>Viatura</th>
+                            <th>Modelo</th>
+                            <th>Tipo de serviço</th>
+                            <th>Equipe</th>
+                            <th>KM inicial</th>
+                            <th>KM final</th>
+                            <th>KM percorridos</th>
+                            <th class="text-center">Ações</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% for viatura in viaturas %}
+
+                        <tr>
+
+                            <!-- IDENTIFICAÇÃO -->
+                            <td>
+                                <strong>
+                                    {{ viatura.identificacao }}
+                                </strong>
+                            </td>
+
+                            <!-- MODELO -->
+                            <td>
+                                {{ viatura.modelo|default:"—" }}
+                            </td>
+
+                            <!-- TIPO DE SERVIÇO -->
+                            <td>
+
+                                {% if viatura.tipo_servico == "ORDINARIO" %}
+
+                                    <span class="badge bg-primary">
+                                        Ordinário
+                                    </span>
+
+                                {% elif viatura.tipo_servico == "EXTRAORDINARIO" %}
+
+                                    <span class="badge bg-warning text-dark">
+                                        Extraordinário
+                                    </span>
+
+                                {% else %}
+
+                                    {{ viatura.get_tipo_servico_display }}
+
+                                {% endif %}
+
+                            </td>
+
+                            <!-- EQUIPE -->
+                            <td>
+
+                                {% if viatura.equipe %}
+
+                                    {{ viatura.equipe.nome }}
+
+                                {% else %}
+
+                                    <span class="text-muted">
+                                        Efetivo temporário
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+                            <!-- KM INICIAL -->
+                            <td>
+                                {{ viatura.km_inicial|default_if_none:"—" }}
+                            </td>
+
+                            <!-- KM FINAL -->
+                            <td>
+                                {{ viatura.km_final|default_if_none:"—" }}
+                            </td>
+
+                            <!-- KM PERCORRIDOS -->
+                            <td>
+
+                                {% if viatura.km_percorridos != None %}
+
+                                    {{ viatura.km_percorridos }} km
+
+                                {% else %}
+
+                                    <span class="text-muted">
+                                        Pendente
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+                            <!-- AÇÕES -->
+                            <td class="text-center">
+
+                                <div class="d-flex flex-wrap justify-content-center gap-2">
+
+                                    <!-- GERENCIAR EFETIVO -->
+                                    <a href="{% url 'cartao_programa:listar_efetivo' plantao.pk viatura.pk %}{% if request.GET.fluxo == 'cartao' %}?fluxo=cartao{% endif %}"
+                                       class="btn btn-sm btn-outline-success">
+
+                                        <i class="bi bi-people-fill me-1"></i>
+                                        Efetivo
+
+                                    </a>
+
+                                    <!-- EDITAR VIATURA -->
+                                    <a href="{% url 'cartao_programa:editar_viatura' plantao.pk viatura.pk %}{% if request.GET.fluxo == 'cartao' %}?fluxo=cartao{% endif %}"
+                                       class="btn btn-sm btn-outline-primary">
+
+                                        <i class="bi bi-pencil-square me-1"></i>
+                                        Editar
+
+                                    </a>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                        {% empty %}
+
+                        <tr>
+
+                            <td colspan="8"
+                                class="text-center text-muted py-4">
+
+                                <i class="bi bi-info-circle me-1"></i>
+                                Nenhuma viatura cadastrada neste plantão.
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- NAVEGAÇÃO PARA A PRÓXIMA ETAPA -->
+    <div class="card border-0 shadow-sm mt-4">
+
+        <div class="card-body">
+
+            <div class="d-flex flex-column flex-lg-row
+                        justify-content-between align-items-lg-center gap-3">
+
+                <div>
+
+                    <h5 class="mb-2">
+
+                        <i class="bi bi-check-circle text-success me-2"></i>
+                        Etapa 2 — Viaturas e Efetivo
+
+                    </h5>
+
+                    <p class="text-muted mb-0">
+
+                        Cadastre todas as viaturas e utilize
+                        o botão <strong>Efetivo</strong>
+                        para adicionar os GCMs de cada uma.
+
+                        Quando terminar, avance para
+                        o Cartão Programa e suas missões.
+
+                    </p>
+
+                </div>
+
+                <div class="d-flex flex-wrap gap-2">
+
+                    <!-- CADASTRAR OUTRA VIATURA -->
+                    <a href="{% url 'cartao_programa:criar_viatura' plantao.pk %}?fluxo=cartao"
+                       class="btn btn-outline-primary">
+
+                        <i class="bi bi-plus-circle me-1"></i>
+                        Outra Viatura
+
+                    </a>
+
+                    <!-- AVANÇAR PARA ETAPA 3 -->
+                    {% if viaturas %}
+
+                        <a href="{% url 'cartao_programa:visualizar_cartao' plantao.pk %}?fluxo=cartao"
+                           class="btn btn-primary">
+
+                            <i class="bi bi-arrow-right-circle me-1"></i>
+                            Continuar para Cartão Programa
+
+                        </a>
+
+                    {% else %}
+
+                        <button type="button"
+                                class="btn btn-primary"
+                                disabled>
+
+                            <i class="bi bi-arrow-right-circle me-1"></i>
+                            Continuar para Cartão Programa
+
+                        </button>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

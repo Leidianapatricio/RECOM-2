@@ -1,8 +1,11 @@
 from django.urls import path
 
 from . import views
+from . import views_relatorios
+
 
 app_name = "core"
+
 
 urlpatterns = [
 
@@ -16,6 +19,12 @@ urlpatterns = [
         "login/",
         views.login_view,
         name="login"
+    ),
+
+    path(
+        "primeiro-acesso/",
+        views.primeiro_acesso,
+        name="primeiro_acesso"
     ),
 
     path(
@@ -48,24 +57,28 @@ urlpatterns = [
         name="dashboard_mediador"
     ),
 
+    # =========================================================
+    # RELATÓRIOS
+    # =========================================================
+
     # Página principal dos relatórios
     path(
         "relatorios/",
-        views.relatorios,
+        views_relatorios.relatorios,
         name="relatorios"
     ),
 
     # Relatório de problemáticas
     path(
         "relatorios/problematicas/",
-        views.relatorio_problematicas,
+        views_relatorios.relatorio_problematicas,
         name="relatorio_problematicas"
     ),
 
     # Relatório de visitas
     path(
         "relatorios/visitas/",
-        views.relatorio_visitas,
+        views_relatorios.relatorio_visitas,
         name="relatorio_visitas"
     ),
 ]

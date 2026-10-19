@@ -1,0 +1,420 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <!-- ============================================== -->
+    <!-- CABEÇALHO DA PÁGINA -->
+    <!-- ============================================== -->
+
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+
+        <div>
+            <h3 class="fw-bold mb-1" style="color: #092B49;">
+                <i class="bi bi-clipboard-check me-2"></i>
+                {{ titulo|default:"Cadastrar Missão" }}
+            </h3>
+
+            <p class="text-muted mb-0">
+                <i class="bi bi-calendar-event me-1"></i>
+                Cartão Programa — Plantão de
+                {{ plantao.data|date:"d/m/Y" }}
+            </p>
+        </div>
+
+        <a href="{% url 'cartao_programa:listar_missoes' plantao.pk %}"
+           class="btn btn-outline-secondary">
+
+            <i class="bi bi-arrow-left me-1"></i>
+            Voltar às Missões
+
+        </a>
+
+    </div>
+
+
+    <!-- ============================================== -->
+    <!-- MENSAGENS DO SISTEMA -->
+    <!-- ============================================== -->
+
+    {% if messages %}
+        {% for message in messages %}
+
+            <div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show"
+                 role="alert">
+
+                {{ message }}
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                        aria-label="Fechar">
+                </button>
+
+            </div>
+
+        {% endfor %}
+    {% endif %}
+
+
+    <!-- ============================================== -->
+    <!-- FORMULÁRIO DE MISSÃO -->
+    <!-- ============================================== -->
+
+    <div class="card border-0 shadow-sm">
+
+        <!-- CABEÇALHO AZUL-MARINHO -->
+
+        <div class="card-header text-white py-3"
+             style="background-color: #092B49;">
+
+            <h5 class="mb-0 text-white">
+                <i class="bi bi-list-task me-2"></i>
+                Dados da Missão
+            </h5>
+
+        </div>
+
+
+        <div class="card-body p-4">
+
+            <form method="post" novalidate>
+
+                {% csrf_token %}
+
+
+                <!-- ERROS GERAIS -->
+
+                {% if form.non_field_errors %}
+
+                    <div class="alert alert-danger">
+                        <i class="bi bi-exclamation-triangle me-1"></i>
+                        {{ form.non_field_errors }}
+                    </div>
+
+                {% endif %}
+
+
+                <div class="row g-3">
+
+                    <!-- ================================== -->
+                    <!-- NÚMERO DA MISSÃO -->
+                    <!-- ================================== -->
+
+                    <div class="col-md-3">
+
+                        <label for="{{ form.numero.id_for_label }}"
+                               class="form-label fw-semibold">
+
+                            Número da missão
+                            <span class="text-danger">*</span>
+
+                        </label>
+
+                        {{ form.numero }}
+
+                        {% for erro in form.numero.errors %}
+                            <div class="text-danger small mt-1">
+                                {{ erro }}
+                            </div>
+                        {% endfor %}
+
+                    </div>
+
+
+                    <!-- ================================== -->
+                    <!-- VIATURA RESPONSÁVEL -->
+                    <!-- ================================== -->
+
+                    <div class="col-md-9">
+
+                        <label for="{{ form.viatura.id_for_label }}"
+                               class="form-label fw-semibold">
+
+                            Viatura responsável
+                            <span class="text-danger">*</span>
+
+                        </label>
+
+                        {{ form.viatura }}
+
+                        {% for erro in form.viatura.errors %}
+                            <div class="text-danger small mt-1">
+                                {{ erro }}
+                            </div>
+                        {% endfor %}
+
+                    </div>
+
+
+                    <!-- ================================== -->
+                    <!-- TIPO DE MISSÃO -->
+                    <!-- ================================== -->
+
+                    <div class="col-md-6">
+
+                        <label for="{{ form.tipo_missao.id_for_label }}"
+                               class="form-label fw-semibold">
+
+                            Tipo de missão
+                            <span class="text-danger">*</span>
+
+                        </label>
+
+                        {{ form.tipo_missao }}
+
+                        {% for erro in form.tipo_missao.errors %}
+                            <div class="text-danger small mt-1">
+                                {{ erro }}
+                            </div>
+                        {% endfor %}
+
+                    </div>
+
+
+                    <!-- ================================== -->
+                    <!-- PERÍODO -->
+                    <!-- ================================== -->
+
+                    <div class="col-md-6">
+
+                        <label for="{{ form.periodo.id_for_label }}"
+                               class="form-label fw-semibold">
+
+                            Período
+                            <span class="text-danger">*</span>
+
+                        </label>
+
+                        {{ form.periodo }}
+
+                        {% for erro in form.periodo.errors %}
+                            <div class="text-danger small mt-1">
+                                {{ erro }}
+                            </div>
+                        {% endfor %}
+
+                    </div>
+
+
+                    <!-- ================================== -->
+                    <!-- ESCOLA -->
+                    <!-- ================================== -->
+
+                    <div class="col-md-12">
+
+                        <label for="{{ form.escola.id_for_label }}"
+                               class="form-label fw-semibold">
+
+                            Escola
+
+                        </label>
+
+                        {{ form.escola }}
+
+                        {% for erro in form.escola.errors %}
+                            <div class="text-danger small mt-1">
+                                {{ erro }}
+                            </div>
+                        {% endfor %}
+
+                        <div class="form-text">
+                            Se a missão ocorrer em uma escola cadastrada,
+                            selecione-a aqui.
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================================== -->
+                    <!-- OUTRO LOCAL -->
+                    <!-- ================================== -->
+
+                    <div class="col-md-6">
+
+                        <label for="{{ form.local.id_for_label }}"
+                               class="form-label fw-semibold">
+
+                            Outro local
+
+                        </label>
+
+                        {{ form.local }}
+
+                        {% for erro in form.local.errors %}
+                            <div class="text-danger small mt-1">
+                                {{ erro }}
+                            </div>
+                        {% endfor %}
+
+                    </div>
+
+
+                    <!-- ================================== -->
+                    <!-- ENDEREÇO -->
+                    <!-- ================================== -->
+
+                    <div class="col-md-6">
+
+                        <label for="{{ form.endereco.id_for_label }}"
+                               class="form-label fw-semibold">
+
+                            Endereço
+
+                        </label>
+
+                        {{ form.endereco }}
+
+                        {% for erro in form.endereco.errors %}
+                            <div class="text-danger small mt-1">
+                                {{ erro }}
+                            </div>
+                        {% endfor %}
+
+                    </div>
+
+
+                    <!-- ================================== -->
+                    <!-- ORIENTAÇÃO SOBRE LOCAL -->
+                    <!-- ================================== -->
+
+                    <div class="col-12">
+
+                        <div class="border rounded p-3"
+                             style="background-color: #F4F7FA;">
+
+                            <div class="d-flex align-items-start gap-2">
+
+                                <i class="bi bi-info-circle"
+                                   style="color: #092B49;"></i>
+
+                                <span class="small">
+                                    Informe pelo menos uma escola ou outro local
+                                    para a realização da missão.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================================== -->
+                    <!-- HORÁRIO INICIAL -->
+                    <!-- ================================== -->
+
+                    <div class="col-md-6">
+
+                        <label for="{{ form.horario_inicio.id_for_label }}"
+                               class="form-label fw-semibold">
+
+                            Horário de início
+
+                        </label>
+
+                        {{ form.horario_inicio }}
+
+                        {% for erro in form.horario_inicio.errors %}
+                            <div class="text-danger small mt-1">
+                                {{ erro }}
+                            </div>
+                        {% endfor %}
+
+                    </div>
+
+
+                    <!-- ================================== -->
+                    <!-- HORÁRIO FINAL -->
+                    <!-- ================================== -->
+
+                    <div class="col-md-6">
+
+                        <label for="{{ form.horario_fim.id_for_label }}"
+                               class="form-label fw-semibold">
+
+                            Horário de término
+
+                        </label>
+
+                        {{ form.horario_fim }}
+
+                        {% for erro in form.horario_fim.errors %}
+                            <div class="text-danger small mt-1">
+                                {{ erro }}
+                            </div>
+                        {% endfor %}
+
+                    </div>
+
+
+                    <!-- ================================== -->
+                    <!-- OBSERVAÇÕES -->
+                    <!-- ================================== -->
+
+                    <div class="col-12">
+
+                        <label for="{{ form.observacoes.id_for_label }}"
+                               class="form-label fw-semibold">
+
+                            Observações
+
+                        </label>
+
+                        {{ form.observacoes }}
+
+                        {% for erro in form.observacoes.errors %}
+                            <div class="text-danger small mt-1">
+                                {{ erro }}
+                            </div>
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+
+                <hr class="my-4">
+
+
+                <!-- ============================================== -->
+                <!-- BOTÕES -->
+                <!-- ============================================== -->
+
+                <div class="d-flex flex-wrap justify-content-end gap-2">
+
+                    <!-- CANCELAR -->
+
+                    <a href="{% url 'cartao_programa:listar_missoes' plantao.pk %}"
+                       class="btn btn-outline-secondary">
+
+                        <i class="bi bi-x-circle me-1"></i>
+                        Cancelar
+
+                    </a>
+
+
+                    <!-- SALVAR -->
+
+                    <button type="submit"
+                            class="btn text-white"
+                            style="background-color: #092B49;">
+
+                        <i class="bi bi-check-circle me-1"></i>
+                        Salvar Missão
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,34 +1,15 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.core.paginator import Paginator
-from django.db.models import (
-    Case,
-    Count,
-    IntegerField,
-    Value,
-    When,
-)
+from django.db.models import Count
 from django.shortcuts import redirect, render
 
 from escolas.models import (
     Escola,
     EscolaProblematica,
-    TipoProblematica,
 )
+
 from usuarios.models import Usuario
 from visitas.models import RondaVisita
-
-
-def limpar_cpf(cpf):
-    if not cpf:
-        return ""
-
-    return (
-        cpf.replace(".", "")
-        .replace("-", "")
-        .strip()
-    )
-
 
 def home(request):
     return render(
@@ -36,115 +17,185 @@ def home(request):
         "home.html"
     )
 
+def redirecionar_por_perfil(usuario):
+    if usuario.perfil == "ADMIN":
+        return redirect("core:dashboard_admin")
+
+    if usuario.perfil == "COORDENADOR":
+        return redirect("core:dashboard_coordenador")
+
+    if usuario.perfil == "GCM":
+        return redirect("core:dashboard_gcm")
+
+    if usuario.perfil == "MEDIADOR":
+        return redirect("core:dashboard_mediador")
+
+    return redirect("core:home")
+
 
 def login_view(request):
+    if request.user.is_authenticated:
+        if request.user.is_superuser:
+            return redirect("core:dashboard_admin")
+
+        try:
+            usuario = request.user.usuario
+        except Usuario.DoesNotExist:
+            logout(request)
+            messages.error(
+                request,
+                "Usuário sem perfil cadastrado no sistema."
+            )
+            return redirect("core:login")
+
+        if not usuario.ativo:
+            logout(request)
+            messages.error(
+                request,
+                "Este usuário está inativo. Procure o administrador."
+            )
+            return redirect("core:login")
+
+        if usuario.primeiro_acesso:
+            return redirect("core:primeiro_acesso")
+
+        return redirecionar_por_perfil(usuario)
+
     if request.method == "POST":
-        identificador = request.POST.get(
-            "identificador"
-        )
+        matricula = request.POST.get("matricula", "").strip()
+        senha = request.POST.get("senha", "")
 
-        senha = request.POST.get(
-            "senha"
-        )
-
-        cpf_limpo = limpar_cpf(
-            identificador
-        )
+        if not matricula or not senha:
+            messages.error(
+                request,
+                "Informe a matrícula e a senha."
+            )
+            return render(request, "login.html")
 
         user = authenticate(
             request,
-            username=cpf_limpo,
+            username=matricula,
             password=senha
         )
-
-        # Permite acesso ao superusuário do Django
-        if user is not None and user.is_superuser:
-            login(
-                request,
-                user
-            )
-
-            request.session["perfil"] = "ADMIN"
-
-            return redirect(
-                "core:dashboard_admin"
-            )
 
         if user is None:
             messages.error(
                 request,
-                "CPF ou senha inválidos."
+                "Matrícula ou senha inválidos."
             )
+            return render(request, "login.html")
 
-            return redirect(
-                "core:login"
-            )
-
-        try:
-            usuario = Usuario.objects.get(
-                user=user
-            )
-
-        except Usuario.DoesNotExist:
-            messages.error(
-                request,
-                "Usuário não cadastrado no Sistema RECOM."
-            )
-
-            return redirect(
-                "core:login"
-            )
-
-        if not usuario.ativo:
+        if not user.is_active:
             messages.error(
                 request,
                 "Este usuário está inativo."
             )
+            return render(request, "login.html")
 
-            return redirect(
-                "core:login"
+        # Mantém o acesso do superusuário do Django.
+        if user.is_superuser:
+            login(request, user)
+            return redirect("core:dashboard_admin")
+
+        try:
+            usuario = user.usuario
+        except Usuario.DoesNotExist:
+            messages.error(
+                request,
+                "Usuário sem perfil cadastrado no sistema."
             )
+            return render(request, "login.html")
 
-        login(
-            request,
-            user
-        )
-
-        request.session["perfil"] = usuario.perfil
-
-        if usuario.perfil == "ADMIN":
-            return redirect(
-                "core:dashboard_admin"
+        if not usuario.ativo:
+            messages.error(
+                request,
+                "Este usuário está inativo. Procure o administrador."
             )
+            return render(request, "login.html")
 
-        if usuario.perfil == "COORDENADOR":
-            return redirect(
-                "core:dashboard_coordenador"
-            )
+        login(request, user)
 
-        if usuario.perfil == "GCM":
-            return redirect(
-                "core:dashboard_gcm"
-            )
+        if usuario.primeiro_acesso:
+            return redirect("core:primeiro_acesso")
 
-        if usuario.perfil == "MEDIADOR":
-            return redirect(
-                "core:dashboard_mediador"
-            )
+        return redirecionar_por_perfil(usuario)
 
+    return render(request, "login.html")
+
+
+def primeiro_acesso(request):
+    if not request.user.is_authenticated:
+        return redirect("core:login")
+
+    if request.user.is_superuser:
+        return redirect("core:dashboard_admin")
+
+    try:
+        usuario = request.user.usuario
+    except Usuario.DoesNotExist:
+        logout(request)
         messages.error(
             request,
-            "Perfil de usuário inválido."
+            "Usuário sem perfil cadastrado no sistema."
+        )
+        return redirect("core:login")
+
+    if not usuario.ativo:
+        logout(request)
+        messages.error(
+            request,
+            "Este usuário está inativo. Procure o administrador."
+        )
+        return redirect("core:login")
+
+    # Se já realizou o primeiro acesso, não permite voltar
+    # à tela de definição da senha inicial.
+    if not usuario.primeiro_acesso:
+        return redirecionar_por_perfil(usuario)
+
+    if request.method == "POST":
+        nova_senha = request.POST.get("nova_senha", "")
+        confirmar_senha = request.POST.get("confirmar_senha", "")
+
+        if not nova_senha or not confirmar_senha:
+            messages.error(
+                request,
+                "Informe a nova senha e a confirmação."
+            )
+            return render(request, "primeiro_acesso.html")
+
+        if not nova_senha.isdigit() or len(nova_senha) != 4:
+            messages.error(
+                request,
+                "A nova senha deve conter exatamente 4 números."
+            )
+            return render(request, "primeiro_acesso.html")
+
+        if nova_senha != confirmar_senha:
+            messages.error(
+                request,
+                "As senhas informadas não coincidem."
+            )
+            return render(request, "primeiro_acesso.html")
+
+        request.user.set_password(nova_senha)
+        request.user.save()
+
+        usuario.primeiro_acesso = False
+        usuario.save(update_fields=["primeiro_acesso"])
+
+        # set_password altera a sessão de autenticação.
+        # Fazemos o login novamente para manter o usuário conectado.
+        login(request, request.user)
+
+        messages.success(
+            request,
+            "Senha cadastrada com sucesso."
         )
 
-        return redirect(
-            "core:login"
-        )
+        return redirecionar_por_perfil(usuario)
 
-    return render(
-        request,
-        "login.html"
-    )
+    return render(request, "primeiro_acesso.html")
 
 
 def logout_view(request):
@@ -163,6 +214,66 @@ def logout_view(request):
         "core:login"
     )
 
+def verificar_acesso_dashboard(request, perfil_permitido):
+    """
+    Verifica se o usuário possui permissão
+    para acessar determinado dashboard.
+    """
+
+    # Usuário não autenticado
+    if not request.user.is_authenticated:
+        messages.error(
+            request,
+            "Faça login para acessar o sistema."
+        )
+        return redirect("core:login")
+
+    # Superusuário Django
+    if request.user.is_superuser:
+        if perfil_permitido == "ADMIN":
+            return None
+
+        return redirect("core:dashboard_admin")
+
+    # Busca o perfil RECOM
+    try:
+        usuario = request.user.usuario
+    except Usuario.DoesNotExist:
+        logout(request)
+
+        messages.error(
+            request,
+            "Usuário sem perfil cadastrado no sistema."
+        )
+
+        return redirect("core:login")
+
+    # Usuário RECOM inativo
+    if not usuario.ativo:
+        logout(request)
+
+        messages.error(
+            request,
+            "Este usuário está inativo. Procure o administrador."
+        )
+
+        return redirect("core:login")
+
+    # Primeiro acesso ainda não concluído
+    if usuario.primeiro_acesso:
+        return redirect("core:primeiro_acesso")
+
+    # Perfil correto
+    if usuario.perfil == perfil_permitido:
+        return None
+
+    # Tentativa de acessar dashboard de outro perfil
+    messages.warning(
+        request,
+        "Você não possui permissão para acessar essa página."
+    )
+
+    return redirecionar_por_perfil(usuario)
 
 def dashboard_admin(request):
     contexto = {
@@ -277,11 +388,16 @@ def dashboard_coordenador(request):
         contexto
     )
 
-
 def dashboard_gcm(request):
-    usuario = Usuario.objects.filter(
-        user=request.user
-    ).first()
+    acesso = verificar_acesso_dashboard(
+        request,
+        "GCM"
+    )
+
+    if acesso:
+        return acesso
+
+    usuario = request.user.usuario
 
     return render(
         request,
@@ -290,7 +406,6 @@ def dashboard_gcm(request):
             "usuario": usuario
         }
     )
-
 
 def dashboard_mediador(request):
     usuario = Usuario.objects.filter(
@@ -305,461 +420,3 @@ def dashboard_mediador(request):
         }
     )
 
-
-# =============================================================
-# PÁGINA PRINCIPAL DE RELATÓRIOS
-# =============================================================
-
-def relatorios(request):
-
-    # =========================================================
-    # INDICADORES GERAIS
-    # =========================================================
-
-    total_usuarios = Usuario.objects.count()
-
-    total_escolas = Escola.objects.filter(
-        ativa=True
-    ).count()
-
-    total_gcms = Usuario.objects.filter(
-        perfil="GCM",
-        ativo=True
-    ).count()
-
-    total_mediadores = Usuario.objects.filter(
-        perfil="MEDIADOR",
-        ativo=True
-    ).count()
-
-
-    # =========================================================
-    # RESUMO DE PROBLEMÁTICAS
-    # =========================================================
-
-    total_problematicas = EscolaProblematica.objects.count()
-
-    problematicas_ativas = EscolaProblematica.objects.filter(
-        situacao="ATIVA"
-    ).count()
-
-    problematicas_em_acompanhamento = (
-        EscolaProblematica.objects.filter(
-            situacao="EM_ACOMPANHAMENTO"
-        ).count()
-    )
-
-    problematicas_resolvidas = EscolaProblematica.objects.filter(
-        situacao="RESOLVIDA"
-    ).count()
-
-
-    # =========================================================
-    # RESUMO DE VISITAS
-    # =========================================================
-
-    total_visitas = RondaVisita.objects.count()
-
-    visitas_sem_alteracao = RondaVisita.objects.filter(
-        situacao="SEM_ALTERACAO"
-    ).count()
-
-    visitas_com_alteracao = RondaVisita.objects.filter(
-        situacao="COM_ALTERACAO"
-    ).count()
-
-
-    # =========================================================
-    # CONTEXTO
-    # =========================================================
-
-    contexto = {
-
-        # Indicadores gerais
-        "total_usuarios": total_usuarios,
-        "total_escolas": total_escolas,
-        "total_gcms": total_gcms,
-        "total_mediadores": total_mediadores,
-
-
-        # Problemáticas
-        "total_problematicas": total_problematicas,
-        "problematicas_ativas": problematicas_ativas,
-        "problematicas_em_acompanhamento": (
-            problematicas_em_acompanhamento
-        ),
-        "problematicas_resolvidas": problematicas_resolvidas,
-
-
-        # Visitas
-        "total_visitas": total_visitas,
-        "visitas_sem_alteracao": visitas_sem_alteracao,
-        "visitas_com_alteracao": visitas_com_alteracao,
-    }
-
-
-    return render(
-        request,
-        "relatorio/relatorios.html",
-        contexto
-    )
-
-
-# =============================================================
-# RELATÓRIO DETALHADO DE PROBLEMÁTICAS
-# =============================================================
-
-def relatorio_problematicas(request):
-
-    # =========================================================
-    # CONSULTA BASE
-    # =========================================================
-
-    problematicas = (
-        EscolaProblematica.objects
-        .select_related(
-            "escola",
-            "tipo_problematica"
-        )
-        .all()
-        .order_by(
-            "escola__nome",
-            "tipo_problematica__nome"
-        )
-    )
-
-
-    # =========================================================
-    # FILTROS
-    # =========================================================
-
-    polo = request.GET.get(
-        "polo",
-        ""
-    ).strip()
-
-    escola_id = request.GET.get(
-        "escola",
-        ""
-    ).strip()
-
-    tipo_id = request.GET.get(
-        "tipo",
-        ""
-    ).strip()
-
-    situacao = request.GET.get(
-        "situacao",
-        ""
-    ).strip()
-
-
-    # =========================================================
-    # APLICAÇÃO DOS FILTROS
-    # =========================================================
-
-    if polo:
-        problematicas = problematicas.filter(
-            escola__polo=polo
-        )
-
-    if escola_id:
-        problematicas = problematicas.filter(
-            escola_id=escola_id
-        )
-
-    if tipo_id:
-        problematicas = problematicas.filter(
-            tipo_problematica_id=tipo_id
-        )
-
-    if situacao:
-        problematicas = problematicas.filter(
-            situacao=situacao
-        )
-
-
-    # =========================================================
-    # TOTAL
-    # =========================================================
-
-    total_problematicas = problematicas.count()
-
-
-    # =========================================================
-    # PAGINAÇÃO
-    # =========================================================
-
-    paginator = Paginator(
-        problematicas,
-        10
-    )
-
-    numero_pagina = request.GET.get(
-        "page"
-    )
-
-    page_obj = paginator.get_page(
-        numero_pagina
-    )
-
-
-    # =========================================================
-    # ESCOLAS DO FILTRO
-    # =========================================================
-
-    escolas = Escola.objects.filter(
-        ativa=True
-    )
-
-    if polo:
-        escolas = escolas.filter(
-            polo=polo
-        )
-
-    escolas = escolas.order_by(
-        "nome"
-    )
-
-
-    # =========================================================
-    # TIPOS DE PROBLEMÁTICA
-    # =========================================================
-    #
-    # "Outras" permanece sempre por último.
-    # =========================================================
-
-    tipos_problematicas = (
-        TipoProblematica.objects
-        .filter(
-            ativa=True
-        )
-        .annotate(
-            ordem_outras=Case(
-                When(
-                    nome__iexact="Outras",
-                    then=Value(1)
-                ),
-                default=Value(0),
-                output_field=IntegerField()
-            )
-        )
-        .order_by(
-            "ordem_outras",
-            "nome"
-        )
-    )
-
-
-    # =========================================================
-    # CONTEXTO
-    # =========================================================
-
-    contexto = {
-
-        "page_obj": page_obj,
-
-        "total_problematicas": total_problematicas,
-
-        "polos": Escola.POLO_CHOICES,
-        "escolas": escolas,
-        "tipos_problematicas": tipos_problematicas,
-        "situacoes": EscolaProblematica.SITUACAO_CHOICES,
-
-        "polo_selecionado": polo,
-        "escola_selecionada": escola_id,
-        "tipo_selecionado": tipo_id,
-        "situacao_selecionada": situacao,
-    }
-
-
-    return render(
-        request,
-        "relatorio/problematicas.html",
-        contexto
-    )
-
-
-# =============================================================
-# RELATÓRIO DETALHADO DE VISITAS
-# =============================================================
-
-def relatorio_visitas(request):
-
-    # =========================================================
-    # CONSULTA BASE
-    # =========================================================
-
-    visitas = (
-        RondaVisita.objects
-        .select_related(
-            "escola"
-        )
-        .all()
-        .order_by(
-            "-data_visita",
-            "-horario"
-        )
-    )
-
-
-    # =========================================================
-    # FILTROS
-    # =========================================================
-
-    polo = request.GET.get(
-        "polo",
-        ""
-    ).strip()
-
-    escola_id = request.GET.get(
-        "escola",
-        ""
-    ).strip()
-
-    equipe = request.GET.get(
-        "equipe",
-        ""
-    ).strip()
-
-    situacao = request.GET.get(
-        "situacao",
-        ""
-    ).strip()
-
-    data_inicial = request.GET.get(
-        "data_inicial",
-        ""
-    ).strip()
-
-    data_final = request.GET.get(
-        "data_final",
-        ""
-    ).strip()
-
-
-    # =========================================================
-    # APLICAÇÃO DOS FILTROS
-    # =========================================================
-
-    if polo:
-        visitas = visitas.filter(
-            escola__polo=polo
-        )
-
-    if escola_id:
-        visitas = visitas.filter(
-            escola_id=escola_id
-        )
-
-    if equipe:
-        visitas = visitas.filter(
-            equipe=equipe
-        )
-
-    if situacao:
-        visitas = visitas.filter(
-            situacao=situacao
-        )
-
-    if data_inicial:
-        visitas = visitas.filter(
-            data_visita__gte=data_inicial
-        )
-
-    if data_final:
-        visitas = visitas.filter(
-            data_visita__lte=data_final
-        )
-
-
-    # =========================================================
-    # TOTAL DE VISITAS
-    # =========================================================
-
-    total_visitas = visitas.count()
-
-
-    # =========================================================
-    # PAGINAÇÃO
-    # =========================================================
-    #
-    # Exibe 10 visitas por página.
-    # =========================================================
-
-    paginator = Paginator(
-        visitas,
-        10
-    )
-
-    numero_pagina = request.GET.get(
-        "page"
-    )
-
-    page_obj = paginator.get_page(
-        numero_pagina
-    )
-
-
-    # =========================================================
-    # ESCOLAS DISPONÍVEIS NO FILTRO
-    # =========================================================
-
-    escolas = Escola.objects.filter(
-        ativa=True
-    )
-
-    if polo:
-        escolas = escolas.filter(
-            polo=polo
-        )
-
-    escolas = escolas.order_by(
-        "nome"
-    )
-
-
-    # =========================================================
-    # CONTEXTO
-    # =========================================================
-
-    contexto = {
-
-        # Paginação
-        "page_obj": page_obj,
-
-
-        # Total encontrado
-        "total_visitas": total_visitas,
-
-
-        # Opções dos filtros
-        "polos": Escola.POLO_CHOICES,
-
-        "escolas": escolas,
-
-        "equipes": RondaVisita.EQUIPE_CHOICES,
-
-        "situacoes": RondaVisita.SITUACAO_CHOICES,
-
-
-        # Valores selecionados
-        "polo_selecionado": polo,
-
-        "escola_selecionada": escola_id,
-
-        "equipe_selecionada": equipe,
-
-        "situacao_selecionada": situacao,
-
-        "data_inicial": data_inicial,
-
-        "data_final": data_final,
-    }
-
-
-    return render(
-        request,
-        "relatorio/visitas.html",
-        contexto
-    )

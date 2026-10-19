@@ -21,11 +21,15 @@ class Usuario(models.Model):
         on_delete=models.CASCADE
     )
 
-    nome = models.CharField(max_length=100)
+    nome = models.CharField(
+        max_length=100
+    )
 
     cpf = models.CharField(
         max_length=14,
-        unique=True
+        unique=True,
+        blank=True,
+        null=True
     )
 
     matricula = models.CharField(
@@ -56,7 +60,13 @@ class Usuario(models.Model):
         choices=PERFIL_CHOICES
     )
 
-    ativo = models.BooleanField(default=True)
+    ativo = models.BooleanField(
+        default=True
+    )
+
+    primeiro_acesso = models.BooleanField(
+        default=True
+    )
 
     data_inativacao = models.DateTimeField(
         blank=True,

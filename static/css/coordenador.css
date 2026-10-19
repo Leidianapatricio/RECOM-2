@@ -1,0 +1,161 @@
+
+:root {
+    --recom-azul: #092B49;
+    --recom-dourado: #B78B32;
+    --recom-dourado-claro: #E5BD64;
+}
+
+/* CABEÇALHO */
+
+.recom-dashboard-header {
+    background: var(--recom-azul);
+    color: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+.recom-dashboard-header h2,
+.recom-dashboard-header h2 i,
+.recom-dashboard-header p {
+    color: #ffffff !important;
+    text-shadow: none !important;
+}
+
+/* SEÇÕES */
+
+.recom-section-header {
+    background: var(--recom-azul);
+    color: #ffffff;
+    padding: 13px 18px;
+    font-weight: 600;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+/* ACESSO RÁPIDO */
+
+.recom-action-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 145px;
+    height: 100%;
+    padding: 20px 12px;
+    border: 1px solid #dce3ea;
+    border-radius: 12px;
+    color: var(--recom-azul);
+    background: #ffffff;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.recom-action-card:hover {
+    background: var(--recom-azul);
+    color: #ffffff;
+    border-color: var(--recom-azul);
+    transform: translateY(-3px);
+}
+
+.recom-action-card i {
+    font-size: 30px;
+    color: var(--recom-dourado);
+}
+
+.recom-action-card:hover i {
+    color: var(--recom-dourado-claro);
+}
+
+.recom-action-card span {
+    font-weight: 600;
+}
+
+/* INDICADORES */
+
+.recom-stat-card {
+    border: 1px solid #e5e9ee;
+    border-radius: 12px;
+    height: 100%;
+    transition: transform 0.2s;
+}
+
+.recom-stat-card:hover {
+    transform: translateY(-2px);
+}
+
+.recom-stat-icon {
+    font-size: 28px;
+    color: var(--recom-dourado);
+}
+
+.recom-stat-number {
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--recom-azul);
+}
+
+.recom-stat-label {
+    color: #5c6670;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* TABELAS */
+
+.recom-table thead th {
+    background: #f0f3f6;
+    color: var(--recom-azul);
+    font-weight: 600;
+}
+
+.recom-table td,
+.recom-table th {
+    padding: 12px 15px;
+    vertical-align: middle;
+}
+
+.recom-total-badge {
+    display: inline-block;
+    background: var(--recom-azul);
+    color: #ffffff;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+/* REMOVER SOMBRAS DAS SEÇÕES */
+
+.recom-dashboard-header + .card,
+.recom-dashboard-header ~ .card {
+    box-shadow: none !important;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 576px) {
+
+    .recom-dashboard-header {
+        padding: 20px;
+    }
+
+    .recom-dashboard-header h2 {
+        font-size: 23px;
+    }
+
+    .recom-action-card {
+        min-height: 130px;
+        padding: 15px 8px;
+    }
+
+    .recom-action-card i {
+        font-size: 26px;
+    }
+
+    .recom-stat-number {
+        font-size: 26px;
+    }
+}

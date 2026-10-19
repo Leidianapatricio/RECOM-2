@@ -11,5 +11,11 @@ urlpatterns = [
     "minhas-notificacoes/",
     views.minhas_notificacoes,
     name="minhas_notificacoes",
-),
+    ),
+    
+    path(
+    "<int:pk>/editar/",
+    views.editar_usuario,
+    name="editar"
+    ),
 ]

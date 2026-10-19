@@ -1,0 +1,138 @@
+
+{% extends "base.html" %}
+
+{% block title %}
+    {% if edicao %}
+        Editar Integrante - RECOM
+    {% else %}
+        Adicionar GCM - RECOM
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+
+            <!-- CABEÇALHO -->
+            <div class="d-flex align-items-center mb-4">
+
+                <a href="{% url 'cartao_programa:listar_integrantes' equipe.pk %}"
+                   class="btn btn-outline-secondary me-3">
+                    <i class="bi bi-arrow-left"></i>
+                    Voltar
+                </a>
+
+                <h2 class="mb-0">
+
+                    {% if edicao %}
+                        <i class="bi bi-pencil-square me-2"></i>
+                        Editar Integrante
+                    {% else %}
+                        <i class="bi bi-person-plus me-2"></i>
+                        Adicionar GCM
+                    {% endif %}
+
+                </h2>
+
+            </div>
+
+            <!-- FORMULÁRIO -->
+            <div class="card shadow-sm">
+
+                <div class="card-body p-4">
+
+                    <h5 class="mb-4">
+                        Equipe: {{ equipe.nome }}
+                    </h5>
+
+                    <form method="post">
+
+                        {% csrf_token %}
+
+                        <!-- ERROS GERAIS -->
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                {{ form.non_field_errors }}
+                            </div>
+                        {% endif %}
+
+                        <!-- CAMPO GCM -->
+                        <div class="mb-3">
+
+                            <label for="{{ form.gcm.id_for_label }}"
+                                   class="form-label">
+                                GCM
+                            </label>
+
+                            {{ form.gcm }}
+
+                            {% if edicao %}
+                                <div class="form-text">
+                                    O GCM não pode ser alterado durante
+                                    a edição. Apenas sua função habitual
+                                    pode ser modificada.
+                                </div>
+                            {% endif %}
+
+                            {% for error in form.gcm.errors %}
+                                <div class="text-danger small">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+
+                        </div>
+
+                        <!-- CAMPO FUNÇÃO HABITUAL -->
+                        <div class="mb-3">
+
+                            <label for="{{ form.funcao_habitual.id_for_label }}"
+                                   class="form-label">
+                                Função habitual
+                            </label>
+
+                            {{ form.funcao_habitual }}
+
+                            {% for error in form.funcao_habitual.errors %}
+                                <div class="text-danger small">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+
+                        </div>
+
+                        <!-- BOTÕES -->
+                        <div class="d-flex justify-content-end gap-2">
+
+                            <a href="{% url 'cartao_programa:listar_integrantes' equipe.pk %}"
+                               class="btn btn-secondary">
+                                Cancelar
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-primary">
+
+                                {% if edicao %}
+                                    <i class="bi bi-check-circle me-1"></i>
+                                    Salvar Alterações
+                                {% else %}
+                                    <i class="bi bi-check-circle me-1"></i>
+                                    Salvar Integrante
+                                {% endif %}
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}

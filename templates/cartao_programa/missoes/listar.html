@@ -1,0 +1,360 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <!-- ============================================== -->
+    <!-- CABEÇALHO -->
+    <!-- ============================================== -->
+
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+
+        <div>
+            <h3 class="fw-bold mb-1" style="color: #092B49;">
+                <i class="bi bi-clipboard-check me-2"></i>
+                Missões do Cartão Programa
+            </h3>
+
+            <p class="text-muted mb-0">
+                <i class="bi bi-calendar-event me-1"></i>
+                Plantão de {{ plantao.data|date:"d/m/Y" }}
+            </p>
+        </div>
+
+        <!-- BOTÕES SUPERIORES -->
+
+        <div class="d-flex flex-wrap gap-2">
+
+            <!-- VOLTAR -->
+
+            <a href="{% url 'cartao_programa:visualizar_cartao' plantao.pk %}"
+               class="btn btn-outline-secondary">
+
+                <i class="bi bi-arrow-left me-1"></i>
+                Voltar ao Cartão
+
+            </a>
+
+            <!-- ADICIONAR POR POLO -->
+
+            <a href="{% url 'cartao_programa:criar_missoes_em_lote' plantao.pk %}"
+               class="btn btn-warning">
+
+                <i class="bi bi-buildings me-1"></i>
+                Adicionar por Polo
+
+            </a>
+
+            <!-- NOVA MISSÃO INDIVIDUAL -->
+
+            <a href="{% url 'cartao_programa:criar_missao' plantao.pk %}"
+               class="btn text-white"
+               style="background-color: #092B49;">
+
+                <i class="bi bi-plus-circle me-1"></i>
+                Nova Missão
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- ============================================== -->
+    <!-- INFORMAÇÕES DO CARTÃO -->
+    <!-- ============================================== -->
+
+    <div class="card border-0 shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <div class="row g-3 align-items-center">
+
+                <!-- DATA -->
+
+                <div class="col-md-4">
+
+                    <div class="text-muted small">
+                        Data do plantão
+                    </div>
+
+                    <div class="fw-semibold">
+                        {{ plantao.data|date:"d/m/Y" }}
+                    </div>
+
+                </div>
+
+
+                <!-- COORDENADOR -->
+
+                <div class="col-md-4">
+
+                    <div class="text-muted small">
+                        Coordenador responsável
+                    </div>
+
+                    <div class="fw-semibold">
+                        {{ cartao.coordenador.nome|default:"Não informado" }}
+                    </div>
+
+                </div>
+
+
+                <!-- TOTAL DE MISSÕES -->
+
+                <div class="col-md-4">
+
+                    <div class="text-muted small">
+                        Total de missões
+                    </div>
+
+                    <div class="fw-semibold">
+                        {{ missoes|length }}
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ============================================== -->
+    <!-- TABELA DE MISSÕES -->
+    <!-- ============================================== -->
+
+    <div class="card border-0 shadow-sm">
+
+        <!-- CABEÇALHO AZUL-MARINHO -->
+
+        <div class="card-header text-white py-3"
+             style="background-color: #092B49;">
+
+            <h5 class="mb-0 text-white">
+                <i class="bi bi-list-task me-2"></i>
+                Missões Cadastradas
+            </h5>
+
+        </div>
+
+
+        <!-- TABELA -->
+
+        <div class="card-body p-0">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle mb-0">
+
+                    <thead class="table-light">
+
+                        <tr>
+                            <th class="ps-3">Nº</th>
+                            <th>Viatura</th>
+                            <th>Tipo de Missão</th>
+                            <th>Escola / Local</th>
+                            <th>Período</th>
+                            <th>Horário</th>
+                            <th class="text-center">Ações</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% for missao in missoes %}
+
+                            <tr>
+
+                                <!-- NÚMERO DA MISSÃO -->
+
+                                <td class="ps-3 fw-semibold">
+                                    {{ missao.numero }}
+                                </td>
+
+
+                                <!-- VIATURA RESPONSÁVEL -->
+
+                                <td>
+
+                                    <span class="badge bg-secondary">
+
+                                        <i class="bi bi-truck me-1"></i>
+                                        {{ missao.viatura.identificacao }}
+
+                                    </span>
+
+                                </td>
+
+
+                                <!-- TIPO DE MISSÃO -->
+
+                                <td>
+                                    {{ missao.get_tipo_missao_display }}
+                                </td>
+
+
+                                <!-- ESCOLA OU LOCAL -->
+
+                                <td>
+
+                                    {% if missao.escola %}
+
+                                        <div class="fw-semibold">
+                                            {{ missao.escola.nome }}
+                                        </div>
+
+                                        {% if missao.local %}
+
+                                            <div class="text-muted small">
+                                                {{ missao.local }}
+                                            </div>
+
+                                        {% endif %}
+
+                                    {% elif missao.local %}
+
+                                        <div class="fw-semibold">
+                                            {{ missao.local }}
+                                        </div>
+
+                                    {% else %}
+
+                                        <span class="text-muted">
+                                            Não informado
+                                        </span>
+
+                                    {% endif %}
+
+
+                                    <!-- ENDEREÇO -->
+
+                                    {% if missao.endereco %}
+
+                                        <div class="text-muted small mt-1">
+
+                                            <i class="bi bi-geo-alt me-1"></i>
+                                            {{ missao.endereco }}
+
+                                        </div>
+
+                                    {% endif %}
+
+                                </td>
+
+
+                                <!-- PERÍODO -->
+
+                                <td>
+                                    {{ missao.get_periodo_display }}
+                                </td>
+
+
+                                <!-- HORÁRIOS -->
+
+                                <td>
+
+                                    {% if missao.horario_inicio %}
+
+                                        {{ missao.horario_inicio|time:"H:i" }}
+
+                                    {% else %}
+
+                                        --
+
+                                    {% endif %}
+
+                                    <span class="text-muted">às</span>
+
+                                    {% if missao.horario_fim %}
+
+                                        {{ missao.horario_fim|time:"H:i" }}
+
+                                    {% else %}
+
+                                        --
+
+                                    {% endif %}
+
+                                </td>
+
+
+                                <!-- AÇÕES -->
+
+                                <td>
+
+                                    <div class="d-flex justify-content-center gap-2">
+
+                                        <!-- EDITAR MISSÃO -->
+
+                                        <a href="{% url 'cartao_programa:editar_missao' plantao.pk missao.pk %}"
+                                           class="btn btn-sm btn-outline-primary"
+                                           title="Editar missão"
+                                           aria-label="Editar missão {{ missao.numero }}">
+
+                                            <i class="bi bi-pencil-square"></i>
+
+                                        </a>
+
+
+                                        <!-- EXCLUIR MISSÃO -->
+
+                                        <a href="{% url 'cartao_programa:remover_missao' plantao.pk missao.pk %}"
+                                           class="btn btn-sm btn-outline-danger"
+                                           title="Remover missão"
+                                           aria-label="Remover missão {{ missao.numero }}">
+
+                                            <i class="bi bi-trash"></i>
+
+                                        </a>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                        {% empty %}
+
+                            <!-- NENHUMA MISSÃO CADASTRADA -->
+
+                            <tr>
+
+                                <td colspan="7"
+                                    class="text-center py-5">
+
+                                    <i class="bi bi-clipboard-x fs-1 text-muted d-block mb-3"></i>
+
+                                    <h5 class="fw-semibold">
+                                        Nenhuma missão cadastrada
+                                    </h5>
+
+                                    <p class="text-muted mb-0">
+                                        Este Cartão Programa ainda não possui missões.
+                                        Utilize os botões acima para cadastrar.
+                                    </p>
+
+                                </td>
+
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

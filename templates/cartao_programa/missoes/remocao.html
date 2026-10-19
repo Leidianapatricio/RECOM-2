@@ -1,0 +1,178 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <!-- CABEÇALHO -->
+
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+
+        <div>
+            <h3 class="fw-bold mb-1" style="color: #092B49;">
+                <i class="bi bi-trash me-2"></i>
+                Excluir Missão
+            </h3>
+
+            <p class="text-muted mb-0">
+                <i class="bi bi-calendar-event me-1"></i>
+                Cartão Programa — Plantão de
+                {{ plantao.data|date:"d/m/Y" }}
+            </p>
+        </div>
+
+        <a href="{% url 'cartao_programa:listar_missoes' plantao.pk %}"
+           class="btn btn-outline-secondary">
+
+            <i class="bi bi-arrow-left me-1"></i>
+            Voltar às Missões
+
+        </a>
+
+    </div>
+
+
+    <!-- CONFIRMAÇÃO DE EXCLUSÃO -->
+
+    <div class="card border-0 shadow-sm">
+
+        <div class="card-header text-white py-3"
+             style="background-color: #092B49;">
+
+            <h5 class="mb-0 text-white">
+                <i class="bi bi-exclamation-triangle me-2"></i>
+                Confirmação de Exclusão
+            </h5>
+
+        </div>
+
+        <div class="card-body p-4">
+
+            <div class="alert alert-warning">
+
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+
+                <strong>Atenção!</strong>
+                Você está prestes a excluir uma missão do Cartão Programa.
+
+                <div class="mt-2">
+                    Esta ação não poderá ser desfeita.
+                </div>
+
+            </div>
+
+
+            <!-- INFORMAÇÕES DA MISSÃO -->
+
+            <div class="border rounded p-3 mb-4"
+                 style="background-color: #F4F7FA;">
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="text-muted small">
+                            Número da missão
+                        </div>
+
+                        <div class="fw-semibold">
+                            {{ missao.numero }}
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <div class="text-muted small">
+                            Viatura responsável
+                        </div>
+
+                        <div class="fw-semibold">
+                            {{ missao.viatura.identificacao }}
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <div class="text-muted small">
+                            Tipo de missão
+                        </div>
+
+                        <div class="fw-semibold">
+                            {{ missao.get_tipo_missao_display }}
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="text-muted small">
+                            Escola / Local
+                        </div>
+
+                        <div class="fw-semibold">
+
+                            {% if missao.escola %}
+                                {{ missao.escola.nome }}
+                            {% else %}
+                                {{ missao.local|default:"Não informado" }}
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="text-muted small">
+                            Período
+                        </div>
+
+                        <div class="fw-semibold">
+                            {{ missao.get_periodo_display }}
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BOTÕES -->
+
+            <form method="post">
+
+                {% csrf_token %}
+
+                <div class="d-flex flex-wrap justify-content-end gap-2">
+
+                    <a href="{% url 'cartao_programa:listar_missoes' plantao.pk %}"
+                       class="btn btn-outline-secondary">
+
+                        <i class="bi bi-x-circle me-1"></i>
+                        Cancelar
+
+                    </a>
+
+                    <button type="submit"
+                            class="btn btn-danger">
+
+                        <i class="bi bi-trash me-1"></i>
+                        Confirmar Exclusão
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

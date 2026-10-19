@@ -1,4 +1,6 @@
+
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
 Dashboard do Coordenador
@@ -6,289 +8,142 @@ Dashboard do Coordenador
 
 {% block content %}
 
+<!-- CSS DO DASHBOARD -->
+<link rel="stylesheet"
+      href="{% static 'css/coordenador.css' %}">
+
+
 <div class="container mt-4 mb-5">
 
-    <!-- TÍTULO -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <!-- ================================= -->
+    <!-- CABEÇALHO                         -->
+    <!-- ================================= -->
 
-        <div>
-            <h2 class="mb-1">
-                Dashboard do Coordenador
-            </h2>
+    <div class="recom-dashboard-header mb-4">
 
-            <p class="text-muted mb-0">
-                Visão geral das atividades e acompanhamento da RECOM.
-            </p>
-        </div>
+        <h2 class="mb-2">
+            <i class="bi bi-shield-check me-2"></i>
+            Dashboard do Coordenador
+        </h2>
 
-    </div>
-
-
-    <!-- INDICADORES PRINCIPAIS -->
-    <div class="row g-3 mb-4">
-
-        <div class="col-md-6 col-lg-3">
-            <div class="card shadow-sm h-100">
-                <div class="card-body text-center">
-
-                    <div class="mb-2">
-                        <i class="bi bi-building fs-2 text-primary"></i>
-                    </div>
-
-                    <h3 class="mb-1">
-                        {{ total_escolas }}
-                    </h3>
-
-                    <p class="text-muted mb-0">
-                        Escolas cadastradas
-                    </p>
-
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-md-6 col-lg-3">
-            <div class="card shadow-sm h-100">
-                <div class="card-body text-center">
-
-                    <div class="mb-2">
-                        <i class="bi bi-check-circle fs-2 text-success"></i>
-                    </div>
-
-                    <h3 class="mb-1 text-success">
-                        {{ escolas_ativas }}
-                    </h3>
-
-                    <p class="text-muted mb-0">
-                        Escolas ativas
-                    </p>
-
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-md-6 col-lg-3">
-            <div class="card shadow-sm h-100">
-                <div class="card-body text-center">
-
-                    <div class="mb-2">
-                        <i class="bi bi-exclamation-triangle fs-2 text-warning"></i>
-                    </div>
-
-                    <h3 class="mb-1">
-                        {{ total_problematicas }}
-                    </h3>
-
-                    <p class="text-muted mb-0">
-                        Problemáticas registradas
-                    </p>
-
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-md-6 col-lg-3">
-            <div class="card shadow-sm h-100">
-                <div class="card-body text-center">
-
-                    <div class="mb-2">
-                        <i class="bi bi-clipboard-check fs-2 text-success"></i>
-                    </div>
-
-                    <h3 class="mb-1">
-                        {{ total_visitas }}
-                    </h3>
-
-                    <p class="text-muted mb-0">
-                        Visitas realizadas
-                    </p>
-
-                </div>
-            </div>
-        </div>
+        <p class="mb-0">
+            Gestão e acompanhamento das atividades
+            operacionais da RECOM.
+        </p>
 
     </div>
 
 
-    <!-- SEGUNDA LINHA DE INDICADORES -->
-    <div class="row g-3 mb-4">
+    <!-- ================================= -->
+    <!-- ACESSO RÁPIDO                     -->
+    <!-- ================================= -->
 
-        <div class="col-md-6 col-lg-3">
-            <div class="card shadow-sm h-100">
+    <div class="card mb-4 border-0 recom-section-card">
 
-                <div class="card-body text-center">
-
-                    <div class="mb-2">
-                        <i class="bi bi-x-circle fs-2 text-danger"></i>
-                    </div>
-
-                    <h3 class="mb-1 text-danger">
-                        {{ escolas_inativas }}
-                    </h3>
-
-                    <p class="text-muted mb-0">
-                        Escolas inativas
-                    </p>
-
-                </div>
-
-            </div>
-        </div>
-
-
-        <div class="col-md-6 col-lg-3">
-            <div class="card shadow-sm h-100">
-
-                <div class="card-body text-center">
-
-                    <div class="mb-2">
-                        <i class="bi bi-shield-check fs-2 text-success"></i>
-                    </div>
-
-                    <h3 class="mb-1 text-success">
-                        {{ visitas_sem_alteracao }}
-                    </h3>
-
-                    <p class="text-muted mb-0">
-                        Visitas sem alteração
-                    </p>
-
-                </div>
-
-            </div>
-        </div>
-
-
-        <div class="col-md-6 col-lg-3">
-            <div class="card shadow-sm h-100">
-
-                <div class="card-body text-center">
-
-                    <div class="mb-2">
-                        <i class="bi bi-exclamation-diamond fs-2 text-warning"></i>
-                    </div>
-
-                    <h3 class="mb-1 text-warning">
-                        {{ visitas_com_alteracao }}
-                    </h3>
-
-                    <p class="text-muted mb-0">
-                        Visitas com alteração
-                    </p>
-
-                </div>
-
-            </div>
-        </div>
-
-
-        <div class="col-md-6 col-lg-3">
-            <div class="card shadow-sm h-100">
-
-                <div class="card-body text-center">
-
-                    <div class="mb-2">
-                        <i class="bi bi-people fs-2 text-primary"></i>
-                    </div>
-
-                    <h3 class="mb-1">
-                        {{ total_gcms }}
-                    </h3>
-
-                    <p class="text-muted mb-0">
-                        GCMs ativos
-                    </p>
-
-                </div>
-
-            </div>
-        </div>
-
-    </div>
-
-
-    <!-- ATALHOS -->
-    <div class="card shadow-sm mb-4">
-
-        <div class="card-header">
-            <strong>
-                Acesso Rápido
-            </strong>
+        <div class="card-header recom-section-header">
+            <i class="bi bi-grid me-2"></i>
+            Acesso Rápido
         </div>
 
         <div class="card-body">
 
             <div class="row g-3">
 
-                <div class="col-md-6 col-lg-3">
-                    <a
-                        href="{% url 'escolas:listar_escolas' %}"
-                        class="btn btn-outline-primary w-100 py-3"
-                    >
-                        <i class="bi bi-building me-2"></i>
-                        Escolas
+                <!-- GERENCIAR USUÁRIOS -->
+
+                <div class="col-6 col-md-4 col-lg-3">
+
+                    <a href="{% url 'usuarios:listar' %}"
+                       class="recom-action-card">
+
+                        <i class="bi bi-people-fill"></i>
+
+                        <span>Gerenciar Usuários</span>
+
                     </a>
+
                 </div>
 
 
-                <div class="col-md-6 col-lg-3">
-                    <a
-                        href="{% url 'visitas:cadastrar_visita' %}"
-                        class="btn btn-outline-success w-100 py-3"
-                    >
-                        <i class="bi bi-clipboard-check me-2"></i>
-                        Registrar Visita
+                <!-- GERENCIAR ESCOLAS -->
+
+                <div class="col-6 col-md-4 col-lg-3">
+
+                    <a href="{% url 'escolas:listar_escolas' %}"
+                       class="recom-action-card">
+
+                        <i class="bi bi-building"></i>
+
+                        <span>Gerenciar Escolas</span>
+
                     </a>
+
                 </div>
 
 
-                <div class="col-md-6 col-lg-3">
-                    <button
-                        type="button"
-                        class="btn btn-outline-secondary w-100 py-3"
-                        disabled
-                    >
-                        <i class="bi bi-card-checklist me-2"></i>
-                        Cartão Programa
-                    </button>
-                </div>
+                <!-- GERENCIAR EQUIPES -->
 
+                <div class="col-6 col-md-4 col-lg-3">
 
-                <div class="col-md-6 col-lg-3">
-                    <button
-                        type="button"
-                        class="btn btn-outline-secondary w-100 py-3"
-                        disabled
-                    >
-                        <i class="bi bi-exclamation-octagon me-2"></i>
-                        Ocorrências
-                    </button>
-                </div>
+                    <a href="{% url 'cartao_programa:listar_equipes' %}"
+                       class="recom-action-card">
 
+                        <i class="bi bi-people"></i>
 
-                <div class="col-md-6 col-lg-3">
-                    <button
-                        type="button"
-                        class="btn btn-outline-secondary w-100 py-3"
-                        disabled
-                    >
-                        <i class="bi bi-megaphone me-2"></i>
-                        Ações Educativas
-                    </button>
-                </div>
+                        <span>Gerenciar Equipes</span>
 
-
-                <div class="col-md-6 col-lg-3">
-                    <a
-                        href="{% url 'core:relatorios' %}"
-                        class="btn btn-outline-dark w-100 py-3"
-                    >
-                        <i class="bi bi-bar-chart me-2"></i>
-                        Relatórios
                     </a>
+
+                </div>
+
+
+                <!-- GERENCIAR PLANTÕES -->
+
+                <div class="col-6 col-md-4 col-lg-3">
+
+                    <a href="{% url 'cartao_programa:listar_plantoes' %}"
+                       class="recom-action-card">
+
+                        <i class="bi bi-calendar-week"></i>
+
+                        <span>Gerenciar Plantões</span>
+
+                    </a>
+
+                </div>
+
+
+                <!-- CARTÃO PROGRAMA E MISSÕES -->
+
+                <div class="col-6 col-md-4 col-lg-3">
+
+                    <a href="{% url 'cartao_programa:listar_cartoes' %}"
+                       class="recom-action-card">
+
+                        <i class="bi bi-card-checklist"></i>
+
+                        <span>
+                            Cartão Programa e Missões
+                        </span>
+
+                    </a>
+
+                </div>
+
+
+                <!-- RELATÓRIOS -->
+
+                <div class="col-6 col-md-4 col-lg-3">
+
+                    <a href="{% url 'core:relatorios' %}"
+                       class="recom-action-card">
+
+                        <i class="bi bi-bar-chart-line"></i>
+
+                        <span>Relatórios</span>
+
+                    </a>
+
                 </div>
 
             </div>
@@ -298,70 +153,304 @@ Dashboard do Coordenador
     </div>
 
 
-    <!-- TABELAS -->
+    <!-- ================================= -->
+    <!-- INDICADORES GERAIS                -->
+    <!-- ================================= -->
+
+    <div class="card mb-4 border-0 recom-section-card">
+
+        <div class="card-header recom-section-header">
+            <i class="bi bi-speedometer2 me-2"></i>
+            Indicadores Gerais
+        </div>
+
+        <div class="card-body">
+
+            <div class="row g-3">
+
+                <!-- TOTAL DE ESCOLAS -->
+
+                <div class="col-6 col-md-3">
+
+                    <div class="card recom-stat-card">
+
+                        <div class="card-body text-center">
+
+                            <i class="bi bi-buildings recom-stat-icon"></i>
+
+                            <div class="recom-stat-number">
+                                {{ total_escolas|default:0 }}
+                            </div>
+
+                            <div class="recom-stat-label">
+                                Total de Escolas
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ESCOLAS ATIVAS -->
+
+                <div class="col-6 col-md-3">
+
+                    <div class="card recom-stat-card">
+
+                        <div class="card-body text-center">
+
+                            <i class="bi bi-building-check recom-stat-icon"></i>
+
+                            <div class="recom-stat-number">
+                                {{ escolas_ativas|default:0 }}
+                            </div>
+
+                            <div class="recom-stat-label">
+                                Escolas Ativas
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ESCOLAS INATIVAS -->
+
+                <div class="col-6 col-md-3">
+
+                    <div class="card recom-stat-card">
+
+                        <div class="card-body text-center">
+
+                            <i class="bi bi-building-x recom-stat-icon"></i>
+
+                            <div class="recom-stat-number">
+                                {{ escolas_inativas|default:0 }}
+                            </div>
+
+                            <div class="recom-stat-label">
+                                Escolas Inativas
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ESCOLAS PROBLEMÁTICAS -->
+
+                <div class="col-6 col-md-3">
+
+                    <div class="card recom-stat-card">
+
+                        <div class="card-body text-center">
+
+                            <i class="bi bi-exclamation-triangle recom-stat-icon"></i>
+
+                            <div class="recom-stat-number">
+                                {{ total_problematicas|default:0 }}
+                            </div>
+
+                            <div class="recom-stat-label">
+                                Escolas Problemáticas
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TOTAL DE VISITAS -->
+
+                <div class="col-6 col-md-3">
+
+                    <div class="card recom-stat-card">
+
+                        <div class="card-body text-center">
+
+                            <i class="bi bi-geo-alt recom-stat-icon"></i>
+
+                            <div class="recom-stat-number">
+                                {{ total_visitas|default:0 }}
+                            </div>
+
+                            <div class="recom-stat-label">
+                                Total de Visitas
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- VISITAS SEM ALTERAÇÃO -->
+
+                <div class="col-6 col-md-3">
+
+                    <div class="card recom-stat-card">
+
+                        <div class="card-body text-center">
+
+                            <i class="bi bi-check-circle recom-stat-icon"></i>
+
+                            <div class="recom-stat-number">
+                                {{ visitas_sem_alteracao|default:0 }}
+                            </div>
+
+                            <div class="recom-stat-label">
+                                Visitas sem Alteração
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- VISITAS COM ALTERAÇÃO -->
+
+                <div class="col-6 col-md-3">
+
+                    <div class="card recom-stat-card">
+
+                        <div class="card-body text-center">
+
+                            <i class="bi bi-exclamation-circle recom-stat-icon"></i>
+
+                            <div class="recom-stat-number">
+                                {{ visitas_com_alteracao|default:0 }}
+                            </div>
+
+                            <div class="recom-stat-label">
+                                Visitas com Alteração
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- GCMS ATIVOS -->
+
+                <div class="col-6 col-md-3">
+
+                    <div class="card recom-stat-card">
+
+                        <div class="card-body text-center">
+
+                            <i class="bi bi-person-badge recom-stat-icon"></i>
+
+                            <div class="recom-stat-number">
+                                {{ total_gcms|default:0 }}
+                            </div>
+
+                            <div class="recom-stat-label">
+                                GCMs Ativos
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================= -->
+    <!-- TABELAS ESTATÍSTICAS              -->
+    <!-- ================================= -->
+
     <div class="row g-4">
 
         <!-- ESCOLAS POR POLO -->
-        <div class="col-lg-5">
 
-            <div class="card shadow-sm h-100">
+        <div class="col-lg-6">
 
-                <div class="card-header">
-                    <strong>
-                        Escolas por Polo
-                    </strong>
+            <div class="card border-0 h-100 recom-section-card">
+
+                <div class="card-header recom-section-header">
+
+                    <i class="bi bi-diagram-3 me-2"></i>
+                    Escolas por Polo
+
                 </div>
 
                 <div class="card-body">
 
-                    {% if escolas_por_polo %}
+                    <div class="table-responsive">
 
-                        <div class="table-responsive">
+                        <table class="table table-hover recom-table">
 
-                            <table class="table table-hover align-middle mb-0">
+                            <thead>
 
-                                <thead>
-                                    <tr>
-                                        <th>Polo</th>
-                                        <th class="text-end">
-                                            Quantidade
-                                        </th>
-                                    </tr>
-                                </thead>
+                                <tr>
+                                    <th>Polo</th>
 
-                                <tbody>
+                                    <th class="text-center">
+                                        Escolas Ativas
+                                    </th>
+                                </tr>
 
-                                    {% for item in escolas_por_polo %}
+                            </thead>
 
-                                        <tr>
+                            <tbody>
 
-                                            <td>
-                                                Polo {{ item.polo }}
-                                            </td>
+                                {% for item in escolas_por_polo %}
 
-                                            <td class="text-end">
-                                                <strong>
-                                                    {{ item.total }}
-                                                </strong>
-                                            </td>
+                                <tr>
 
-                                        </tr>
+                                    <td>
+                                        {{ item.polo|default:"Não informado" }}
+                                    </td>
 
-                                    {% endfor %}
+                                    <td class="text-center">
 
-                                </tbody>
+                                        <span class="recom-total-badge">
+                                            {{ item.total }}
+                                        </span>
 
-                            </table>
+                                    </td>
 
-                        </div>
+                                </tr>
 
-                    {% else %}
+                                {% empty %}
 
-                        <p class="text-muted mb-0">
-                            Nenhuma escola cadastrada.
-                        </p>
+                                <tr>
 
-                    {% endif %}
+                                    <td colspan="2"
+                                        class="text-center text-muted py-4">
+
+                                        Nenhuma escola encontrada.
+
+                                    </td>
+
+                                </tr>
+
+                                {% endfor %}
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
 
                 </div>
 
@@ -370,70 +459,81 @@ Dashboard do Coordenador
         </div>
 
 
-        <!-- PROBLEMÁTICAS POR TIPO -->
-        <div class="col-lg-7">
+        <!-- ESCOLAS PROBLEMÁTICAS POR TIPO -->
 
-            <div class="card shadow-sm h-100">
+        <div class="col-lg-6">
 
-                <div class="card-header">
-                    <strong>
-                        Problemáticas por Tipo
-                    </strong>
+            <div class="card border-0 h-100 recom-section-card">
+
+                <div class="card-header recom-section-header">
+
+                    <i class="bi bi-exclamation-triangle me-2"></i>
+                    Escolas Problemáticas por Tipo
+
                 </div>
 
                 <div class="card-body">
 
-                    {% if problematicas_por_tipo %}
+                    <div class="table-responsive">
 
-                        <div class="table-responsive">
+                        <table class="table table-hover recom-table">
 
-                            <table class="table table-hover align-middle mb-0">
+                            <thead>
 
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            Problemática
-                                        </th>
+                                <tr>
 
-                                        <th class="text-end">
-                                            Quantidade
-                                        </th>
-                                    </tr>
-                                </thead>
+                                    <th>
+                                        Tipo de Problemática
+                                    </th>
 
-                                <tbody>
+                                    <th class="text-center">
+                                        Total
+                                    </th>
 
-                                    {% for item in problematicas_por_tipo %}
+                                </tr>
 
-                                        <tr>
+                            </thead>
 
-                                            <td>
-                                                {{ item.tipo_problematica__nome }}
-                                            </td>
+                            <tbody>
 
-                                            <td class="text-end">
-                                                <strong>
-                                                    {{ item.total }}
-                                                </strong>
-                                            </td>
+                                {% for item in problematicas_por_tipo %}
 
-                                        </tr>
+                                <tr>
 
-                                    {% endfor %}
+                                    <td>
+                                        {{ item.tipo_problematica__nome|default:"Não informado" }}
+                                    </td>
 
-                                </tbody>
+                                    <td class="text-center">
 
-                            </table>
+                                        <span class="recom-total-badge">
+                                            {{ item.total }}
+                                        </span>
 
-                        </div>
+                                    </td>
 
-                    {% else %}
+                                </tr>
 
-                        <p class="text-muted mb-0">
-                            Nenhuma problemática registrada.
-                        </p>
+                                {% empty %}
 
-                    {% endif %}
+                                <tr>
+
+                                    <td colspan="2"
+                                        class="text-center text-muted py-4">
+
+                                        Nenhuma problemática cadastrada.
+
+                                    </td>
+
+                                </tr>
+
+                                {% endfor %}
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
 
                 </div>
 

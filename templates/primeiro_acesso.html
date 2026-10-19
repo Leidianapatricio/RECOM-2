@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="container py-5">
+
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+
+            <div class="card card-examesus p-4">
+
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold mb-2">
+                        Primeiro Acesso
+                    </h2>
+
+                    <p class="text-muted mb-0">
+                        Por segurança, cadastre uma nova senha para continuar.
+                    </p>
+                </div>
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert
+                            {% if message.tags == 'error' %}
+                                alert-danger
+                            {% else %}
+                                alert-{{ message.tags }}
+                            {% endif %}
+                            alert-dismissible fade show"
+                             role="alert">
+
+                            {{ message }}
+
+                            <button type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="alert">
+                            </button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <div class="alert alert-light border mb-4">
+                    <div>
+                        <strong>Usuário:</strong>
+                        {{ request.user.usuario.nome }}
+                    </div>
+
+                    <div>
+                        <strong>Matrícula:</strong>
+                        {{ request.user.usuario.matricula }}
+                    </div>
+                </div>
+
+                <form method="post">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label for="nova_senha"
+                               class="form-label fw-semibold">
+                            Nova senha
+                        </label>
+
+                        <input
+                            type="password"
+                            name="nova_senha"
+                            id="nova_senha"
+                            class="form-control"
+                            maxlength="4"
+                            inputmode="numeric"
+                            pattern="[0-9]{4}"
+                            placeholder="Digite 4 números"
+                            autocomplete="new-password"
+                            required>
+
+                        <div class="form-text">
+                            A senha deve conter exatamente 4 números.
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="confirmar_senha"
+                               class="form-label fw-semibold">
+                            Confirmar nova senha
+                        </label>
+
+                        <input
+                            type="password"
+                            name="confirmar_senha"
+                            id="confirmar_senha"
+                            class="form-control"
+                            maxlength="4"
+                            inputmode="numeric"
+                            pattern="[0-9]{4}"
+                            placeholder="Digite novamente os 4 números"
+                            autocomplete="new-password"
+                            required>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit"
+                                class="btn btn-examesus">
+                            <i class="bi bi-shield-lock"></i>
+                            Cadastrar Nova Senha
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+
+</section>
+{% endblock %}

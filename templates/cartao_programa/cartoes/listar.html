@@ -1,0 +1,203 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Cartões Programa e Missões - RECOM
+{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet"
+      href="{% static 'css/cartoes.css' %}">
+
+<div class="container mt-4 mb-5">
+
+    <!-- CABEÇALHO -->
+    <div class="recom-header mb-4">
+
+        <div class="d-flex flex-column flex-md-row
+                    justify-content-between
+                    align-items-md-center gap-3">
+
+            <!-- TÍTULO E DESCRIÇÃO -->
+            <div>
+
+                <h3 class="mb-1">
+                    <i class="bi bi-card-checklist me-2"></i>
+                    Cartões Programa e Missões
+                </h3>
+
+                <p class="mb-0">
+                    Consulte os cartões cadastrados, gerencie
+                    suas missões ou inicie um novo Cartão Programa.
+                </p>
+
+            </div>
+
+            <!-- INICIAR FLUXO GUIADO -->
+            <div>
+
+                <a href="{% url 'cartao_programa:criar_plantao' %}?fluxo=cartao"
+                   class="btn btn-recom-header-novo">
+
+                    <i class="bi bi-plus-circle me-1"></i>
+                    Novo Cartão Programa
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ORIENTAÇÃO DO FLUXO -->
+    <div class="card border-0 shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <div class="d-flex align-items-start gap-3">
+
+                <i class="bi bi-info-circle text-primary fs-4"></i>
+
+                <div>
+
+                    <h6 class="fw-bold mb-2">
+                        Cadastro do Cartão Programa
+                    </h6>
+
+                    <p class="text-muted mb-2">
+                        Ao clicar em
+                        <strong>Novo Cartão Programa</strong>,
+                        você iniciará o preenchimento em três etapas:
+                    </p>
+
+                    <div class="d-flex flex-wrap align-items-center gap-2">
+
+                        <span class="badge bg-primary">
+                            1. Plantão
+                        </span>
+
+                        <i class="bi bi-arrow-right text-muted"></i>
+
+                        <span class="badge bg-primary">
+                            2. Viaturas e Efetivo
+                        </span>
+
+                        <i class="bi bi-arrow-right text-muted"></i>
+
+                        <span class="badge bg-primary">
+                            3. Cartão Programa e Missões
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- LISTAGEM DOS CARTÕES -->
+    <div class="card border-0 recom-cartoes-card">
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle recom-table">
+
+                    <thead>
+                        <tr>
+                            <th>Plantão</th>
+                            <th>Coordenador</th>
+                            <th class="text-center">Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for cartao in cartoes %}
+
+                        <tr>
+
+                            <!-- PLANTÃO -->
+                            <td>
+                                {{ cartao.plantao }}
+                            </td>
+
+                            <!-- COORDENADOR -->
+                            <td>
+                                {{ cartao.coordenador }}
+                            </td>
+
+                            <!-- AÇÕES -->
+                            <td class="text-center">
+
+                                <!-- VISUALIZAR CARTÃO -->
+                                <a href="{% url 'cartao_programa:visualizar_cartao' cartao.plantao_id %}"
+                                   class="btn btn-sm recom-btn mb-1">
+
+                                    <i class="bi bi-eye me-1"></i>
+                                    Visualizar
+
+                                </a>
+
+                                <!-- GERENCIAR MISSÕES -->
+                                <a href="{% url 'cartao_programa:listar_missoes' cartao.plantao_id %}"
+                                   class="btn btn-sm recom-btn-missoes mb-1">
+
+                                    <i class="bi bi-list-check me-1"></i>
+                                    Missões
+
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                        {% empty %}
+
+                        <tr>
+
+                            <td colspan="3"
+                                class="text-center text-muted py-4">
+
+                                <i class="bi bi-inbox fs-3 d-block mb-2"></i>
+
+                                Nenhum Cartão Programa cadastrado.
+
+                                <div class="mt-3">
+
+                                    <a href="{% url 'cartao_programa:criar_plantao' %}?fluxo=cartao"
+                                       class="btn btn-sm btn-primary">
+
+                                        <i class="bi bi-plus-circle me-1"></i>
+                                        Cadastrar Primeiro Cartão
+
+                                    </a>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

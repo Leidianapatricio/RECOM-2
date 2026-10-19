@@ -1,0 +1,296 @@
+
+{% extends "base.html" %}
+
+{% block title %}
+{% if edicao %}Editar{% else %}Cadastrar{% endif %} Cartão Programa - RECOM
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <!-- CABEÇALHO -->
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+
+        <div>
+            <h3 class="fw-bold mb-1" style="color: #092B49;">
+                <i class="bi bi-journal-text me-2"></i>
+                {{ titulo|default:"Cartão Programa" }}
+            </h3>
+
+            <p class="text-muted mb-0">
+                <i class="bi bi-calendar-event me-1"></i>
+                Plantão: {{ plantao.data|date:"d/m/Y" }}
+            </p>
+        </div>
+
+        <!-- VOLTAR -->
+        {% if request.GET.fluxo == 'cartao' %}
+
+            <a href="{% url 'cartao_programa:listar_viaturas' plantao.pk %}?fluxo=cartao"
+               class="btn btn-outline-secondary">
+
+                <i class="bi bi-arrow-left me-1"></i>
+                Voltar às Viaturas
+
+            </a>
+
+        {% else %}
+
+            <a href="{% url 'cartao_programa:listar_plantoes' %}"
+               class="btn btn-outline-secondary">
+
+                <i class="bi bi-arrow-left me-1"></i>
+                Voltar aos Plantões
+
+            </a>
+
+        {% endif %}
+
+    </div>
+
+    <!-- INDICADOR DE ETAPA -->
+    {% if request.GET.fluxo == 'cartao' %}
+
+        <div class="alert alert-primary mb-4">
+
+            <div class="d-flex align-items-center gap-2">
+
+                <i class="bi bi-diagram-3 fs-5"></i>
+
+                <div>
+                    <strong>
+                        Cartão Programa — Etapa 3 de 3
+                    </strong>
+
+                    <div class="small">
+                        Plantão →
+                        Viaturas e Efetivo →
+                        <strong>Cartão Programa e Missões</strong>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    {% endif %}
+
+    <!-- MENSAGENS -->
+    {% if messages %}
+        {% for message in messages %}
+
+            <div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show"
+                 role="alert">
+
+                {{ message }}
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                        aria-label="Fechar">
+                </button>
+
+            </div>
+
+        {% endfor %}
+    {% endif %}
+
+    <!-- FORMULÁRIO -->
+    <div class="card border-0 shadow-sm">
+
+        <div class="card-header text-white py-3"
+             style="background-color: #092B49;">
+
+            <h5 class="mb-0 text-white">
+                <i class="bi bi-card-checklist me-2"></i>
+                Informações do Cartão Programa
+            </h5>
+
+        </div>
+
+        <div class="card-body p-4">
+
+            <!-- INFORMAÇÕES AUTOMÁTICAS -->
+            <div class="alert alert-light border mb-4">
+
+                <div class="row g-3">
+
+                    <!-- DATA DO PLANTÃO -->
+                    <div class="col-md-6">
+
+                        <strong>Data do plantão:</strong>
+                        {{ plantao.data|date:"d/m/Y" }}
+
+                    </div>
+
+                    <!-- IDENTIFICAÇÃO -->
+                    <div class="col-md-6">
+
+                        <strong>Identificação:</strong>
+                        Plantão nº {{ plantao.pk }}
+
+                    </div>
+
+                    <!-- COORDENADOR -->
+                    <div class="col-md-12">
+
+                        <strong>
+                            <i class="bi bi-person-badge me-1"></i>
+                            Coordenador responsável:
+                        </strong>
+
+                        {% if coordenador %}
+
+                            {{ coordenador.nome }}
+
+                        {% else %}
+
+                            <span class="text-muted">
+                                Não identificado
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ORIENTAÇÃO -->
+            {% if not edicao %}
+
+                <div class="alert alert-info mb-4">
+
+                    <i class="bi bi-info-circle me-2"></i>
+
+                    {% if request.GET.fluxo == 'cartao' %}
+
+                        Ao salvar o Cartão Programa, você será
+                        direcionado para o cadastro das missões,
+                        podendo adicionar missões individuais
+                        ou cadastrar várias escolas por polo.
+
+                    {% else %}
+
+                        Preencha as informações gerais para criar
+                        o Cartão Programa deste plantão.
+
+                    {% endif %}
+
+                </div>
+
+            {% endif %}
+
+            <!-- FORMULÁRIO COM FLUXO PRESERVADO -->
+            <form method="post"
+                  action="{{ request.path }}{% if request.GET.fluxo == 'cartao' %}?fluxo=cartao{% endif %}"
+                  novalidate>
+
+                {% csrf_token %}
+
+                <!-- ERROS GERAIS -->
+                {% if form.non_field_errors %}
+
+                    <div class="alert alert-danger">
+                        {{ form.non_field_errors }}
+                    </div>
+
+                {% endif %}
+
+                <div class="row g-3">
+
+                    <!-- OBSERVAÇÕES -->
+                    <div class="col-md-12">
+
+                        <label for="{{ form.observacoes.id_for_label }}"
+                               class="form-label fw-semibold">
+
+                            Observações gerais
+
+                        </label>
+
+                        {{ form.observacoes }}
+
+                        {% for error in form.observacoes.errors %}
+
+                            <div class="text-danger small mt-1">
+                                {{ error }}
+                            </div>
+
+                        {% endfor %}
+
+                        <div class="form-text">
+                            Informe orientações gerais,
+                            recomendações ou informações
+                            importantes sobre o plantão.
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <hr class="my-4">
+
+                <!-- BOTÕES -->
+                <div class="d-flex flex-wrap justify-content-end gap-2">
+
+                    <!-- CANCELAR -->
+                    {% if request.GET.fluxo == 'cartao' %}
+
+                        <a href="{% url 'cartao_programa:listar_viaturas' plantao.pk %}?fluxo=cartao"
+                           class="btn btn-outline-secondary">
+
+                            <i class="bi bi-x-circle me-1"></i>
+                            Cancelar
+
+                        </a>
+
+                    {% else %}
+
+                        <a href="{% url 'cartao_programa:visualizar_cartao' plantao.pk %}"
+                           class="btn btn-outline-secondary">
+
+                            <i class="bi bi-x-circle me-1"></i>
+                            Cancelar
+
+                        </a>
+
+                    {% endif %}
+
+                    <!-- SALVAR -->
+                    <button type="submit"
+                            class="btn text-white"
+                            style="background-color: #092B49;">
+
+                        {% if edicao %}
+
+                            <i class="bi bi-check-circle me-1"></i>
+                            Salvar Alterações
+
+                        {% elif request.GET.fluxo == 'cartao' %}
+
+                            <i class="bi bi-arrow-right-circle me-1"></i>
+                            Salvar e Continuar para Missões
+
+                        {% else %}
+
+                            <i class="bi bi-check-circle me-1"></i>
+                            Salvar Cartão Programa
+
+                        {% endif %}
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

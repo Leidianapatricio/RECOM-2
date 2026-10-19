@@ -1,3 +1,4 @@
+
 from django.contrib import admin
 from django.urls import include, path
 
@@ -26,6 +27,11 @@ urlpatterns = [
     path(
         "visitas/",
         include("visitas.urls"),
+    ),
+
+    path(
+        "cartao-programa/",
+        include("cartao_programa.urls"),
     ),
 
     path(

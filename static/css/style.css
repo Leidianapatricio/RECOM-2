@@ -1262,4 +1262,48 @@ h6 {
         text-align: left;
     }
 
+
+}
+
+
+/* ==========================================
+   RECOM - BOTÕES PADRÃO DE CADASTRO
+   ========================================== */
+
+.btn-recom-novo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    background-color: #092B49;
+    border: 1px solid #092B49;
+    color: #ffffff !important;
+
+    padding: 9px 15px;
+    border-radius: 6px;
+
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+
+    text-decoration: none;
+    white-space: nowrap;
+    box-shadow: none;
+
+    transition: background-color 0.2s ease,
+                border-color 0.2s ease;
+}
+
+.btn-recom-novo:hover,
+.btn-recom-novo:focus {
+    background-color: #B78B32;
+    border-color: #B78B32;
+    color: #ffffff !important;
+    text-decoration: none;
+}
+
+.btn-recom-novo i {
+    font-size: 16px;
+    color: inherit;
 }

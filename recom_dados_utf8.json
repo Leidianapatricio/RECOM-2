@@ -1,0 +1,5798 @@
+[
+{
+  "model": "escolas.escola",
+  "pk": 1,
+  "fields": {
+    "nome": "EM Afonso Pereira",
+    "polo": 1,
+    "endereco": "Rua Valdevino Lobo Mais - s/n",
+    "bairro": "Cidade Verde / Mangabeira VIII",
+    "gestor": "Antônia Estrela Guia",
+    "telefone": "83 9 9879-3675 83 9 9369- 7901",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 1600,
+    "quantidade_alunos_pcd": 54,
+    "modalidade": "Fund. I, II e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.153Z",
+    "atualizado_em": "2026-09-11T23:56:41.153Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 2,
+  "fields": {
+    "nome": "EMAI Ana Cristina Rolim Machado",
+    "polo": 1,
+    "endereco": "Av. Hilton Souto Maior - 555",
+    "bairro": "Água Fria",
+    "gestor": "Dalcira",
+    "telefone": "83 9 9834 9069",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 320,
+    "quantidade_alunos_pcd": 62,
+    "modalidade": "Fund I (Integral)",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.195Z",
+    "atualizado_em": "2026-09-11T23:56:41.195Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 3,
+  "fields": {
+    "nome": "Anita Trigueiro do Valle",
+    "polo": 1,
+    "endereco": "Rua Emilio de Araújo Chaves - 118",
+    "bairro": "Altiplano",
+    "gestor": "Mabel Marilane",
+    "telefone": "83 9 9972-6949",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 671,
+    "quantidade_alunos_pcd": 23,
+    "modalidade": "Fund. I, II e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.211Z",
+    "atualizado_em": "2026-09-11T23:56:41.211Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 4,
+  "fields": {
+    "nome": "Antônio Santos Coelho",
+    "polo": 1,
+    "endereco": "Rua Osvaldo Pessoa - s/n",
+    "bairro": "Praia da Penha",
+    "gestor": "Michelly",
+    "telefone": "83 9 9176-4932",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 704,
+    "quantidade_alunos_pcd": 0,
+    "modalidade": "Fund. I, II e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.238Z",
+    "atualizado_em": "2026-09-11T23:56:41.238Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 5,
+  "fields": {
+    "nome": "Aruanda",
+    "polo": 1,
+    "endereco": "Rua Eurídice Félix Cabral - s/n",
+    "bairro": "Bancários",
+    "gestor": "Ecilene Samara",
+    "telefone": "83 998793360 83 987503903",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 783,
+    "quantidade_alunos_pcd": 103,
+    "modalidade": "Fund. I e II",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.271Z",
+    "atualizado_em": "2026-09-11T23:56:41.271Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 6,
+  "fields": {
+    "nome": "CEMAP - Arthur da Costa Freire",
+    "polo": 1,
+    "endereco": "Rua Jose Marcone Ramos da Silva, 103/1",
+    "bairro": "Mangabeira VIII",
+    "gestor": "Francisco Chaves",
+    "telefone": "83 9 9981-6535",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 0,
+    "quantidade_alunos_pcd": 0,
+    "modalidade": "Centro de capacitação",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.291Z",
+    "atualizado_em": "2026-09-11T23:56:41.291Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 7,
+  "fields": {
+    "nome": "David Trindade",
+    "polo": 1,
+    "endereco": "Rua José Mendonça de Araújo - 88",
+    "bairro": "Mangabeira",
+    "gestor": "Lourdes Ilda",
+    "telefone": "83 9 9859-1383 83 9 8671-1928",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 760,
+    "quantidade_alunos_pcd": 72,
+    "modalidade": "Fund. I, II",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.296Z",
+    "atualizado_em": "2026-09-11T23:56:41.296Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 8,
+  "fields": {
+    "nome": "Índio Piragibe",
+    "polo": 1,
+    "endereco": "Rua Beatriz Maria de Oliveira - s/n",
+    "bairro": "Mangabeira",
+    "gestor": "Mônica Nilmar",
+    "telefone": "83 9 9881- 0835 83 9 9139-7303",
+    "monitoramento": true,
+    "botao_panico": false,
+    "quantidade_alunos": 1092,
+    "quantidade_alunos_pcd": 150,
+    "modalidade": "Fund I e II",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.308Z",
+    "atualizado_em": "2026-09-11T23:56:41.308Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 9,
+  "fields": {
+    "nome": "João Gadelha de Oliveira",
+    "polo": 1,
+    "endereco": "Rua Ivan de Assis Costa, 108",
+    "bairro": "Mangabeira VI",
+    "gestor": "Elizângela Mercionildo Pereira",
+    "telefone": "83 9 8728 – 0032 83988418052",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 1510,
+    "quantidade_alunos_pcd": 62,
+    "modalidade": "Fund II e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.333Z",
+    "atualizado_em": "2026-09-11T23:56:41.333Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 10,
+  "fields": {
+    "nome": "Lions Tambaú",
+    "polo": 1,
+    "endereco": "Rua Francisco F. Sousa - 31",
+    "bairro": "Água fria",
+    "gestor": "Maria da Luz Maurícia",
+    "telefone": "83 9 8816 – 3514 83 9 8804 - 4497",
+    "monitoramento": false,
+    "botao_panico": false,
+    "quantidade_alunos": 487,
+    "quantidade_alunos_pcd": 52,
+    "modalidade": "Ed. Infantil, Fund 1 e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.365Z",
+    "atualizado_em": "2026-09-11T23:56:41.365Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 11,
+  "fields": {
+    "nome": "Luiz Vaz de Camões",
+    "polo": 1,
+    "endereco": "Rua Josefa Taveira - s/n",
+    "bairro": "Mangabeira",
+    "gestor": "Betânia Wiliano",
+    "telefone": "83 9 8756- 1665 83999514892",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 1019,
+    "quantidade_alunos_pcd": 100,
+    "modalidade": "Fund. I, II e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.387Z",
+    "atualizado_em": "2026-09-11T23:56:41.387Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 12,
+  "fields": {
+    "nome": "Olivio Ribeiro Campos",
+    "polo": 1,
+    "endereco": "Rua Esmeraldo G. Vieira - 195 -",
+    "bairro": "",
+    "gestor": "Robson",
+    "telefone": "83 998275972",
+    "monitoramento": false,
+    "botao_panico": false,
+    "quantidade_alunos": 510,
+    "quantidade_alunos_pcd": 50,
+    "modalidade": "Fund. 1 e 2",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.415Z",
+    "atualizado_em": "2026-09-11T23:56:41.415Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 13,
+  "fields": {
+    "nome": "Virginius da Gama e Melo",
+    "polo": 1,
+    "endereco": "Rua Com. Antonio S. Lima - 30",
+    "bairro": "Mangabeira I",
+    "gestor": "Cleiton Noemi",
+    "telefone": "83 987088783 83 993922992",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 620,
+    "quantidade_alunos_pcd": 60,
+    "modalidade": "Fund 1 e 2",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.424Z",
+    "atualizado_em": "2026-09-11T23:56:41.424Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 14,
+  "fields": {
+    "nome": "Zumbi dos",
+    "polo": 1,
+    "endereco": "Rua Rita Xavier de Oliveira - s/n",
+    "bairro": "",
+    "gestor": "Roniele",
+    "telefone": "83 987545054",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 560,
+    "quantidade_alunos_pcd": 38,
+    "modalidade": "Fund II e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.433Z",
+    "atualizado_em": "2026-09-11T23:56:41.433Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 15,
+  "fields": {
+    "nome": "Analice Caldas",
+    "polo": 2,
+    "endereco": "Rua Cecilia Miranda - 22",
+    "bairro": "Jaguaribe",
+    "gestor": "Rosane Gomes Josicléa",
+    "telefone": "83 9 9879- 7747 83 9 8680 - 2906",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 150,
+    "quantidade_alunos_pcd": 19,
+    "modalidade": "Fund 2 (Integral)",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.443Z",
+    "atualizado_em": "2026-09-11T23:56:41.443Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 16,
+  "fields": {
+    "nome": "Instituto Dom Adauto",
+    "polo": 2,
+    "endereco": "Rua Cel. Antônio Soares, 631",
+    "bairro": "Jaguaribe",
+    "gestor": "Mayene Mirian",
+    "telefone": "83 9 9918- 8494; 83 9 9688- 3102",
+    "monitoramento": false,
+    "botao_panico": false,
+    "quantidade_alunos": 819,
+    "quantidade_alunos_pcd": 73,
+    "modalidade": "Inf e Fund 1, 2",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.467Z",
+    "atualizado_em": "2026-09-11T23:56:41.467Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 17,
+  "fields": {
+    "nome": "Rotary Francisco",
+    "polo": 2,
+    "endereco": "Rua Generino Maciel - 516 -",
+    "bairro": "",
+    "gestor": "Sabrina",
+    "telefone": "83 98893- 9868",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 200,
+    "quantidade_alunos_pcd": 30,
+    "modalidade": "Infantil e Fund 1",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.500Z",
+    "atualizado_em": "2026-09-11T23:56:41.500Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 18,
+  "fields": {
+    "nome": "Francisco Pereira da Nóbrega",
+    "polo": 2,
+    "endereco": "Rua Elias Cavalcanti de Albuquerque - s/n",
+    "bairro": "Cristo",
+    "gestor": "Creuza Maria Rúbia Aliane",
+    "telefone": "83 9 8724-6040 83 9 8788- 2012",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 613,
+    "quantidade_alunos_pcd": 55,
+    "modalidade": "Fund 1 e 2",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.509Z",
+    "atualizado_em": "2026-09-11T23:56:41.509Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 19,
+  "fields": {
+    "nome": "Padre Pedro Serrão",
+    "polo": 2,
+    "endereco": "Av. Dom Bosco, 755",
+    "bairro": "Cristo Redentor",
+    "gestor": "Elton Jonh",
+    "telefone": "83 9 8666- 9405",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 672,
+    "quantidade_alunos_pcd": 51,
+    "modalidade": "Fund 2",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.526Z",
+    "atualizado_em": "2026-09-11T23:56:41.526Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 20,
+  "fields": {
+    "nome": "Américo Falcão",
+    "polo": 2,
+    "endereco": "Av. Dom Bosco - 557",
+    "bairro": "Cristo",
+    "gestor": "Rosane Paiva Welingta Magnólia",
+    "telefone": "83 9 9640-1084 83 9 9968-4400",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 668,
+    "quantidade_alunos_pcd": 115,
+    "modalidade": "Inf. e Fund 1",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.533Z",
+    "atualizado_em": "2026-09-11T23:56:41.533Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 21,
+  "fields": {
+    "nome": "Agostinho Fonseca Neto",
+    "polo": 2,
+    "endereco": "Rua Fernando Cunha Lima - s/n - Conjunto Bela Vista",
+    "bairro": "Cristo",
+    "gestor": "Luzivete Thauanne",
+    "telefone": "83 9 8769-3897 83 9 8186-2474",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 509,
+    "quantidade_alunos_pcd": 56,
+    "modalidade": "Inf. e Fund 1",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.546Z",
+    "atualizado_em": "2026-09-11T23:56:41.546Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 22,
+  "fields": {
+    "nome": "Luiz Mendes Pontes",
+    "polo": 2,
+    "endereco": "Rua José Gomes da Silva - 415",
+    "bairro": "Cristo",
+    "gestor": "Carlos Alberto",
+    "telefone": "83 9 8814-8419",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 480,
+    "quantidade_alunos_pcd": 65,
+    "modalidade": "Inf., Fund 1, 2 e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.566Z",
+    "atualizado_em": "2026-09-11T23:56:41.566Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 23,
+  "fields": {
+    "nome": "Santa Ângela",
+    "polo": 2,
+    "endereco": "Rua Antônio Gomes. da Silveira - 1135",
+    "bairro": "Cristo",
+    "gestor": "Hamanda Diane",
+    "telefone": "83 9 8883-2435 83 9 9606-1965",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 430,
+    "quantidade_alunos_pcd": 29,
+    "modalidade": "Inf., Fund 1, 2 e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.580Z",
+    "atualizado_em": "2026-09-11T23:56:41.580Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 24,
+  "fields": {
+    "nome": "EMAI Ubirajara Targino Botto",
+    "polo": 2,
+    "endereco": "Av. Da Fraternidade - 950",
+    "bairro": "Cristo",
+    "gestor": "Decilia, Apolonia, Teomary,",
+    "telefone": "83 9 8830-4899 83 9 8895-3547 83 9 8807- 5773;",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 210,
+    "quantidade_alunos_pcd": 30,
+    "modalidade": "Fund 1 e 2",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.598Z",
+    "atualizado_em": "2026-09-11T23:56:41.598Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 25,
+  "fields": {
+    "nome": "Padre Bartolomeu de Gusmão",
+    "polo": 2,
+    "endereco": "Rua Joana Domingos Alves - 120",
+    "bairro": "Conj. INOCOP/Cristo",
+    "gestor": "Sheilla Paloma",
+    "telefone": "83 9 8686-1147 83 9 8107-5991",
+    "monitoramento": false,
+    "botao_panico": false,
+    "quantidade_alunos": 180,
+    "quantidade_alunos_pcd": 30,
+    "modalidade": "Fundamental 1",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.625Z",
+    "atualizado_em": "2026-09-11T23:56:41.625Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 26,
+  "fields": {
+    "nome": "EMAI Augusto",
+    "polo": 2,
+    "endereco": "Rua Olívia",
+    "bairro": "",
+    "gestor": "Luciana",
+    "telefone": "83 9 8848-9198",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 403,
+    "quantidade_alunos_pcd": 60,
+    "modalidade": "Infantil e",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.643Z",
+    "atualizado_em": "2026-09-11T23:56:41.643Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 27,
+  "fields": {
+    "nome": "EMAI Durmeval Trigueiro Mendes",
+    "polo": 2,
+    "endereco": "Rua 14 de Julho - 891",
+    "bairro": "Rangel",
+    "gestor": "Gumercindo Edna",
+    "telefone": "83 9 8817-5159 83 9 8637-7342",
+    "monitoramento": false,
+    "botao_panico": false,
+    "quantidade_alunos": 450,
+    "quantidade_alunos_pcd": 50,
+    "modalidade": "Fund 1, 2 (Integral)",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.650Z",
+    "atualizado_em": "2026-09-11T23:56:41.650Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 28,
+  "fields": {
+    "nome": "Maria Madalena Guedes Pereira",
+    "polo": 2,
+    "endereco": "Rua Cônego Vicente Pimentel",
+    "bairro": "Varjão",
+    "gestor": "Marilene Wescley",
+    "telefone": "83 9 9603-3109",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 650,
+    "quantidade_alunos_pcd": 50,
+    "modalidade": "Fund. I II e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.678Z",
+    "atualizado_em": "2026-09-11T23:56:41.678Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 29,
+  "fields": {
+    "nome": "Prof. Matheus Ribeiro",
+    "polo": 2,
+    "endereco": "Rua Bom Jesus",
+    "bairro": "Varjão",
+    "gestor": "Roseneide,",
+    "telefone": "83 9 9886-1792",
+    "monitoramento": false,
+    "botao_panico": false,
+    "quantidade_alunos": 156,
+    "quantidade_alunos_pcd": 36,
+    "modalidade": "Ed. Inf e Fund. 1",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.693Z",
+    "atualizado_em": "2026-09-11T23:56:41.693Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 30,
+  "fields": {
+    "nome": "Ana Nery",
+    "polo": 3,
+    "endereco": "Rua José Gomes de Abreu - 342",
+    "bairro": "Alto do Mateus",
+    "gestor": "Sílvia Cecília",
+    "telefone": "83 9 8726 - 0756",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 92,
+    "quantidade_alunos_pcd": 18,
+    "modalidade": "Inf e Fund 1 (Integral)",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.702Z",
+    "atualizado_em": "2026-09-11T23:56:41.702Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 31,
+  "fields": {
+    "nome": "Dr. Severino Patrício",
+    "polo": 3,
+    "endereco": "Rua Índio Arariboia",
+    "bairro": "Alto do Mateus",
+    "gestor": "Tatiana Cristina",
+    "telefone": "83 9 9903 - 7225",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 155,
+    "quantidade_alunos_pcd": 17,
+    "modalidade": "Fund II (Integral)",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.719Z",
+    "atualizado_em": "2026-09-11T23:56:41.719Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 32,
+  "fields": {
+    "nome": "Luiza Lima Lobo",
+    "polo": 3,
+    "endereco": "Rua Dart. Francisco Inácio do Rêgo Filho",
+    "bairro": "Alto do Mateus",
+    "gestor": "Martha Veronyca",
+    "telefone": "83 98740 4259.",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 596,
+    "quantidade_alunos_pcd": 80,
+    "modalidade": "Fund. I EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.729Z",
+    "atualizado_em": "2026-09-11T23:56:41.729Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 33,
+  "fields": {
+    "nome": "João XXIII",
+    "polo": 3,
+    "endereco": "Rua Ambrósio Rodrigues de Souza, 27 - Juracy Palhano",
+    "bairro": "Alto do Mateus",
+    "gestor": "Cleberton da Silva Costa",
+    "telefone": "83 9 9979-7099",
+    "monitoramento": false,
+    "botao_panico": false,
+    "quantidade_alunos": 157,
+    "quantidade_alunos_pcd": 22,
+    "modalidade": "Fund. 1",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.738Z",
+    "atualizado_em": "2026-09-11T23:56:41.738Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 34,
+  "fields": {
+    "nome": "Dom José Maria Pires",
+    "polo": 3,
+    "endereco": "R. Ambrozio Rodrigues de Souza",
+    "bairro": "Alto do Mateus",
+    "gestor": "Aline Taz",
+    "telefone": "83 9 9889-7214",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 375,
+    "quantidade_alunos_pcd": 16,
+    "modalidade": "Fundamental 2",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.747Z",
+    "atualizado_em": "2026-09-11T23:56:41.747Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 35,
+  "fields": {
+    "nome": "Dr. João Medeiros",
+    "polo": 3,
+    "endereco": "Rua José Novais - 546",
+    "bairro": "Bairro dos Novais",
+    "gestor": "Fátima Aparecida",
+    "telefone": "83 9 8896 2400",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 176,
+    "quantidade_alunos_pcd": 17,
+    "modalidade": "Inf e Fund 1 (Integral)",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.761Z",
+    "atualizado_em": "2026-09-11T23:56:41.761Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 36,
+  "fields": {
+    "nome": "João Santa Cruz",
+    "polo": 3,
+    "endereco": "Rua Des. Santo Stanislau - 460",
+    "bairro": "Bairro dos Novais",
+    "gestor": "Fernando Gilmara",
+    "telefone": "83 9 8755-4889 83 9 8895-0311",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 344,
+    "quantidade_alunos_pcd": 50,
+    "modalidade": "Educação Infantil e Fund 1 (Integral)",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.769Z",
+    "atualizado_em": "2026-09-11T23:56:41.769Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 37,
+  "fields": {
+    "nome": "José Novais",
+    "polo": 3,
+    "endereco": "Rua Santo Stanislau - 322",
+    "bairro": "Bairro dos Novais",
+    "gestor": "Edna",
+    "telefone": "83 9 9980-4894",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 420,
+    "quantidade_alunos_pcd": 36,
+    "modalidade": "Fund. 1 e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.781Z",
+    "atualizado_em": "2026-09-11T23:56:41.781Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 38,
+  "fields": {
+    "nome": "Napoleão Laureano",
+    "polo": 3,
+    "endereco": "Rua Cel. Adolfo Massa - 700",
+    "bairro": "Bairro dos Novais",
+    "gestor": "Inaldo",
+    "telefone": "83 9 8815-7099",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 270,
+    "quantidade_alunos_pcd": 12,
+    "modalidade": "Ed. Infantil e Fund. 1",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.795Z",
+    "atualizado_em": "2026-09-11T23:56:41.795Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 39,
+  "fields": {
+    "nome": "Arnaldo de Barros Moreira",
+    "polo": 3,
+    "endereco": "Rua Capitão Francisco Pereira",
+    "bairro": "Bairro dos Novais",
+    "gestor": "Humberto Eryka",
+    "telefone": "83 9 8797-4264 83 9 9885-0449",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 230,
+    "quantidade_alunos_pcd": 22,
+    "modalidade": "Fund 2 (integral)",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.802Z",
+    "atualizado_em": "2026-09-11T23:56:41.802Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 40,
+  "fields": {
+    "nome": "Euclides da Cunha",
+    "polo": 3,
+    "endereco": "Rua Valêncio Lins de Mendonça",
+    "bairro": "Jardim Planalto",
+    "gestor": "Jucilene",
+    "telefone": "83 9 8690- 2158.",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 300,
+    "quantidade_alunos_pcd": 61,
+    "modalidade": "Infantil e Fund 1",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.827Z",
+    "atualizado_em": "2026-09-11T23:56:41.827Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 41,
+  "fields": {
+    "nome": "Quilombola Antônia do Socorro Machado",
+    "polo": 4,
+    "endereco": "Avenida Jacarandá, 722",
+    "bairro": "Paratibe",
+    "gestor": "SandraVanessa Aclecio (diretor)",
+    "telefone": "81 9 9754- 0585",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 1437,
+    "quantidade_alunos_pcd": 98,
+    "modalidade": "Fund 1, 2 e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.835Z",
+    "atualizado_em": "2026-09-11T23:56:41.835Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 42,
+  "fields": {
+    "nome": "Dom Marcelo P. Carvalheira",
+    "polo": 4,
+    "endereco": "Rua Maria Aparecida Cruz, S/N",
+    "bairro": "Paratibe",
+    "gestor": "Graziele (Gestora pedagógica)",
+    "telefone": "83 9 9946-0978",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 1290,
+    "quantidade_alunos_pcd": 0,
+    "modalidade": "Infantil e Fund 1",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.864Z",
+    "atualizado_em": "2026-09-11T23:56:41.864Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 43,
+  "fields": {
+    "nome": "Cícero Leite",
+    "polo": 4,
+    "endereco": "Av. Goiania, Gravatá",
+    "bairro": "Valentina",
+    "gestor": "Aparecida",
+    "telefone": "83 9 8846-3818",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 1200,
+    "quantidade_alunos_pcd": 0,
+    "modalidade": "Fund 1, 2 e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.872Z",
+    "atualizado_em": "2026-09-11T23:56:41.872Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 44,
+  "fields": {
+    "nome": "Professor Abrão Alves de Carvalho",
+    "polo": 4,
+    "endereco": "Rua Pitombeiras",
+    "bairro": "Muçu Magro",
+    "gestor": "Aracely Magalhães",
+    "telefone": "83 99840- 7521",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 640,
+    "quantidade_alunos_pcd": 60,
+    "modalidade": "Ensino Fund. I e II",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.886Z",
+    "atualizado_em": "2026-09-11T23:56:41.886Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 45,
+  "fields": {
+    "nome": "Tércia Bonavindes Lins",
+    "polo": 4,
+    "endereco": "Rua Francisco L. Cavalcante",
+    "bairro": "Valentina",
+    "gestor": "Marquelene Mtchelly",
+    "telefone": "83 996950247 83 9 93153670",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 960,
+    "quantidade_alunos_pcd": 120,
+    "modalidade": "Fundamental I",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.895Z",
+    "atualizado_em": "2026-09-11T23:56:41.895Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 46,
+  "fields": {
+    "nome": "Dom Helder Câmara",
+    "polo": 4,
+    "endereco": "Rua Joamir Severino dos Santos - s/n",
+    "bairro": "Valentina",
+    "gestor": "Amanda",
+    "telefone": "83 9 9692-0650",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 1510,
+    "quantidade_alunos_pcd": 0,
+    "modalidade": "Fund. 2 e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.908Z",
+    "atualizado_em": "2026-09-11T23:56:41.908Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 47,
+  "fields": {
+    "nome": "Joacil de Brito Pereira",
+    "polo": 4,
+    "endereco": "Rua Universitário Ricardo Augusto",
+    "bairro": "",
+    "gestor": "Raquel Batista",
+    "telefone": "83 9 8799- 0004",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 1126,
+    "quantidade_alunos_pcd": 165,
+    "modalidade": "Ens. Infantil e Fund. I",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.920Z",
+    "atualizado_em": "2026-09-11T23:56:41.920Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 48,
+  "fields": {
+    "nome": "José Américo de Almeida",
+    "polo": 4,
+    "endereco": "Rua Alcides de Miranda Henrique - 307",
+    "bairro": "José Américo",
+    "gestor": "Ana Maria Andrea karla",
+    "telefone": "83 999573880 83 998267675",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 890,
+    "quantidade_alunos_pcd": 76,
+    "modalidade": "Fund. I e II",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.939Z",
+    "atualizado_em": "2026-09-11T23:56:41.939Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 49,
+  "fields": {
+    "nome": "Carlos Neves da Franca",
+    "polo": 4,
+    "endereco": "Rua Leila Diniz - 244",
+    "bairro": "José Américo",
+    "gestor": "Fernando Patrícia",
+    "telefone": "83 996252762 83 999718443",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 490,
+    "quantidade_alunos_pcd": 85,
+    "modalidade": "Fund. I",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.967Z",
+    "atualizado_em": "2026-09-11T23:56:41.967Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 50,
+  "fields": {
+    "nome": "Radegundes Feitosa Nunes",
+    "polo": 4,
+    "endereco": "Rua Dona Cândida Formiga de Souza",
+    "bairro": "José Américo",
+    "gestor": "Lavínia Amanda",
+    "telefone": "83 987146354 83 987086626",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 331,
+    "quantidade_alunos_pcd": 51,
+    "modalidade": "Fund. I",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.977Z",
+    "atualizado_em": "2026-09-11T23:56:41.977Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 51,
+  "fields": {
+    "nome": "Padre Leonel da Franca",
+    "polo": 4,
+    "endereco": "Rua Antônio Abrantes - 160",
+    "bairro": "Ernesto Geisel",
+    "gestor": "Maria Gorete",
+    "telefone": "83 9 8801-0466",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 615,
+    "quantidade_alunos_pcd": 53,
+    "modalidade": "Ed. Infantil e Ens. Fund I",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.985Z",
+    "atualizado_em": "2026-09-11T23:56:41.985Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 52,
+  "fields": {
+    "nome": "José Eugênio L. de Albuquerque",
+    "polo": 4,
+    "endereco": "Rua Projetada - s/n",
+    "bairro": "Ernesto Geisel",
+    "gestor": "Eliene Maria de Oliveira Wannessa Vicente Sousa da Silva (Psicóloga)",
+    "telefone": "83 9 8861-9562 83 9 8704-4725",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 610,
+    "quantidade_alunos_pcd": 80,
+    "modalidade": "Ed. Infantil, Fund 1 e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:41.995Z",
+    "atualizado_em": "2026-09-11T23:56:41.995Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 53,
+  "fields": {
+    "nome": "Fenelon Câmara",
+    "polo": 4,
+    "endereco": "Rua Adauto Toledo -157",
+    "bairro": "Ernesto Geisel",
+    "gestor": "Lucidalva",
+    "telefone": "83 9 9685- 4420",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 1100,
+    "quantidade_alunos_pcd": 72,
+    "modalidade": "Fund. II",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.003Z",
+    "atualizado_em": "2026-09-11T23:56:42.003Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 54,
+  "fields": {
+    "nome": "Celso Furtado",
+    "polo": 4,
+    "endereco": "Rua Maria Carneiro dos Santos",
+    "bairro": "João Paulo II",
+    "gestor": "Angélica Ferreira",
+    "telefone": "83 9 9376-1215",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 540,
+    "quantidade_alunos_pcd": 70,
+    "modalidade": "Ensino Infantil e Fund. I (Integral)",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.021Z",
+    "atualizado_em": "2026-09-11T23:56:42.021Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 55,
+  "fields": {
+    "nome": "Santos Dumont",
+    "polo": 5,
+    "endereco": "Rua Frei Miquelino – 34",
+    "bairro": "Varadouro",
+    "gestor": "Adriana Rosado",
+    "telefone": "83 9 8786-4789",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 141,
+    "quantidade_alunos_pcd": 22,
+    "modalidade": "Ens. Fund (Integral) EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.038Z",
+    "atualizado_em": "2026-09-11T23:56:42.039Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 56,
+  "fields": {
+    "nome": "Damásio Barbosa da Franca",
+    "polo": 5,
+    "endereco": "Rua Rodrigues Chaves - s/n",
+    "bairro": "Trincheiras",
+    "gestor": "Estênia Taciana",
+    "telefone": "83 999459277",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 600,
+    "quantidade_alunos_pcd": 40,
+    "modalidade": "Ensino Infantil, Fund. 1, 2 e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.062Z",
+    "atualizado_em": "2026-09-11T23:56:42.062Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 57,
+  "fields": {
+    "nome": "Frutuoso Barbosa",
+    "polo": 5,
+    "endereco": "Rua Lopo Garro - 200",
+    "bairro": "Ilha do Bispo",
+    "gestor": "Renata Aline",
+    "telefone": "83996927163 83993323502",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 473,
+    "quantidade_alunos_pcd": 54,
+    "modalidade": "Fund. 1, 2 e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.076Z",
+    "atualizado_em": "2026-09-11T23:56:42.076Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 58,
+  "fields": {
+    "nome": "José Peregrino de Carvalho",
+    "polo": 5,
+    "endereco": "Rua Carneiro de Campos - s/n",
+    "bairro": "Ilha do Bispo",
+    "gestor": "Wiliane Israel",
+    "telefone": "83 9 8878-3254 83 9 9180-9027",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 250,
+    "quantidade_alunos_pcd": 60,
+    "modalidade": "Ens. Infantil ao 3º ano do Fund 1 (Integral)",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.083Z",
+    "atualizado_em": "2026-09-11T23:56:42.083Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 59,
+  "fields": {
+    "nome": "Frei Afonso",
+    "polo": 5,
+    "endereco": "Av. Ayrton Senna - 250",
+    "bairro": "Baixo Róger",
+    "gestor": "Baltazar M José",
+    "telefone": "83998083390 83988210041",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 278,
+    "quantidade_alunos_pcd": 25,
+    "modalidade": "Fund 2 (Integral) EJA -noite",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.098Z",
+    "atualizado_em": "2026-09-11T23:56:42.098Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 60,
+  "fields": {
+    "nome": "Monsenhor João Coutinho",
+    "polo": 5,
+    "endereco": "Rua 19 de Março - 339",
+    "bairro": "Baixo Roger",
+    "gestor": "Ana Maria M Gabriela",
+    "telefone": "83 9 8813-5360 83 9 8824-0172",
+    "monitoramento": true,
+    "botao_panico": false,
+    "quantidade_alunos": 365,
+    "quantidade_alunos_pcd": 35,
+    "modalidade": "Fund 1 e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.112Z",
+    "atualizado_em": "2026-09-11T23:56:42.112Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 61,
+  "fields": {
+    "nome": "Cônego João de Deus",
+    "polo": 5,
+    "endereco": "Av. Expedicionários - 728",
+    "bairro": "Expedicionários",
+    "gestor": "Eliana Maria",
+    "telefone": "83 9 8721-3959",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 212,
+    "quantidade_alunos_pcd": 37,
+    "modalidade": "Fund I (Integral)",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.124Z",
+    "atualizado_em": "2026-09-11T23:56:42.124Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 62,
+  "fields": {
+    "nome": "Cônego Mathias Freire",
+    "polo": 5,
+    "endereco": "Rua Germiniano de Franca - 654",
+    "bairro": "Torre",
+    "gestor": "Luciane Alves Nivia",
+    "telefone": "83999889455 83987431148",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 502,
+    "quantidade_alunos_pcd": 100,
+    "modalidade": "Infantil, Fund 1 e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.136Z",
+    "atualizado_em": "2026-09-11T23:56:42.136Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 63,
+  "fields": {
+    "nome": "Leonel Brisola",
+    "polo": 5,
+    "endereco": "Rua Maria Caetano F de Lima",
+    "bairro": "Tambauzinho",
+    "gestor": "Antonio Cloves",
+    "telefone": "83996828385 83998394040",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 151,
+    "quantidade_alunos_pcd": 40,
+    "modalidade": "Fund. 2 (Integral)",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.147Z",
+    "atualizado_em": "2026-09-11T23:56:42.147Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 64,
+  "fields": {
+    "nome": "Francisca Moura",
+    "polo": 6,
+    "endereco": "Rua Silvino Santos - 27",
+    "bairro": "Mandacaru",
+    "gestor": "Cíntia Brandão",
+    "telefone": "83 9 9912-9293",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 560,
+    "quantidade_alunos_pcd": 25,
+    "modalidade": "Fund II e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.155Z",
+    "atualizado_em": "2026-09-11T23:56:42.155Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 65,
+  "fields": {
+    "nome": "José de Barros Moreira",
+    "polo": 6,
+    "endereco": "Rua Melvin Jones",
+    "bairro": "Mandacaru",
+    "gestor": "Ernani Fernandes Bezerra",
+    "telefone": "83 9 8878-5701",
+    "monitoramento": true,
+    "botao_panico": false,
+    "quantidade_alunos": 386,
+    "quantidade_alunos_pcd": 47,
+    "modalidade": "Fund II",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.178Z",
+    "atualizado_em": "2026-09-11T23:56:42.178Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 66,
+  "fields": {
+    "nome": "Senador Ruy Carneiro",
+    "polo": 6,
+    "endereco": "Rua João de Brito - 180",
+    "bairro": "Mandacaru",
+    "gestor": "Alessandra Oliveira Dornelas",
+    "telefone": "83 9 8731-6301",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 600,
+    "quantidade_alunos_pcd": 80,
+    "modalidade": "Educação infantil, Fund 1",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.192Z",
+    "atualizado_em": "2026-09-11T23:56:42.192Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 67,
+  "fields": {
+    "nome": "Violeta Formiga",
+    "polo": 6,
+    "endereco": "Av. Alfredo José Ataíde - s/n - Alto do céu",
+    "bairro": "Mandacaru",
+    "gestor": "Elizabeth",
+    "telefone": "83 9 9818- 7766",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 780,
+    "quantidade_alunos_pcd": 50,
+    "modalidade": "Educação infantil, Fund 1, 2 e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.201Z",
+    "atualizado_em": "2026-09-11T23:56:42.201Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 68,
+  "fields": {
+    "nome": "Monsenhor Odilon Coutinho",
+    "polo": 6,
+    "endereco": "Rua Celerina Paiva",
+    "bairro": "Mandacaru",
+    "gestor": "Ismênia",
+    "telefone": "83 9 8888-9019",
+    "monitoramento": false,
+    "botao_panico": false,
+    "quantidade_alunos": 400,
+    "quantidade_alunos_pcd": 50,
+    "modalidade": "Fund. do 4º ao 6º ano",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.214Z",
+    "atualizado_em": "2026-09-11T23:56:42.214Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 69,
+  "fields": {
+    "nome": "Hugo Moura",
+    "polo": 6,
+    "endereco": "Rua Fagundes Varela -113",
+    "bairro": "Padre Zé",
+    "gestor": "Adriana Samara",
+    "telefone": "83 9 8881- 1082 83 9 8812- 8806",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 880,
+    "quantidade_alunos_pcd": 80,
+    "modalidade": "Fund. 1 , 2 e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.224Z",
+    "atualizado_em": "2026-09-11T23:56:42.224Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 70,
+  "fields": {
+    "nome": "Luiz Augusto Crispim",
+    "polo": 6,
+    "endereco": "Av. Tancredo Neves",
+    "bairro": "Bairro dos Ipês",
+    "gestor": "M do Socorro Débora Ascenilma Escola:",
+    "telefone": "83 9 9406-9474 34 9 9243-7535 83 9 9848-6836 83 9 9918-2796",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 375,
+    "quantidade_alunos_pcd": 67,
+    "modalidade": "Fund. 1 e 2 Integral",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.233Z",
+    "atualizado_em": "2026-09-11T23:56:42.233Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 71,
+  "fields": {
+    "nome": "Fernandes Vieira",
+    "polo": 6,
+    "endereco": "Av. Tancredo Neves",
+    "bairro": "Bairro dos Ipês",
+    "gestor": "Solange",
+    "telefone": "83 9 8860- 8604.",
+    "monitoramento": false,
+    "botao_panico": false,
+    "quantidade_alunos": 96,
+    "quantidade_alunos_pcd": 16,
+    "modalidade": "1ª Série (fund. 1) Integral",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.248Z",
+    "atualizado_em": "2026-09-11T23:56:42.248Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 72,
+  "fields": {
+    "nome": "General Rodrigo Otávio",
+    "polo": 6,
+    "endereco": "Rua Mato Grosso , 988",
+    "bairro": "Bairro dos Estados",
+    "gestor": "Marinez Márcio",
+    "telefone": "83 9 9836- 2262 83 9 9641- 7912",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 486,
+    "quantidade_alunos_pcd": 50,
+    "modalidade": "Fund. 1 , 2 e EJA (instituto dos cegos)",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.257Z",
+    "atualizado_em": "2026-09-11T23:56:42.257Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 73,
+  "fields": {
+    "nome": "Angelo Francisco",
+    "polo": 6,
+    "endereco": "Praça D. Vilas Boas - 27 - Jd.",
+    "bairro": "",
+    "gestor": "Mauricio",
+    "telefone": "83 9 8898- 1253",
+    "monitoramento": true,
+    "botao_panico": false,
+    "quantidade_alunos": 380,
+    "quantidade_alunos_pcd": 50,
+    "modalidade": "Fund. 1 e 2",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.273Z",
+    "atualizado_em": "2026-09-11T23:56:42.273Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 74,
+  "fields": {
+    "nome": "Frei Albino",
+    "polo": 6,
+    "endereco": "Av. Gov. Argemiro de Figueiredo - 4455",
+    "bairro": "Bessa",
+    "gestor": "Fabíola Andrea",
+    "telefone": "83 9 9856- 6959",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 435,
+    "quantidade_alunos_pcd": 80,
+    "modalidade": "Fund. I",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.284Z",
+    "atualizado_em": "2026-09-11T23:56:42.284Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 75,
+  "fields": {
+    "nome": "Chico Xavier",
+    "polo": 6,
+    "endereco": "Rua Elet. Elesbão Santiago - s/n.",
+    "bairro": "Bessa",
+    "gestor": "Jairo Pessoa Júnior",
+    "telefone": "83 9 8144-1214",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 463,
+    "quantidade_alunos_pcd": 43,
+    "modalidade": "Fund II (Integral) e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.302Z",
+    "atualizado_em": "2026-09-11T23:56:42.302Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 76,
+  "fields": {
+    "nome": "EM Nazinha Barbosa",
+    "polo": 6,
+    "endereco": "Rua Francisco Brandão - 829",
+    "bairro": "Manaíra",
+    "gestor": "Josy",
+    "telefone": "83 99115-9535",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 718,
+    "quantidade_alunos_pcd": 19,
+    "modalidade": "Fundamental 1e 2",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.312Z",
+    "atualizado_em": "2026-09-11T23:56:42.312Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 77,
+  "fields": {
+    "nome": "Seráfico da Nóbrega",
+    "polo": 6,
+    "endereco": "Rua Ubirajara Targino Botto - 36",
+    "bairro": "Manaíra",
+    "gestor": "Lindiberg, Cristiane",
+    "telefone": "83 9 8893-3122 83 9 8804-9890",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 570,
+    "quantidade_alunos_pcd": 31,
+    "modalidade": "Fund 1, 2 e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.345Z",
+    "atualizado_em": "2026-09-11T23:56:42.345Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 78,
+  "fields": {
+    "nome": "Anayde Beiriz",
+    "polo": 7,
+    "endereco": "Rua Cajazeiras - s/n",
+    "bairro": "Bairro das Indústrias",
+    "gestor": "Ozeni Urtiga",
+    "telefone": "83 9 8873 7738",
+    "monitoramento": false,
+    "botao_panico": false,
+    "quantidade_alunos": 2010,
+    "quantidade_alunos_pcd": 272,
+    "modalidade": "Fund. 1 e 2",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.354Z",
+    "atualizado_em": "2026-09-11T23:56:42.354Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 79,
+  "fields": {
+    "nome": "Cantalice Leite Magalhães",
+    "polo": 7,
+    "endereco": "Rua Manoel de P. Magalhães - 57",
+    "bairro": "Bairro das Indústrias",
+    "gestor": "Edimara Ricardo",
+    "telefone": "83 9 9105-6065 83 9 8629-0875",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 790,
+    "quantidade_alunos_pcd": 80,
+    "modalidade": "Infantil, Fund. 1 e 2",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.376Z",
+    "atualizado_em": "2026-09-11T23:56:42.376Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 80,
+  "fields": {
+    "nome": "Lynaldo Cavalcante de Albuquerque",
+    "polo": 7,
+    "endereco": "Rua da Ação, S/N",
+    "bairro": "Bairro das Indústrias",
+    "gestor": "José Marcelo Lopes",
+    "telefone": "83 9 9922-8308",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 1057,
+    "quantidade_alunos_pcd": 80,
+    "modalidade": "Fund. 1, 2 e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.388Z",
+    "atualizado_em": "2026-09-11T23:56:42.388Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 81,
+  "fields": {
+    "nome": "Professor Paulo Freire",
+    "polo": 7,
+    "endereco": "Rua Francisca Soares da Silva",
+    "bairro": "Jardim Veneza",
+    "gestor": "Chirley de Souza",
+    "telefone": "83 9 9832-1772",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 254,
+    "quantidade_alunos_pcd": 45,
+    "modalidade": "Ensino Fund 1 (integral",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.403Z",
+    "atualizado_em": "2026-09-11T23:56:42.403Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 82,
+  "fields": {
+    "nome": "Presidente João Pessoa",
+    "polo": 7,
+    "endereco": "Rua Martinho Lutero - 520",
+    "bairro": "Jardim Veneza",
+    "gestor": "Carla - Supervisora",
+    "telefone": "83 9 8672- 8472",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 950,
+    "quantidade_alunos_pcd": 100,
+    "modalidade": "Fund. 1, 2 e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.415Z",
+    "atualizado_em": "2026-09-11T23:56:42.415Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 83,
+  "fields": {
+    "nome": "João Monteiro da Franca",
+    "polo": 7,
+    "endereco": "Rua Mara J. M. do Amaral - 43",
+    "bairro": "Jardim Veneza",
+    "gestor": "Cássio Ferreira",
+    "telefone": "83 9 8750-5733",
+    "monitoramento": false,
+    "botao_panico": false,
+    "quantidade_alunos": 1100,
+    "quantidade_alunos_pcd": 80,
+    "modalidade": "Fund. 1 e 2 e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.432Z",
+    "atualizado_em": "2026-09-11T23:56:42.432Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 84,
+  "fields": {
+    "nome": "Edme Tavares",
+    "polo": 7,
+    "endereco": "Rua Madagascar",
+    "bairro": "Mumbaba",
+    "gestor": "Ivanisse Alves",
+    "telefone": "83 9 8763-6520",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 942,
+    "quantidade_alunos_pcd": 100,
+    "modalidade": "Fund. 1 e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.457Z",
+    "atualizado_em": "2026-09-11T23:56:42.457Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 85,
+  "fields": {
+    "nome": "Nominando Diniz",
+    "polo": 7,
+    "endereco": "R. Maria Rosidete Rocha da Silva",
+    "bairro": "Mumbaba",
+    "gestor": "Paulo Ricardo",
+    "telefone": "83 9 9645- 2302",
+    "monitoramento": false,
+    "botao_panico": false,
+    "quantidade_alunos": 281,
+    "quantidade_alunos_pcd": 26,
+    "modalidade": "Fund.2",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.470Z",
+    "atualizado_em": "2026-09-11T23:56:42.470Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 86,
+  "fields": {
+    "nome": "Duarte da Silveira",
+    "polo": 7,
+    "endereco": "Rua Marieta A. Nascimento - 265",
+    "bairro": "Costa e Silva",
+    "gestor": "Maurilio Farias Erick Cavalcanti",
+    "telefone": "83 98816-4650 83 9 9608-7014",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 530,
+    "quantidade_alunos_pcd": 40,
+    "modalidade": "Fundamental II e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.488Z",
+    "atualizado_em": "2026-09-11T23:56:42.488Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 87,
+  "fields": {
+    "nome": "Monteiro Lobato",
+    "polo": 7,
+    "endereco": "R. José da Cunha, 101",
+    "bairro": "Costa e Silva",
+    "gestor": "Silvia Rejane Maria Cristina -",
+    "telefone": "83 98659-4573 83 98889-6433",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 469,
+    "quantidade_alunos_pcd": 90,
+    "modalidade": "Fund. I",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.500Z",
+    "atualizado_em": "2026-09-11T23:56:42.500Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 88,
+  "fields": {
+    "nome": "Duque de Caxias",
+    "polo": 7,
+    "endereco": "Rua Graciliano Dlgado",
+    "bairro": "Costa",
+    "gestor": "Alan Araújo",
+    "telefone": "83 9 9990-9881",
+    "monitoramento": true,
+    "botao_panico": false,
+    "quantidade_alunos": 270,
+    "quantidade_alunos_pcd": 37,
+    "modalidade": "Ensino Fund. 1 e 2",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.512Z",
+    "atualizado_em": "2026-09-11T23:56:42.512Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 89,
+  "fields": {
+    "nome": "Ernani Sátyro",
+    "polo": 7,
+    "endereco": "Rua Prof. José Holmes - 120",
+    "bairro": "Ernani Sátyro",
+    "gestor": "Patrícia Helena Mariana Soares",
+    "telefone": "83 98765-7035 83 98834-2477",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 260,
+    "quantidade_alunos_pcd": 55,
+    "modalidade": "Fundamental I",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.522Z",
+    "atualizado_em": "2026-09-11T23:56:42.522Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 90,
+  "fields": {
+    "nome": "Anísio Teixeira",
+    "polo": 8,
+    "endereco": "Rua Lourenço Cesar - 369",
+    "bairro": "Esplanada I",
+    "gestor": "Caroline Freitas Heloísa Saraiva",
+    "telefone": "83 99827-5603 83 98882-6970",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 419,
+    "quantidade_alunos_pcd": 32,
+    "modalidade": "Fund. I e II e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.534Z",
+    "atualizado_em": "2026-09-11T23:56:42.534Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 91,
+  "fields": {
+    "nome": "Antenor Navarro",
+    "polo": 8,
+    "endereco": "Gramame",
+    "bairro": "Gramame",
+    "gestor": "Jesualdo",
+    "telefone": "83 9 8690- 0034",
+    "monitoramento": false,
+    "botao_panico": false,
+    "quantidade_alunos": 1500,
+    "quantidade_alunos_pcd": 54,
+    "modalidade": "Fund. 1 e 2",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.551Z",
+    "atualizado_em": "2026-09-11T23:56:42.551Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 92,
+  "fields": {
+    "nome": "Fernando Milanez",
+    "polo": 8,
+    "endereco": "Rua Alberto de Miranda Henriques, quadra 56",
+    "bairro": "Gramame",
+    "gestor": "Iolanda (Assistente Social) Rama Dantas",
+    "telefone": "83 8761-8913 (83) 98866- 7548",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 1294,
+    "quantidade_alunos_pcd": 109,
+    "modalidade": "Ens. Fund I , II e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.584Z",
+    "atualizado_em": "2026-09-11T23:56:42.584Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 93,
+  "fields": {
+    "nome": "Lucia Braga",
+    "polo": 8,
+    "endereco": "Rua Athayde Carneiro de Araújo, s/n - CEP. 58069-303",
+    "bairro": "Gramame",
+    "gestor": "",
+    "telefone": "",
+    "monitoramento": false,
+    "botao_panico": false,
+    "quantidade_alunos": 0,
+    "quantidade_alunos_pcd": 0,
+    "modalidade": "",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.598Z",
+    "atualizado_em": "2026-09-11T23:56:42.598Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 94,
+  "fields": {
+    "nome": "Raimundo Nonato",
+    "polo": 8,
+    "endereco": "Rua Projetada - s/n - Gervásio Maia",
+    "bairro": "Gramame",
+    "gestor": "André Amaral Adria Karla",
+    "telefone": "83 9 96255929 83 9 8793-0848",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 836,
+    "quantidade_alunos_pcd": 112,
+    "modalidade": "Ensino Fundamental 1",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.607Z",
+    "atualizado_em": "2026-09-11T23:56:42.607Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 95,
+  "fields": {
+    "nome": "Lúcia Giovanna",
+    "polo": 8,
+    "endereco": "Rua Severino Vicente Amorim, S/N – Irmâ Dulce",
+    "bairro": "Gramame",
+    "gestor": "Magnólia Maria Giliane",
+    "telefone": "83 9 9940- 4139 83 9 8893- 9244",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 979,
+    "quantidade_alunos_pcd": 140,
+    "modalidade": "Educação Infantil e Fund. 1",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.616Z",
+    "atualizado_em": "2026-09-11T23:56:42.616Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 96,
+  "fields": {
+    "nome": "Pedra do Reino",
+    "polo": 8,
+    "endereco": "Rua Projetada - s/n",
+    "bairro": "Grotão",
+    "gestor": "Marta Ferreira Josefa",
+    "telefone": "83 9 9129-3060",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 575,
+    "quantidade_alunos_pcd": 0,
+    "modalidade": "Ensino Fund 1",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.625Z",
+    "atualizado_em": "2026-09-11T23:56:42.625Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 97,
+  "fields": {
+    "nome": "Tharcilla Barbosa da Franca",
+    "polo": 8,
+    "endereco": "Rua Nossa Senhora da Paz - 72",
+    "bairro": "Grotão",
+    "gestor": "Júlio César Olíria Maria:",
+    "telefone": "83 9 8808-026 83987854335",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 725,
+    "quantidade_alunos_pcd": 25,
+    "modalidade": "4Fundamental II e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.633Z",
+    "atualizado_em": "2026-09-11T23:56:42.633Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 98,
+  "fields": {
+    "nome": "Moema Tinoco Cunha Lima",
+    "polo": 8,
+    "endereco": "Rua Severino B. de Morais - 175",
+    "bairro": "Funcionários II",
+    "gestor": "Maria Analine Maria Coeli",
+    "telefone": "83 9 8600- 8700 83 9 8842-8886",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 748,
+    "quantidade_alunos_pcd": 132,
+    "modalidade": "Ens. Fund. 1 e 2",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.655Z",
+    "atualizado_em": "2026-09-11T23:56:42.655Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 99,
+  "fields": {
+    "nome": "Darcy Ribeiro",
+    "polo": 8,
+    "endereco": "Rua Julianne Correia de Figueiredo - s/n",
+    "bairro": "Funcionários II",
+    "gestor": "Ulisses Neto Kelly",
+    "telefone": "83 9 9928- 1867. 83 9 9645-1747",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 1008,
+    "quantidade_alunos_pcd": 107,
+    "modalidade": "Fundamental I, II e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.669Z",
+    "atualizado_em": "2026-09-11T23:56:42.669Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 100,
+  "fields": {
+    "nome": "Castro Alves",
+    "polo": 9,
+    "endereco": "Rua Manoel Guerra - 71",
+    "bairro": "Funcionários I",
+    "gestor": "Anselmo de Farias",
+    "telefone": "83 9 9657-4929",
+    "monitoramento": false,
+    "botao_panico": false,
+    "quantidade_alunos": 492,
+    "quantidade_alunos_pcd": 40,
+    "modalidade": "Fund I e II",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.692Z",
+    "atualizado_em": "2026-09-11T23:56:42.692Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 101,
+  "fields": {
+    "nome": "José de Alencar",
+    "polo": 9,
+    "endereco": "Rua José Fernandes Diniz",
+    "bairro": "Oitizeiro",
+    "gestor": "Alice Cabral",
+    "telefone": "83 9 9334-2615",
+    "monitoramento": false,
+    "botao_panico": false,
+    "quantidade_alunos": 95,
+    "quantidade_alunos_pcd": 18,
+    "modalidade": "Infantil e Fund. I",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.704Z",
+    "atualizado_em": "2026-09-11T23:56:42.704Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 102,
+  "fields": {
+    "nome": "Almirante Barroso",
+    "polo": 9,
+    "endereco": "Rua Enedino Jorge - 371",
+    "bairro": "Cruz das Armas",
+    "gestor": "Leonardo Breno",
+    "telefone": "83 9 8893-1106",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 527,
+    "quantidade_alunos_pcd": 88,
+    "modalidade": "Fund I , II e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.713Z",
+    "atualizado_em": "2026-09-11T23:56:42.713Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 103,
+  "fields": {
+    "nome": "Analice Gonçalves de Carvalho",
+    "polo": 9,
+    "endereco": "Rua 04 de Outubro – 653",
+    "bairro": "Cruz das Armas",
+    "gestor": "Nicacia Gois Viana",
+    "telefone": "83 9 9330-6094",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 170,
+    "quantidade_alunos_pcd": 29,
+    "modalidade": "Infantil e Fund I",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.738Z",
+    "atualizado_em": "2026-09-11T23:56:42.738Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 104,
+  "fields": {
+    "nome": "Zulmira de Novais",
+    "polo": 9,
+    "endereco": "Rua Sara Tereza - 570",
+    "bairro": "Cruz das armas",
+    "gestor": "Tereza Lúcia",
+    "telefone": "83 9 8701-6339",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 1200,
+    "quantidade_alunos_pcd": 72,
+    "modalidade": "Fund I , II e EJA",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.757Z",
+    "atualizado_em": "2026-09-11T23:56:42.757Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 105,
+  "fields": {
+    "nome": "Apolonio Sales de Miranda",
+    "polo": 9,
+    "endereco": "Rua Eng. Retumba - 240",
+    "bairro": "Cruz das Armas",
+    "gestor": "",
+    "telefone": "",
+    "monitoramento": false,
+    "botao_panico": false,
+    "quantidade_alunos": 0,
+    "quantidade_alunos_pcd": 0,
+    "modalidade": "",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.786Z",
+    "atualizado_em": "2026-09-11T23:56:42.786Z"
+  }
+},
+{
+  "model": "escolas.escola",
+  "pk": 106,
+  "fields": {
+    "nome": "Oscar de Castro",
+    "polo": 9,
+    "endereco": "Av. Lima Filho",
+    "bairro": "Cruz das Armas",
+    "gestor": "Violante Carvalho",
+    "telefone": "83 9 9800-9810",
+    "monitoramento": true,
+    "botao_panico": true,
+    "quantidade_alunos": 355,
+    "quantidade_alunos_pcd": 50,
+    "modalidade": "Fund. I e II",
+    "observacoes": "",
+    "ativa": true,
+    "data_inativacao": null,
+    "inativada_por": null,
+    "criado_em": "2026-09-11T23:56:42.801Z",
+    "atualizado_em": "2026-09-11T23:56:42.801Z"
+  }
+},
+{
+  "model": "escolas.tipoproblematica",
+  "pk": 1,
+  "fields": {
+    "nome": "Bullying",
+    "descricao": "",
+    "ativa": true,
+    "criado_em": "2026-09-11T23:56:41.162Z",
+    "atualizado_em": "2026-09-11T23:56:41.162Z"
+  }
+},
+{
+  "model": "escolas.tipoproblematica",
+  "pk": 2,
+  "fields": {
+    "nome": "Drogas",
+    "descricao": "",
+    "ativa": true,
+    "criado_em": "2026-09-11T23:56:41.176Z",
+    "atualizado_em": "2026-09-11T23:56:41.176Z"
+  }
+},
+{
+  "model": "escolas.tipoproblematica",
+  "pk": 3,
+  "fields": {
+    "nome": "Violência / Agressões",
+    "descricao": "",
+    "ativa": true,
+    "criado_em": "2026-09-11T23:56:41.182Z",
+    "atualizado_em": "2026-09-11T23:56:41.182Z"
+  }
+},
+{
+  "model": "escolas.tipoproblematica",
+  "pk": 4,
+  "fields": {
+    "nome": "Facções",
+    "descricao": "",
+    "ativa": true,
+    "criado_em": "2026-09-11T23:56:41.187Z",
+    "atualizado_em": "2026-09-11T23:56:41.187Z"
+  }
+},
+{
+  "model": "escolas.tipoproblematica",
+  "pk": 5,
+  "fields": {
+    "nome": "Furto / Roubo",
+    "descricao": "",
+    "ativa": true,
+    "criado_em": "2026-09-11T23:56:41.203Z",
+    "atualizado_em": "2026-09-11T23:56:41.203Z"
+  }
+},
+{
+  "model": "escolas.tipoproblematica",
+  "pk": 6,
+  "fields": {
+    "nome": "Cyberbullying",
+    "descricao": "",
+    "ativa": true,
+    "criado_em": "2026-09-11T23:56:41.219Z",
+    "atualizado_em": "2026-09-11T23:56:41.219Z"
+  }
+},
+{
+  "model": "escolas.tipoproblematica",
+  "pk": 7,
+  "fields": {
+    "nome": "Indisciplina",
+    "descricao": "",
+    "ativa": true,
+    "criado_em": "2026-09-11T23:56:41.226Z",
+    "atualizado_em": "2026-09-11T23:56:41.226Z"
+  }
+},
+{
+  "model": "escolas.tipoproblematica",
+  "pk": 8,
+  "fields": {
+    "nome": "Ameaças",
+    "descricao": "",
+    "ativa": true,
+    "criado_em": "2026-09-11T23:56:41.231Z",
+    "atualizado_em": "2026-09-11T23:56:41.231Z"
+  }
+},
+{
+  "model": "escolas.tipoproblematica",
+  "pk": 9,
+  "fields": {
+    "nome": "Dano ao patrimônio",
+    "descricao": "",
+    "ativa": true,
+    "criado_em": "2026-09-11T23:56:41.255Z",
+    "atualizado_em": "2026-09-11T23:56:41.255Z"
+  }
+},
+{
+  "model": "escolas.tipoproblematica",
+  "pk": 10,
+  "fields": {
+    "nome": "Armas",
+    "descricao": "",
+    "ativa": true,
+    "criado_em": "2026-09-11T23:56:41.266Z",
+    "atualizado_em": "2026-09-11T23:56:41.266Z"
+  }
+},
+{
+  "model": "escolas.tipoproblematica",
+  "pk": 11,
+  "fields": {
+    "nome": "Racismo",
+    "descricao": "",
+    "ativa": true,
+    "criado_em": "2026-09-11T23:56:41.280Z",
+    "atualizado_em": "2026-09-11T23:56:41.280Z"
+  }
+},
+{
+  "model": "escolas.tipoproblematica",
+  "pk": 12,
+  "fields": {
+    "nome": "Vulnerabilidade social",
+    "descricao": "",
+    "ativa": true,
+    "criado_em": "2026-09-11T23:56:41.350Z",
+    "atualizado_em": "2026-09-11T23:56:41.350Z"
+  }
+},
+{
+  "model": "escolas.tipoproblematica",
+  "pk": 13,
+  "fields": {
+    "nome": "Problemas estruturais",
+    "descricao": "",
+    "ativa": true,
+    "criado_em": "2026-09-11T23:56:41.356Z",
+    "atualizado_em": "2026-09-11T23:56:41.356Z"
+  }
+},
+{
+  "model": "escolas.tipoproblematica",
+  "pk": 14,
+  "fields": {
+    "nome": "Outras",
+    "descricao": "",
+    "ativa": true,
+    "criado_em": "2026-09-11T23:56:41.987Z",
+    "atualizado_em": "2026-09-11T23:56:41.987Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 1,
+  "fields": {
+    "escola": 1,
+    "tipo_problematica": 1,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.169Z",
+    "atualizado_em": "2026-09-11T23:56:41.169Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 2,
+  "fields": {
+    "escola": 1,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.180Z",
+    "atualizado_em": "2026-09-11T23:56:41.180Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 3,
+  "fields": {
+    "escola": 1,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.185Z",
+    "atualizado_em": "2026-09-11T23:56:41.185Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 4,
+  "fields": {
+    "escola": 1,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.190Z",
+    "atualizado_em": "2026-09-11T23:56:41.190Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 5,
+  "fields": {
+    "escola": 2,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.200Z",
+    "atualizado_em": "2026-09-11T23:56:41.200Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 6,
+  "fields": {
+    "escola": 2,
+    "tipo_problematica": 5,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.207Z",
+    "atualizado_em": "2026-09-11T23:56:41.207Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 7,
+  "fields": {
+    "escola": 3,
+    "tipo_problematica": 1,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.217Z",
+    "atualizado_em": "2026-09-11T23:56:41.217Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 8,
+  "fields": {
+    "escola": 3,
+    "tipo_problematica": 6,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.222Z",
+    "atualizado_em": "2026-09-11T23:56:41.222Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 9,
+  "fields": {
+    "escola": 3,
+    "tipo_problematica": 7,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.229Z",
+    "atualizado_em": "2026-09-11T23:56:41.229Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 10,
+  "fields": {
+    "escola": 3,
+    "tipo_problematica": 8,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.234Z",
+    "atualizado_em": "2026-09-11T23:56:41.234Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 11,
+  "fields": {
+    "escola": 4,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.244Z",
+    "atualizado_em": "2026-09-11T23:56:41.244Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 12,
+  "fields": {
+    "escola": 4,
+    "tipo_problematica": 7,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.248Z",
+    "atualizado_em": "2026-09-11T23:56:41.248Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 13,
+  "fields": {
+    "escola": 4,
+    "tipo_problematica": 5,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.253Z",
+    "atualizado_em": "2026-09-11T23:56:41.253Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 14,
+  "fields": {
+    "escola": 4,
+    "tipo_problematica": 9,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.258Z",
+    "atualizado_em": "2026-09-11T23:56:41.258Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 15,
+  "fields": {
+    "escola": 4,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.263Z",
+    "atualizado_em": "2026-09-11T23:56:41.263Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 16,
+  "fields": {
+    "escola": 4,
+    "tipo_problematica": 10,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.268Z",
+    "atualizado_em": "2026-09-11T23:56:41.268Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 17,
+  "fields": {
+    "escola": 5,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.278Z",
+    "atualizado_em": "2026-09-11T23:56:41.278Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 18,
+  "fields": {
+    "escola": 5,
+    "tipo_problematica": 11,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.283Z",
+    "atualizado_em": "2026-09-11T23:56:41.283Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 19,
+  "fields": {
+    "escola": 5,
+    "tipo_problematica": 9,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.287Z",
+    "atualizado_em": "2026-09-11T23:56:41.287Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 20,
+  "fields": {
+    "escola": 7,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.300Z",
+    "atualizado_em": "2026-09-11T23:56:41.300Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 21,
+  "fields": {
+    "escola": 7,
+    "tipo_problematica": 8,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.304Z",
+    "atualizado_em": "2026-09-11T23:56:41.304Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 22,
+  "fields": {
+    "escola": 8,
+    "tipo_problematica": 1,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.313Z",
+    "atualizado_em": "2026-09-11T23:56:41.313Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 23,
+  "fields": {
+    "escola": 8,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.317Z",
+    "atualizado_em": "2026-09-11T23:56:41.317Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 24,
+  "fields": {
+    "escola": 8,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.320Z",
+    "atualizado_em": "2026-09-11T23:56:41.320Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 25,
+  "fields": {
+    "escola": 8,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.325Z",
+    "atualizado_em": "2026-09-11T23:56:41.325Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 26,
+  "fields": {
+    "escola": 8,
+    "tipo_problematica": 8,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.330Z",
+    "atualizado_em": "2026-09-11T23:56:41.330Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 27,
+  "fields": {
+    "escola": 9,
+    "tipo_problematica": 1,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.338Z",
+    "atualizado_em": "2026-09-11T23:56:41.338Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 28,
+  "fields": {
+    "escola": 9,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.344Z",
+    "atualizado_em": "2026-09-11T23:56:41.344Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 29,
+  "fields": {
+    "escola": 9,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.348Z",
+    "atualizado_em": "2026-09-11T23:56:41.348Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 30,
+  "fields": {
+    "escola": 9,
+    "tipo_problematica": 12,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.353Z",
+    "atualizado_em": "2026-09-11T23:56:41.353Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 31,
+  "fields": {
+    "escola": 9,
+    "tipo_problematica": 13,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.360Z",
+    "atualizado_em": "2026-09-11T23:56:41.360Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 32,
+  "fields": {
+    "escola": 10,
+    "tipo_problematica": 1,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.369Z",
+    "atualizado_em": "2026-09-11T23:56:41.369Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 33,
+  "fields": {
+    "escola": 10,
+    "tipo_problematica": 7,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.372Z",
+    "atualizado_em": "2026-09-11T23:56:41.372Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 34,
+  "fields": {
+    "escola": 10,
+    "tipo_problematica": 5,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.379Z",
+    "atualizado_em": "2026-09-11T23:56:41.379Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 35,
+  "fields": {
+    "escola": 10,
+    "tipo_problematica": 13,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.383Z",
+    "atualizado_em": "2026-09-11T23:56:41.383Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 36,
+  "fields": {
+    "escola": 11,
+    "tipo_problematica": 1,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.393Z",
+    "atualizado_em": "2026-09-11T23:56:41.393Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 37,
+  "fields": {
+    "escola": 11,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.398Z",
+    "atualizado_em": "2026-09-11T23:56:41.398Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 38,
+  "fields": {
+    "escola": 11,
+    "tipo_problematica": 7,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.402Z",
+    "atualizado_em": "2026-09-11T23:56:41.402Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 39,
+  "fields": {
+    "escola": 11,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.406Z",
+    "atualizado_em": "2026-09-11T23:56:41.406Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 40,
+  "fields": {
+    "escola": 11,
+    "tipo_problematica": 13,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.412Z",
+    "atualizado_em": "2026-09-11T23:56:41.412Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 41,
+  "fields": {
+    "escola": 12,
+    "tipo_problematica": 13,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.419Z",
+    "atualizado_em": "2026-09-11T23:56:41.419Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 42,
+  "fields": {
+    "escola": 13,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.430Z",
+    "atualizado_em": "2026-09-11T23:56:41.430Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 43,
+  "fields": {
+    "escola": 14,
+    "tipo_problematica": 1,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.437Z",
+    "atualizado_em": "2026-09-11T23:56:41.437Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 44,
+  "fields": {
+    "escola": 15,
+    "tipo_problematica": 1,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.447Z",
+    "atualizado_em": "2026-09-11T23:56:41.447Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 45,
+  "fields": {
+    "escola": 15,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.451Z",
+    "atualizado_em": "2026-09-11T23:56:41.451Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 46,
+  "fields": {
+    "escola": 15,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.454Z",
+    "atualizado_em": "2026-09-11T23:56:41.454Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 47,
+  "fields": {
+    "escola": 15,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.459Z",
+    "atualizado_em": "2026-09-11T23:56:41.459Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 48,
+  "fields": {
+    "escola": 15,
+    "tipo_problematica": 8,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.463Z",
+    "atualizado_em": "2026-09-11T23:56:41.463Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 49,
+  "fields": {
+    "escola": 16,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.471Z",
+    "atualizado_em": "2026-09-11T23:56:41.471Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 50,
+  "fields": {
+    "escola": 16,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.477Z",
+    "atualizado_em": "2026-09-11T23:56:41.477Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 51,
+  "fields": {
+    "escola": 16,
+    "tipo_problematica": 7,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.482Z",
+    "atualizado_em": "2026-09-11T23:56:41.482Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 52,
+  "fields": {
+    "escola": 16,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.486Z",
+    "atualizado_em": "2026-09-11T23:56:41.486Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 53,
+  "fields": {
+    "escola": 16,
+    "tipo_problematica": 10,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.492Z",
+    "atualizado_em": "2026-09-11T23:56:41.492Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 54,
+  "fields": {
+    "escola": 16,
+    "tipo_problematica": 13,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.497Z",
+    "atualizado_em": "2026-09-11T23:56:41.497Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 55,
+  "fields": {
+    "escola": 17,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.504Z",
+    "atualizado_em": "2026-09-11T23:56:41.504Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 56,
+  "fields": {
+    "escola": 18,
+    "tipo_problematica": 1,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.513Z",
+    "atualizado_em": "2026-09-11T23:56:41.513Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 57,
+  "fields": {
+    "escola": 18,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.517Z",
+    "atualizado_em": "2026-09-11T23:56:41.517Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 58,
+  "fields": {
+    "escola": 18,
+    "tipo_problematica": 7,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.521Z",
+    "atualizado_em": "2026-09-11T23:56:41.521Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 59,
+  "fields": {
+    "escola": 19,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.530Z",
+    "atualizado_em": "2026-09-11T23:56:41.530Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 60,
+  "fields": {
+    "escola": 20,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.537Z",
+    "atualizado_em": "2026-09-11T23:56:41.537Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 61,
+  "fields": {
+    "escola": 20,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.542Z",
+    "atualizado_em": "2026-09-11T23:56:41.542Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 62,
+  "fields": {
+    "escola": 21,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.550Z",
+    "atualizado_em": "2026-09-11T23:56:41.550Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 63,
+  "fields": {
+    "escola": 21,
+    "tipo_problematica": 9,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.554Z",
+    "atualizado_em": "2026-09-11T23:56:41.554Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 64,
+  "fields": {
+    "escola": 21,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.558Z",
+    "atualizado_em": "2026-09-11T23:56:41.558Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 65,
+  "fields": {
+    "escola": 21,
+    "tipo_problematica": 13,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.563Z",
+    "atualizado_em": "2026-09-11T23:56:41.563Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 66,
+  "fields": {
+    "escola": 22,
+    "tipo_problematica": 1,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.570Z",
+    "atualizado_em": "2026-09-11T23:56:41.570Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 67,
+  "fields": {
+    "escola": 22,
+    "tipo_problematica": 5,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.574Z",
+    "atualizado_em": "2026-09-11T23:56:41.574Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 68,
+  "fields": {
+    "escola": 23,
+    "tipo_problematica": 1,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.585Z",
+    "atualizado_em": "2026-09-11T23:56:41.585Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 69,
+  "fields": {
+    "escola": 23,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.588Z",
+    "atualizado_em": "2026-09-11T23:56:41.588Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 70,
+  "fields": {
+    "escola": 23,
+    "tipo_problematica": 5,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.594Z",
+    "atualizado_em": "2026-09-11T23:56:41.594Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 71,
+  "fields": {
+    "escola": 24,
+    "tipo_problematica": 1,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.602Z",
+    "atualizado_em": "2026-09-11T23:56:41.602Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 72,
+  "fields": {
+    "escola": 24,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.607Z",
+    "atualizado_em": "2026-09-11T23:56:41.607Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 73,
+  "fields": {
+    "escola": 24,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.613Z",
+    "atualizado_em": "2026-09-11T23:56:41.613Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 74,
+  "fields": {
+    "escola": 24,
+    "tipo_problematica": 9,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.617Z",
+    "atualizado_em": "2026-09-11T23:56:41.617Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 75,
+  "fields": {
+    "escola": 24,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.621Z",
+    "atualizado_em": "2026-09-11T23:56:41.621Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 76,
+  "fields": {
+    "escola": 25,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.630Z",
+    "atualizado_em": "2026-09-11T23:56:41.630Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 77,
+  "fields": {
+    "escola": 25,
+    "tipo_problematica": 5,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.634Z",
+    "atualizado_em": "2026-09-11T23:56:41.634Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 78,
+  "fields": {
+    "escola": 25,
+    "tipo_problematica": 13,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.637Z",
+    "atualizado_em": "2026-09-11T23:56:41.637Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 79,
+  "fields": {
+    "escola": 26,
+    "tipo_problematica": 10,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.646Z",
+    "atualizado_em": "2026-09-11T23:56:41.646Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 80,
+  "fields": {
+    "escola": 27,
+    "tipo_problematica": 1,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.654Z",
+    "atualizado_em": "2026-09-11T23:56:41.654Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 81,
+  "fields": {
+    "escola": 27,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.659Z",
+    "atualizado_em": "2026-09-11T23:56:41.659Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 82,
+  "fields": {
+    "escola": 27,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.664Z",
+    "atualizado_em": "2026-09-11T23:56:41.664Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 83,
+  "fields": {
+    "escola": 27,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.668Z",
+    "atualizado_em": "2026-09-11T23:56:41.668Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 84,
+  "fields": {
+    "escola": 27,
+    "tipo_problematica": 8,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.672Z",
+    "atualizado_em": "2026-09-11T23:56:41.672Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 85,
+  "fields": {
+    "escola": 28,
+    "tipo_problematica": 1,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.682Z",
+    "atualizado_em": "2026-09-11T23:56:41.682Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 86,
+  "fields": {
+    "escola": 28,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.685Z",
+    "atualizado_em": "2026-09-11T23:56:41.685Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 87,
+  "fields": {
+    "escola": 28,
+    "tipo_problematica": 9,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.688Z",
+    "atualizado_em": "2026-09-11T23:56:41.688Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 88,
+  "fields": {
+    "escola": 29,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.698Z",
+    "atualizado_em": "2026-09-11T23:56:41.698Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 89,
+  "fields": {
+    "escola": 30,
+    "tipo_problematica": 1,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.705Z",
+    "atualizado_em": "2026-09-11T23:56:41.705Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 90,
+  "fields": {
+    "escola": 30,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.711Z",
+    "atualizado_em": "2026-09-11T23:56:41.711Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 91,
+  "fields": {
+    "escola": 30,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.715Z",
+    "atualizado_em": "2026-09-11T23:56:41.715Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 92,
+  "fields": {
+    "escola": 31,
+    "tipo_problematica": 7,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.723Z",
+    "atualizado_em": "2026-09-11T23:56:41.723Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 93,
+  "fields": {
+    "escola": 32,
+    "tipo_problematica": 7,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.733Z",
+    "atualizado_em": "2026-09-11T23:56:41.733Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 94,
+  "fields": {
+    "escola": 33,
+    "tipo_problematica": 7,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.743Z",
+    "atualizado_em": "2026-09-11T23:56:41.743Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 95,
+  "fields": {
+    "escola": 34,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.752Z",
+    "atualizado_em": "2026-09-11T23:56:41.752Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 96,
+  "fields": {
+    "escola": 34,
+    "tipo_problematica": 7,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.756Z",
+    "atualizado_em": "2026-09-11T23:56:41.756Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 97,
+  "fields": {
+    "escola": 35,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.766Z",
+    "atualizado_em": "2026-09-11T23:56:41.766Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 98,
+  "fields": {
+    "escola": 36,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.774Z",
+    "atualizado_em": "2026-09-11T23:56:41.774Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 99,
+  "fields": {
+    "escola": 37,
+    "tipo_problematica": 1,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.786Z",
+    "atualizado_em": "2026-09-11T23:56:41.786Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 100,
+  "fields": {
+    "escola": 37,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.790Z",
+    "atualizado_em": "2026-09-11T23:56:41.790Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 101,
+  "fields": {
+    "escola": 38,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.799Z",
+    "atualizado_em": "2026-09-11T23:56:41.799Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 102,
+  "fields": {
+    "escola": 39,
+    "tipo_problematica": 1,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.806Z",
+    "atualizado_em": "2026-09-11T23:56:41.806Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 103,
+  "fields": {
+    "escola": 39,
+    "tipo_problematica": 6,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.812Z",
+    "atualizado_em": "2026-09-11T23:56:41.812Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 104,
+  "fields": {
+    "escola": 39,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.816Z",
+    "atualizado_em": "2026-09-11T23:56:41.816Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 105,
+  "fields": {
+    "escola": 39,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.821Z",
+    "atualizado_em": "2026-09-11T23:56:41.821Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 106,
+  "fields": {
+    "escola": 40,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.831Z",
+    "atualizado_em": "2026-09-11T23:56:41.831Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 107,
+  "fields": {
+    "escola": 41,
+    "tipo_problematica": 1,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.843Z",
+    "atualizado_em": "2026-09-11T23:56:41.843Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 108,
+  "fields": {
+    "escola": 41,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.848Z",
+    "atualizado_em": "2026-09-11T23:56:41.848Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 109,
+  "fields": {
+    "escola": 41,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.852Z",
+    "atualizado_em": "2026-09-11T23:56:41.852Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 110,
+  "fields": {
+    "escola": 41,
+    "tipo_problematica": 7,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.855Z",
+    "atualizado_em": "2026-09-11T23:56:41.855Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 111,
+  "fields": {
+    "escola": 41,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.860Z",
+    "atualizado_em": "2026-09-11T23:56:41.860Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 112,
+  "fields": {
+    "escola": 42,
+    "tipo_problematica": 13,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.868Z",
+    "atualizado_em": "2026-09-11T23:56:41.868Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 113,
+  "fields": {
+    "escola": 43,
+    "tipo_problematica": 1,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.879Z",
+    "atualizado_em": "2026-09-11T23:56:41.879Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 114,
+  "fields": {
+    "escola": 43,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.882Z",
+    "atualizado_em": "2026-09-11T23:56:41.882Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 115,
+  "fields": {
+    "escola": 44,
+    "tipo_problematica": 10,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.890Z",
+    "atualizado_em": "2026-09-11T23:56:41.890Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 116,
+  "fields": {
+    "escola": 45,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.899Z",
+    "atualizado_em": "2026-09-11T23:56:41.899Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 117,
+  "fields": {
+    "escola": 45,
+    "tipo_problematica": 7,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.904Z",
+    "atualizado_em": "2026-09-11T23:56:41.904Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 118,
+  "fields": {
+    "escola": 46,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.913Z",
+    "atualizado_em": "2026-09-11T23:56:41.913Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 119,
+  "fields": {
+    "escola": 46,
+    "tipo_problematica": 13,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.917Z",
+    "atualizado_em": "2026-09-11T23:56:41.917Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 120,
+  "fields": {
+    "escola": 47,
+    "tipo_problematica": 1,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.926Z",
+    "atualizado_em": "2026-09-11T23:56:41.926Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 121,
+  "fields": {
+    "escola": 47,
+    "tipo_problematica": 11,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.931Z",
+    "atualizado_em": "2026-09-11T23:56:41.931Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 122,
+  "fields": {
+    "escola": 47,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.935Z",
+    "atualizado_em": "2026-09-11T23:56:41.935Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 123,
+  "fields": {
+    "escola": 48,
+    "tipo_problematica": 1,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.946Z",
+    "atualizado_em": "2026-09-11T23:56:41.946Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 124,
+  "fields": {
+    "escola": 48,
+    "tipo_problematica": 11,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.949Z",
+    "atualizado_em": "2026-09-11T23:56:41.949Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 125,
+  "fields": {
+    "escola": 48,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.953Z",
+    "atualizado_em": "2026-09-11T23:56:41.953Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 126,
+  "fields": {
+    "escola": 48,
+    "tipo_problematica": 5,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.958Z",
+    "atualizado_em": "2026-09-11T23:56:41.958Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 127,
+  "fields": {
+    "escola": 48,
+    "tipo_problematica": 9,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.964Z",
+    "atualizado_em": "2026-09-11T23:56:41.964Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 128,
+  "fields": {
+    "escola": 49,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.971Z",
+    "atualizado_em": "2026-09-11T23:56:41.971Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 129,
+  "fields": {
+    "escola": 50,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.981Z",
+    "atualizado_em": "2026-09-11T23:56:41.981Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 130,
+  "fields": {
+    "escola": 51,
+    "tipo_problematica": 14,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.989Z",
+    "atualizado_em": "2026-09-11T23:56:41.989Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 131,
+  "fields": {
+    "escola": 52,
+    "tipo_problematica": 14,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:41.999Z",
+    "atualizado_em": "2026-09-11T23:56:41.999Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 132,
+  "fields": {
+    "escola": 53,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.008Z",
+    "atualizado_em": "2026-09-11T23:56:42.008Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 133,
+  "fields": {
+    "escola": 53,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.014Z",
+    "atualizado_em": "2026-09-11T23:56:42.014Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 134,
+  "fields": {
+    "escola": 53,
+    "tipo_problematica": 5,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.017Z",
+    "atualizado_em": "2026-09-11T23:56:42.017Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 135,
+  "fields": {
+    "escola": 54,
+    "tipo_problematica": 1,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.027Z",
+    "atualizado_em": "2026-09-11T23:56:42.027Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 136,
+  "fields": {
+    "escola": 54,
+    "tipo_problematica": 7,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.031Z",
+    "atualizado_em": "2026-09-11T23:56:42.031Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 137,
+  "fields": {
+    "escola": 54,
+    "tipo_problematica": 8,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.035Z",
+    "atualizado_em": "2026-09-11T23:56:42.035Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 138,
+  "fields": {
+    "escola": 55,
+    "tipo_problematica": 1,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.045Z",
+    "atualizado_em": "2026-09-11T23:56:42.045Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 139,
+  "fields": {
+    "escola": 55,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.049Z",
+    "atualizado_em": "2026-09-11T23:56:42.049Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 140,
+  "fields": {
+    "escola": 55,
+    "tipo_problematica": 7,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.052Z",
+    "atualizado_em": "2026-09-11T23:56:42.052Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 141,
+  "fields": {
+    "escola": 55,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.057Z",
+    "atualizado_em": "2026-09-11T23:56:42.057Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 142,
+  "fields": {
+    "escola": 56,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.066Z",
+    "atualizado_em": "2026-09-11T23:56:42.066Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 143,
+  "fields": {
+    "escola": 56,
+    "tipo_problematica": 13,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.070Z",
+    "atualizado_em": "2026-09-11T23:56:42.070Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 144,
+  "fields": {
+    "escola": 57,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.079Z",
+    "atualizado_em": "2026-09-11T23:56:42.079Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 145,
+  "fields": {
+    "escola": 58,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.087Z",
+    "atualizado_em": "2026-09-11T23:56:42.087Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 146,
+  "fields": {
+    "escola": 58,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.094Z",
+    "atualizado_em": "2026-09-11T23:56:42.094Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 147,
+  "fields": {
+    "escola": 59,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.102Z",
+    "atualizado_em": "2026-09-11T23:56:42.102Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 148,
+  "fields": {
+    "escola": 59,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.106Z",
+    "atualizado_em": "2026-09-11T23:56:42.106Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 149,
+  "fields": {
+    "escola": 60,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.115Z",
+    "atualizado_em": "2026-09-11T23:56:42.115Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 150,
+  "fields": {
+    "escola": 60,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.119Z",
+    "atualizado_em": "2026-09-11T23:56:42.119Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 151,
+  "fields": {
+    "escola": 61,
+    "tipo_problematica": 1,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.129Z",
+    "atualizado_em": "2026-09-11T23:56:42.129Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 152,
+  "fields": {
+    "escola": 61,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.133Z",
+    "atualizado_em": "2026-09-11T23:56:42.133Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 153,
+  "fields": {
+    "escola": 62,
+    "tipo_problematica": 5,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.141Z",
+    "atualizado_em": "2026-09-11T23:56:42.141Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 154,
+  "fields": {
+    "escola": 63,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.150Z",
+    "atualizado_em": "2026-09-11T23:56:42.151Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 155,
+  "fields": {
+    "escola": 64,
+    "tipo_problematica": 1,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.162Z",
+    "atualizado_em": "2026-09-11T23:56:42.162Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 156,
+  "fields": {
+    "escola": 64,
+    "tipo_problematica": 6,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.166Z",
+    "atualizado_em": "2026-09-11T23:56:42.166Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 157,
+  "fields": {
+    "escola": 64,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.169Z",
+    "atualizado_em": "2026-09-11T23:56:42.169Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 158,
+  "fields": {
+    "escola": 64,
+    "tipo_problematica": 13,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.173Z",
+    "atualizado_em": "2026-09-11T23:56:42.173Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 159,
+  "fields": {
+    "escola": 65,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.182Z",
+    "atualizado_em": "2026-09-11T23:56:42.182Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 160,
+  "fields": {
+    "escola": 65,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.186Z",
+    "atualizado_em": "2026-09-11T23:56:42.186Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 161,
+  "fields": {
+    "escola": 66,
+    "tipo_problematica": 14,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.197Z",
+    "atualizado_em": "2026-09-11T23:56:42.197Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 162,
+  "fields": {
+    "escola": 67,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.205Z",
+    "atualizado_em": "2026-09-11T23:56:42.205Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 163,
+  "fields": {
+    "escola": 67,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.211Z",
+    "atualizado_em": "2026-09-11T23:56:42.211Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 164,
+  "fields": {
+    "escola": 68,
+    "tipo_problematica": 14,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.219Z",
+    "atualizado_em": "2026-09-11T23:56:42.219Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 165,
+  "fields": {
+    "escola": 69,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.229Z",
+    "atualizado_em": "2026-09-11T23:56:42.229Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 166,
+  "fields": {
+    "escola": 70,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.238Z",
+    "atualizado_em": "2026-09-11T23:56:42.238Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 167,
+  "fields": {
+    "escola": 70,
+    "tipo_problematica": 8,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.244Z",
+    "atualizado_em": "2026-09-11T23:56:42.244Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 168,
+  "fields": {
+    "escola": 71,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.252Z",
+    "atualizado_em": "2026-09-11T23:56:42.252Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 169,
+  "fields": {
+    "escola": 72,
+    "tipo_problematica": 1,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.262Z",
+    "atualizado_em": "2026-09-11T23:56:42.262Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 170,
+  "fields": {
+    "escola": 72,
+    "tipo_problematica": 6,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.266Z",
+    "atualizado_em": "2026-09-11T23:56:42.266Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 171,
+  "fields": {
+    "escola": 72,
+    "tipo_problematica": 7,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.269Z",
+    "atualizado_em": "2026-09-11T23:56:42.269Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 172,
+  "fields": {
+    "escola": 73,
+    "tipo_problematica": 1,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.280Z",
+    "atualizado_em": "2026-09-11T23:56:42.280Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 173,
+  "fields": {
+    "escola": 74,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.289Z",
+    "atualizado_em": "2026-09-11T23:56:42.289Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 174,
+  "fields": {
+    "escola": 74,
+    "tipo_problematica": 5,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.295Z",
+    "atualizado_em": "2026-09-11T23:56:42.295Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 175,
+  "fields": {
+    "escola": 74,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.299Z",
+    "atualizado_em": "2026-09-11T23:56:42.299Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 176,
+  "fields": {
+    "escola": 75,
+    "tipo_problematica": 12,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.306Z",
+    "atualizado_em": "2026-09-11T23:56:42.306Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 177,
+  "fields": {
+    "escola": 76,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.317Z",
+    "atualizado_em": "2026-09-11T23:56:42.317Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 178,
+  "fields": {
+    "escola": 76,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.321Z",
+    "atualizado_em": "2026-09-11T23:56:42.321Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 179,
+  "fields": {
+    "escola": 76,
+    "tipo_problematica": 7,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.327Z",
+    "atualizado_em": "2026-09-11T23:56:42.327Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 180,
+  "fields": {
+    "escola": 76,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.331Z",
+    "atualizado_em": "2026-09-11T23:56:42.331Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 181,
+  "fields": {
+    "escola": 76,
+    "tipo_problematica": 10,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.336Z",
+    "atualizado_em": "2026-09-11T23:56:42.336Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 182,
+  "fields": {
+    "escola": 76,
+    "tipo_problematica": 8,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.340Z",
+    "atualizado_em": "2026-09-11T23:56:42.340Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 183,
+  "fields": {
+    "escola": 77,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.349Z",
+    "atualizado_em": "2026-09-11T23:56:42.349Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 184,
+  "fields": {
+    "escola": 78,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.360Z",
+    "atualizado_em": "2026-09-11T23:56:42.360Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 185,
+  "fields": {
+    "escola": 78,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.364Z",
+    "atualizado_em": "2026-09-11T23:56:42.364Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 186,
+  "fields": {
+    "escola": 78,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.368Z",
+    "atualizado_em": "2026-09-11T23:56:42.368Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 187,
+  "fields": {
+    "escola": 78,
+    "tipo_problematica": 13,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.371Z",
+    "atualizado_em": "2026-09-11T23:56:42.371Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 188,
+  "fields": {
+    "escola": 79,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.380Z",
+    "atualizado_em": "2026-09-11T23:56:42.380Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 189,
+  "fields": {
+    "escola": 79,
+    "tipo_problematica": 7,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.383Z",
+    "atualizado_em": "2026-09-11T23:56:42.383Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 190,
+  "fields": {
+    "escola": 80,
+    "tipo_problematica": 9,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.395Z",
+    "atualizado_em": "2026-09-11T23:56:42.395Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 191,
+  "fields": {
+    "escola": 80,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.399Z",
+    "atualizado_em": "2026-09-11T23:56:42.399Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 192,
+  "fields": {
+    "escola": 81,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.411Z",
+    "atualizado_em": "2026-09-11T23:56:42.411Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 193,
+  "fields": {
+    "escola": 82,
+    "tipo_problematica": 1,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.420Z",
+    "atualizado_em": "2026-09-11T23:56:42.420Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 194,
+  "fields": {
+    "escola": 82,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.427Z",
+    "atualizado_em": "2026-09-11T23:56:42.427Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 195,
+  "fields": {
+    "escola": 83,
+    "tipo_problematica": 1,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.437Z",
+    "atualizado_em": "2026-09-11T23:56:42.437Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 196,
+  "fields": {
+    "escola": 83,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.443Z",
+    "atualizado_em": "2026-09-11T23:56:42.443Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 197,
+  "fields": {
+    "escola": 83,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.450Z",
+    "atualizado_em": "2026-09-11T23:56:42.450Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 198,
+  "fields": {
+    "escola": 84,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.465Z",
+    "atualizado_em": "2026-09-11T23:56:42.465Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 199,
+  "fields": {
+    "escola": 85,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.477Z",
+    "atualizado_em": "2026-09-11T23:56:42.477Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 200,
+  "fields": {
+    "escola": 85,
+    "tipo_problematica": 13,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.483Z",
+    "atualizado_em": "2026-09-11T23:56:42.483Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 201,
+  "fields": {
+    "escola": 86,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.495Z",
+    "atualizado_em": "2026-09-11T23:56:42.495Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 202,
+  "fields": {
+    "escola": 87,
+    "tipo_problematica": 13,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.505Z",
+    "atualizado_em": "2026-09-11T23:56:42.505Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 203,
+  "fields": {
+    "escola": 88,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.517Z",
+    "atualizado_em": "2026-09-11T23:56:42.517Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 204,
+  "fields": {
+    "escola": 89,
+    "tipo_problematica": 14,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.529Z",
+    "atualizado_em": "2026-09-11T23:56:42.529Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 205,
+  "fields": {
+    "escola": 90,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.539Z",
+    "atualizado_em": "2026-09-11T23:56:42.539Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 206,
+  "fields": {
+    "escola": 90,
+    "tipo_problematica": 10,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.547Z",
+    "atualizado_em": "2026-09-11T23:56:42.547Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 207,
+  "fields": {
+    "escola": 91,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.558Z",
+    "atualizado_em": "2026-09-11T23:56:42.558Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 208,
+  "fields": {
+    "escola": 91,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.564Z",
+    "atualizado_em": "2026-09-11T23:56:42.564Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 209,
+  "fields": {
+    "escola": 91,
+    "tipo_problematica": 5,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.569Z",
+    "atualizado_em": "2026-09-11T23:56:42.569Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 210,
+  "fields": {
+    "escola": 91,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.575Z",
+    "atualizado_em": "2026-09-11T23:56:42.575Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 211,
+  "fields": {
+    "escola": 91,
+    "tipo_problematica": 13,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.580Z",
+    "atualizado_em": "2026-09-11T23:56:42.580Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 212,
+  "fields": {
+    "escola": 92,
+    "tipo_problematica": 7,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.588Z",
+    "atualizado_em": "2026-09-11T23:56:42.588Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 213,
+  "fields": {
+    "escola": 92,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.595Z",
+    "atualizado_em": "2026-09-11T23:56:42.595Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 214,
+  "fields": {
+    "escola": 93,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.602Z",
+    "atualizado_em": "2026-09-11T23:56:42.602Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 215,
+  "fields": {
+    "escola": 94,
+    "tipo_problematica": 14,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.612Z",
+    "atualizado_em": "2026-09-11T23:56:42.612Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 216,
+  "fields": {
+    "escola": 95,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.620Z",
+    "atualizado_em": "2026-09-11T23:56:42.620Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 217,
+  "fields": {
+    "escola": 96,
+    "tipo_problematica": 14,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.629Z",
+    "atualizado_em": "2026-09-11T23:56:42.629Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 218,
+  "fields": {
+    "escola": 97,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.637Z",
+    "atualizado_em": "2026-09-11T23:56:42.637Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 219,
+  "fields": {
+    "escola": 97,
+    "tipo_problematica": 7,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.643Z",
+    "atualizado_em": "2026-09-11T23:56:42.643Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 220,
+  "fields": {
+    "escola": 97,
+    "tipo_problematica": 5,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.647Z",
+    "atualizado_em": "2026-09-11T23:56:42.647Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 221,
+  "fields": {
+    "escola": 97,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.651Z",
+    "atualizado_em": "2026-09-11T23:56:42.651Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 222,
+  "fields": {
+    "escola": 98,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.661Z",
+    "atualizado_em": "2026-09-11T23:56:42.661Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 223,
+  "fields": {
+    "escola": 98,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.665Z",
+    "atualizado_em": "2026-09-11T23:56:42.665Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 224,
+  "fields": {
+    "escola": 99,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.675Z",
+    "atualizado_em": "2026-09-11T23:56:42.675Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 225,
+  "fields": {
+    "escola": 99,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.683Z",
+    "atualizado_em": "2026-09-11T23:56:42.683Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 226,
+  "fields": {
+    "escola": 99,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.687Z",
+    "atualizado_em": "2026-09-11T23:56:42.687Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 227,
+  "fields": {
+    "escola": 100,
+    "tipo_problematica": 1,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.697Z",
+    "atualizado_em": "2026-09-11T23:56:42.697Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 228,
+  "fields": {
+    "escola": 100,
+    "tipo_problematica": 9,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.700Z",
+    "atualizado_em": "2026-09-11T23:56:42.700Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 229,
+  "fields": {
+    "escola": 101,
+    "tipo_problematica": 14,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.709Z",
+    "atualizado_em": "2026-09-11T23:56:42.709Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 230,
+  "fields": {
+    "escola": 102,
+    "tipo_problematica": 1,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.717Z",
+    "atualizado_em": "2026-09-11T23:56:42.717Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 231,
+  "fields": {
+    "escola": 102,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.721Z",
+    "atualizado_em": "2026-09-11T23:56:42.721Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 232,
+  "fields": {
+    "escola": 102,
+    "tipo_problematica": 11,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.727Z",
+    "atualizado_em": "2026-09-11T23:56:42.727Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 233,
+  "fields": {
+    "escola": 102,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.731Z",
+    "atualizado_em": "2026-09-11T23:56:42.731Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 234,
+  "fields": {
+    "escola": 102,
+    "tipo_problematica": 8,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.735Z",
+    "atualizado_em": "2026-09-11T23:56:42.735Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 235,
+  "fields": {
+    "escola": 103,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.744Z",
+    "atualizado_em": "2026-09-11T23:56:42.744Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 236,
+  "fields": {
+    "escola": 103,
+    "tipo_problematica": 7,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.748Z",
+    "atualizado_em": "2026-09-11T23:56:42.748Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 237,
+  "fields": {
+    "escola": 103,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.753Z",
+    "atualizado_em": "2026-09-11T23:56:42.753Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 238,
+  "fields": {
+    "escola": 104,
+    "tipo_problematica": 1,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.762Z",
+    "atualizado_em": "2026-09-11T23:56:42.762Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 239,
+  "fields": {
+    "escola": 104,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.765Z",
+    "atualizado_em": "2026-09-11T23:56:42.765Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 240,
+  "fields": {
+    "escola": 104,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.768Z",
+    "atualizado_em": "2026-09-11T23:56:42.768Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 241,
+  "fields": {
+    "escola": 105,
+    "tipo_problematica": 13,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.798Z",
+    "atualizado_em": "2026-09-11T23:56:42.798Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 242,
+  "fields": {
+    "escola": 106,
+    "tipo_problematica": 2,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.805Z",
+    "atualizado_em": "2026-09-11T23:56:42.806Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 243,
+  "fields": {
+    "escola": 106,
+    "tipo_problematica": 3,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.813Z",
+    "atualizado_em": "2026-09-11T23:56:42.813Z"
+  }
+},
+{
+  "model": "escolas.escolaproblematica",
+  "pk": 244,
+  "fields": {
+    "escola": 106,
+    "tipo_problematica": 4,
+    "data_registro": "2026-09-11",
+    "situacao": "ATIVA",
+    "observacoes": "",
+    "criado_em": "2026-09-11T23:56:42.817Z",
+    "atualizado_em": "2026-09-11T23:56:42.817Z"
+  }
+},
+{
+  "model": "visitas.rondavisita",
+  "pk": 1,
+  "fields": {
+    "escola": 77,
+    "equipe": "B",
+    "data_visita": "2026-09-11",
+    "horario": "19:40:00",
+    "tipo_visita": "ROTINA",
+    "situacao": "SEM_ALTERACAO",
+    "relato": "",
+    "orientacoes": "",
+    "criado_em": "2026-09-12T00:03:19.374Z",
+    "atualizado_em": "2026-09-12T00:03:19.374Z"
+  }
+},
+{
+  "model": "visitas.rondavisita",
+  "pk": 2,
+  "fields": {
+    "escola": 3,
+    "equipe": "D",
+    "data_visita": "2026-09-08",
+    "horario": "15:32:00",
+    "tipo_visita": "ROTINA",
+    "situacao": "SEM_ALTERACAO",
+    "relato": "",
+    "orientacoes": "",
+    "criado_em": "2026-09-12T00:27:54.770Z",
+    "atualizado_em": "2026-09-12T00:27:54.770Z"
+  }
+}
+]

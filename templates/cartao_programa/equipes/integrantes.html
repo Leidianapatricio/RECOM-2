@@ -1,0 +1,133 @@
+
+{% extends "base.html" %}
+
+{% block title %}Integrantes da Equipe - RECOM{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+
+    <!-- CABEÇALHO -->
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+
+        <div>
+            <h2>
+                <i class="bi bi-people-fill me-2"></i>
+                Integrantes - {{ equipe.nome }}
+            </h2>
+
+            <p class="text-muted mb-0">
+                GCMs vinculados à equipe fixa.
+            </p>
+        </div>
+
+        <div class="d-flex gap-2">
+
+            <a href="{% url 'cartao_programa:listar_equipes' %}"
+               class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left"></i>
+                Voltar
+            </a>
+
+            {% if equipe.ativa %}
+            <a href="{% url 'cartao_programa:adicionar_integrante' equipe.pk %}"
+               class="btn btn-primary">
+                <i class="bi bi-person-plus"></i>
+                Adicionar GCM
+            </a>
+            {% endif %}
+
+        </div>
+    </div>
+
+    <!-- TABELA DE INTEGRANTES -->
+    <div class="card shadow-sm">
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-striped table-hover align-middle">
+
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Nome do GCM</th>
+                            <th>Matrícula</th>
+                            <th>Função habitual</th>
+                            <th class="text-center">Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for integrante in integrantes %}
+
+                        <tr>
+
+                            <td>
+                                {{ integrante.gcm.nome }}
+                            </td>
+
+                            <td>
+                                {{ integrante.gcm.matricula }}
+                            </td>
+
+                            <td>
+                                {{ integrante.get_funcao_habitual_display }}
+                            </td>
+
+                            <td class="text-center">
+
+                                <div class="d-flex justify-content-center gap-2">
+
+                                    <!-- EDITAR -->
+                                    <a href="{% url 'cartao_programa:editar_integrante' equipe.pk integrante.pk %}"
+                                       class="btn btn-sm btn-outline-primary"
+                                       title="Editar função habitual">
+
+                                        <i class="bi bi-pencil-square"></i>
+                                        Editar
+
+                                    </a>
+
+                                    <!-- REMOVER -->
+                                    <a href="{% url 'cartao_programa:remover_integrante' equipe.pk integrante.pk %}"
+                                       class="btn btn-sm btn-outline-danger"
+                                       title="Remover GCM da equipe">
+
+                                        <i class="bi bi-person-dash"></i>
+                                        Remover
+
+                                    </a>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                        {% empty %}
+
+                        <tr>
+                            <td colspan="4"
+                                class="text-center text-muted py-4">
+
+                                <i class="bi bi-info-circle me-1"></i>
+                                Nenhum GCM vinculado a esta equipe.
+
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

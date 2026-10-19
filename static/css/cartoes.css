@@ -1,0 +1,240 @@
+
+/* ==========================================
+   RECOM - CARTÕES PROGRAMA E MISSÕES
+   ========================================== */
+
+:root {
+    --recom-azul: #092B49;
+    --recom-dourado: #B78B32;
+    --recom-dourado-claro: #E5BD64;
+}
+
+/* ==========================================
+   CABEÇALHO
+   ========================================== */
+
+.recom-header {
+    background-color: var(--recom-azul);
+    color: #ffffff;
+    padding: 22px;
+    border-radius: 10px;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+.recom-header h3,
+.recom-header h3 i,
+.recom-header p {
+    color: #ffffff !important;
+    text-shadow: none !important;
+}
+
+.recom-header h3 {
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.recom-header p {
+    font-size: 15px;
+    margin-bottom: 0;
+}
+
+/* ==========================================
+   CARD DA LISTAGEM
+   ========================================== */
+
+.recom-cartoes-card {
+    background-color: #ffffff;
+    border: 1px solid #e5e9ee;
+    border-radius: 12px;
+    box-shadow: none !important;
+}
+
+.recom-cartoes-card .card-body {
+    padding: 20px;
+}
+
+/* ==========================================
+   BOTÃO NOVO CARTÃO PROGRAMA
+   ========================================== */
+
+.recom-btn-novo {
+    background-color: var(--recom-dourado);
+    border: 1px solid var(--recom-dourado);
+    color: #ffffff;
+    font-weight: 600;
+    border-radius: 6px;
+    padding: 9px 16px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.recom-btn-novo:hover,
+.recom-btn-novo:focus {
+    background-color: var(--recom-azul);
+    border-color: var(--recom-azul);
+    color: #ffffff;
+}
+
+.recom-btn-novo i {
+    margin-right: 5px;
+}
+
+/* ==========================================
+   BOTÃO VISUALIZAR
+   ========================================== */
+
+.recom-btn {
+    background-color: var(--recom-azul);
+    border: 1px solid var(--recom-azul);
+    color: #ffffff;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+
+.recom-btn:hover,
+.recom-btn:focus {
+    background-color: var(--recom-dourado);
+    border-color: var(--recom-dourado);
+    color: #ffffff;
+}
+
+/* ==========================================
+   BOTÃO MISSÕES
+   ========================================== */
+
+.recom-btn-missoes {
+    background-color: #ffffff;
+    border: 1px solid var(--recom-azul);
+    color: var(--recom-azul);
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+
+.recom-btn-missoes:hover,
+.recom-btn-missoes:focus {
+    background-color: var(--recom-azul);
+    border-color: var(--recom-azul);
+    color: #ffffff;
+}
+
+/* ==========================================
+   TABELA DE CARTÕES PROGRAMA
+   ========================================== */
+
+.recom-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.recom-table thead th {
+    background-color: var(--recom-azul);
+    color: #ffffff !important;
+    font-weight: 600;
+    padding: 12px 15px;
+    vertical-align: middle;
+}
+
+.recom-table tbody td {
+    padding: 12px 15px;
+    vertical-align: middle;
+    color: #263746;
+}
+
+.recom-table tbody tr:hover td {
+    background-color: #f5f7fa;
+}
+
+.recom-table td:last-child {
+    white-space: nowrap;
+}
+
+/* ==========================================
+   REMOVER SOMBRAS
+   ========================================== */
+
+.recom-header,
+.recom-cartoes-card,
+.recom-table,
+.recom-btn,
+.recom-btn-novo,
+.recom-btn-missoes {
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+/* ==========================================
+   RESPONSIVIDADE
+   ========================================== */
+
+@media (max-width: 768px) {
+
+    .recom-header {
+        padding: 18px;
+    }
+
+    .recom-header h3 {
+        font-size: 22px;
+    }
+
+    .recom-header p {
+        font-size: 14px;
+    }
+
+    .recom-cartoes-card .card-body {
+        padding: 15px;
+    }
+
+    .recom-table {
+        font-size: 13px;
+    }
+
+    .recom-table thead th,
+    .recom-table tbody td {
+        padding: 10px;
+    }
+
+    .recom-btn-novo {
+        font-size: 14px;
+    }
+}
+
+
+/* BOTÃO BRANCO NO CABEÇALHO */
+
+.recom-header a.btn-recom-header-novo,
+.recom-header a.btn-recom-header-novo:link,
+.recom-header a.btn-recom-header-novo:visited {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #092B49 !important;
+
+    border: 1px solid #ffffff !important;
+    border-radius: 6px;
+
+    padding: 9px 15px;
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none !important;
+    box-shadow: none !important;
+}
+
+.recom-header a.btn-recom-header-novo i {
+    color: #092B49 !important;
+}
+
+.recom-header a.btn-recom-header-novo:hover {
+    background: #B78B32 !important;
+    background-color: #B78B32 !important;
+    border-color: #B78B32 !important;
+    color: #ffffff !important;
+}
+
+.recom-header a.btn-recom-header-novo:hover i {
+    color: #ffffff !important;
+}

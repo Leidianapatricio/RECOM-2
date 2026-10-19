@@ -1,141 +1,354 @@
+
 {% extends 'base.html' %}
 
+{% block title %}
+    {% if edicao %}Editar Usuário{% else %}Novo Usuário{% endif %} - RECOM
+{% endblock %}
+
 {% block content %}
+
 <section class="container py-4">
 
-    <div class="card card-examesus p-4 mb-4">
-        <h2 class="fw-bold mb-1">Novo Usuário</h2>
-        <p class="text-muted mb-0">
-            Cadastre um novo usuário no Sistema RECOM.
-        </p>
+    <!-- CABEÇALHO PADRONIZADO -->
+    <div class="rounded-3 p-4 mb-4"
+         style="background-color: #092B49;">
+
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+
+            <div>
+                <h2 class="fw-bold text-white mb-1">
+
+                    {% if edicao %}
+                        <i class="bi bi-pencil-square me-2"></i>
+                        Editar Usuário
+                    {% else %}
+                        <i class="bi bi-person-plus-fill me-2"></i>
+                        Novo Usuário
+                    {% endif %}
+
+                </h2>
+
+                <p class="mb-0" style="color: #D9E4ED;">
+
+                    {% if edicao %}
+                        Atualize os dados do usuário no Sistema RECOM.
+                    {% else %}
+                        Cadastre um novo usuário no Sistema RECOM.
+                    {% endif %}
+
+                </p>
+            </div>
+
+            <a href="{% url 'usuarios:listar' %}"
+               class="btn btn-light"
+               style="color: #092B49;">
+
+                <i class="bi bi-arrow-left me-1"></i>
+                Voltar
+
+            </a>
+
+        </div>
     </div>
 
+    <!-- FORMULÁRIO -->
     <div class="card card-examesus p-4">
 
-        <form method="post">
+        <form method="post" id="form-usuario" novalidate>
+
             {% csrf_token %}
+
+            <!-- ERROS GERAIS -->
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger">
+                    {% for error in form.non_field_errors %}
+                        <div>{{ error }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
 
             <div class="row">
 
+                <!-- NOME -->
                 <div class="col-md-6 mb-3">
-                    <label class="form-label fw-semibold">
+
+                    <label for="{{ form.nome.id_for_label }}"
+                           class="form-label fw-semibold">
                         Nome Completo
+                        <span class="text-danger">*</span>
                     </label>
 
-                    <input
-                        type="text"
-                        name="nome"
-                        class="form-control"
-                        placeholder="Digite o nome completo"
-                        required>
+                    {{ form.nome }}
+
+                    {% for error in form.nome.errors %}
+                        <div class="text-danger small mt-1">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+
                 </div>
 
+                <!-- MATRÍCULA -->
                 <div class="col-md-6 mb-3">
-                    <label class="form-label fw-semibold">
-                        CPF
-                    </label>
 
-                    <input
-                        type="text"
-                        name="cpf"
-                        class="form-control"
-                        placeholder="000.000.000-00"
-                        required>
-                </div>
-
-                <div class="col-md-6 mb-3">
-                    <label class="form-label fw-semibold">
+                    <label for="{{ form.matricula.id_for_label }}"
+                           class="form-label fw-semibold">
                         Matrícula
+                        <span class="text-danger">*</span>
                     </label>
 
-                    <input
-                        type="text"
-                        name="matricula"
-                        class="form-control"
-                        placeholder="Digite a matrícula"
-                        required>
+                    {{ form.matricula }}
+
+                    {% for error in form.matricula.errors %}
+                        <div class="text-danger small mt-1">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+
+                    <div class="form-text">
+                        Informe a matrícula que será utilizada no login.
+                    </div>
+
                 </div>
 
+                <!-- PERFIL -->
                 <div class="col-md-6 mb-3">
-                    <label class="form-label fw-semibold">
+
+                    <label for="{{ form.perfil.id_for_label }}"
+                           class="form-label fw-semibold">
                         Perfil
+                        <span class="text-danger">*</span>
                     </label>
 
-                    <select
-                        name="perfil"
-                        class="form-select"
-                        required>
+                    {{ form.perfil }}
 
-                        <option value="">Selecione...</option>
+                    {% for error in form.perfil.errors %}
+                        <div class="text-danger small mt-1">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
 
-                        {% for valor, nome in perfis %}
-                            <option value="{{ valor }}">
-                                {{ nome }}
-                            </option>
-                        {% endfor %}
-
-                    </select>
                 </div>
 
+                <!-- CPF -->
                 <div class="col-md-6 mb-3">
-                    <label class="form-label fw-semibold">
+
+                    <label for="{{ form.cpf.id_for_label }}"
+                           class="form-label fw-semibold">
+                        CPF
+                        <span class="text-muted fw-normal">
+                            (opcional)
+                        </span>
+                    </label>
+
+                    {{ form.cpf }}
+
+                    {% for error in form.cpf.errors %}
+                        <div class="text-danger small mt-1">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+                <!-- SEXO -->
+                <div class="col-md-6 mb-3">
+
+                    <label for="{{ form.sexo.id_for_label }}"
+                           class="form-label fw-semibold">
                         Sexo
+                        <span class="text-muted fw-normal">
+                            (opcional)
+                        </span>
                     </label>
 
-                    <select
-                        name="sexo"
-                        class="form-select">
+                    {{ form.sexo }}
 
-                        <option value="">Selecione...</option>
+                    {% for error in form.sexo.errors %}
+                        <div class="text-danger small mt-1">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
 
-                        {% for valor, nome in sexos %}
-                            <option value="{{ valor }}">
-                                {{ nome }}
-                            </option>
-                        {% endfor %}
-
-                    </select>
                 </div>
 
+                <!-- TELEFONE -->
                 <div class="col-md-6 mb-3">
-                    <label class="form-label fw-semibold">
+
+                    <label for="{{ form.telefone.id_for_label }}"
+                           class="form-label fw-semibold">
                         Telefone
+                        <span class="text-muted fw-normal">
+                            (opcional)
+                        </span>
                     </label>
 
-                    <input
-                        type="text"
-                        name="telefone"
-                        class="form-control"
-                        placeholder="(83) 99999-9999">
+                    {{ form.telefone }}
+
+                    {% for error in form.telefone.errors %}
+                        <div class="text-danger small mt-1">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+
                 </div>
 
-                <div class="col-md-6 mb-4">
-                    <label class="form-label fw-semibold">
+                <!-- E-MAIL -->
+                <div class="col-md-6 mb-3">
+
+                    <label for="{{ form.email.id_for_label }}"
+                           class="form-label fw-semibold">
                         E-mail
+                        <span class="text-muted fw-normal">
+                            (opcional)
+                        </span>
                     </label>
 
-                    <input
-                        type="email"
-                        name="email"
-                        class="form-control"
-                        placeholder="usuario@email.com">
+                    {{ form.email }}
+
+                    {% for error in form.email.errors %}
+                        <div class="text-danger small mt-1">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+
                 </div>
 
             </div>
 
+            <!-- CAMPOS EXCLUSIVOS DO GCM -->
+            <div id="campos-gcm"
+                 class="card mb-4"
+                 style="display: none; border: 1px solid #092B49;">
+
+                <div class="card-header bg-light">
+
+                    <h5 class="mb-0"
+                        style="color: #092B49;">
+
+                        <i class="bi bi-people-fill me-2"></i>
+                        Vinculação do GCM à Equipe
+
+                    </h5>
+
+                </div>
+
+                <div class="card-body">
+
+                    <p class="text-muted small mb-3">
+                        Selecione a equipe à qual o GCM pertence
+                        e a função habitual que ocupa.
+                    </p>
+
+                    <div class="row">
+
+                        <!-- EQUIPE -->
+                        <div class="col-md-6 mb-3">
+
+                            <label for="{{ form.equipe.id_for_label }}"
+                                   class="form-label fw-semibold">
+                                Equipe
+                                <span class="text-danger">*</span>
+                            </label>
+
+                            {{ form.equipe }}
+
+                            {% for error in form.equipe.errors %}
+                                <div class="text-danger small mt-1">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+
+                        </div>
+
+                        <!-- FUNÇÃO -->
+                        <div class="col-md-6 mb-3">
+
+                            <label for="{{ form.funcao_equipe.id_for_label }}"
+                                   class="form-label fw-semibold">
+                                Função habitual
+                                <span class="text-danger">*</span>
+                            </label>
+
+                            {{ form.funcao_equipe }}
+
+                            {% for error in form.funcao_equipe.errors %}
+                                <div class="text-danger small mt-1">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+
+                        </div>
+
+                    </div>
+
+                    <div class="alert alert-info mb-0">
+
+                        <i class="bi bi-info-circle me-1"></i>
+
+                        <strong>Funções:</strong>
+                        C — Comandante;
+                        M — Motorista;
+                        P1 — Patrulheiro 1;
+                        P2 — Patrulheiro 2.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- AVISO EXCLUSIVO DO CADASTRO -->
+            {% if not edicao %}
+
+                <div class="alert alert-light border mb-4">
+
+                    <strong>Primeiro acesso:</strong>
+                    o login do usuário será a matrícula cadastrada
+                    e a senha inicial será <strong>1234</strong>.
+
+                    No primeiro acesso, o usuário deverá
+                    cadastrar uma nova senha.
+
+                </div>
+
+            {% endif %}
+
+            <p class="text-muted small">
+                <span class="text-danger">*</span>
+                Campos obrigatórios.
+            </p>
+
             <hr>
 
-            <div class="d-flex justify-content-end gap-2">
+            <!-- BOTÕES -->
+            <div class="d-flex flex-wrap justify-content-end gap-2">
 
                 <a href="{% url 'usuarios:listar' %}"
-                   class="btn btn-outline-secondary">
+                   class="btn btn-outline-secondary px-3 py-2">
+
+                    <i class="bi bi-x-circle me-1"></i>
                     Cancelar
+
                 </a>
 
                 <button type="submit"
-                        class="btn btn-examesus">
-                    <i class="bi bi-check-circle"></i>
-                    Salvar Usuário
+                        class="btn fw-semibold px-4 py-2"
+                        style="
+                            background-color: #092B49;
+                            color: #FFFFFF;
+                            border: 1px solid #092B49;
+                            border-radius: 6px;
+                        ">
+
+                    <i class="bi bi-check-circle me-1"></i>
+
+                    {% if edicao %}
+                        Salvar Alterações
+                    {% else %}
+                        Salvar Usuário
+                    {% endif %}
+
                 </button>
 
             </div>
@@ -145,4 +358,39 @@
     </div>
 
 </section>
+
+<!-- EXIBIÇÃO DINÂMICA DOS CAMPOS GCM -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const perfil = document.getElementById("id_perfil");
+    const camposGcm = document.getElementById("campos-gcm");
+
+    const equipe = document.getElementById("id_equipe");
+    const funcao = document.getElementById("id_funcao_equipe");
+
+    if (!perfil || !camposGcm || !equipe || !funcao) {
+        return;
+    }
+
+    function atualizarCamposGcm() {
+
+        const ehGcm = perfil.value === "GCM";
+
+        camposGcm.style.display = ehGcm ? "block" : "none";
+
+        equipe.required = ehGcm;
+        funcao.required = ehGcm;
+
+        equipe.disabled = !ehGcm;
+        funcao.disabled = !ehGcm;
+    }
+
+    perfil.addEventListener("change", atualizarCamposGcm);
+
+    atualizarCamposGcm();
+
+});
+</script>
+
 {% endblock %}

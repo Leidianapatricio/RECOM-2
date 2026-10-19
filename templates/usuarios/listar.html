@@ -3,24 +3,57 @@
 {% block content %}
 <section class="container py-4">
 
-    <div class="card card-examesus p-4 mb-4">
-        <div class="d-flex justify-content-between align-items-center">
+    
+    <!-- CABEÇALHO PADRONIZADO RECOM -->
+    <div class="rounded-3 p-4 mb-4"
+        style="background-color: #092B49;">
 
+        <div class="d-flex flex-column flex-md-row
+                    justify-content-between
+                    align-items-md-center gap-3">
+
+            <!-- TÍTULO -->
             <div>
-                <h2 class="fw-bold mb-1">Usuários</h2>
-                <p class="text-muted mb-0">
+
+                <h2 class="fw-bold text-white mb-1">
+
+                    <i class="bi bi-people-fill me-2"></i>
+                    Usuários
+
+                </h2>
+
+                <p class="mb-0"
+                style="color: #D9E4ED;">
+
                     Usuários cadastrados no Sistema RECOM.
+
                 </p>
+
             </div>
 
-            <a href="{% url 'usuarios:criar' %}"
-               class="btn btn-examesus">
-                <i class="bi bi-plus-circle"></i>
-                Novo Usuário
-            </a>
+            <!-- BOTÃO NOVO USUÁRIO -->
+            <div>
+
+                <a href="{% url 'usuarios:criar' %}"
+                class="btn fw-semibold px-3 py-2"
+                style="
+                    background-color: #FFFFFF;
+                    color: #092B49;
+                    border: 1px solid #FFFFFF;
+                    border-radius: 6px;
+                ">
+
+                    <i class="bi bi-plus-circle me-1"></i>
+                    Novo Usuário
+
+                </a>
+
+            </div>
 
         </div>
+
     </div>
+
 
     <div class="card card-examesus">
 
@@ -81,8 +114,9 @@
 
                         <td class="text-end">
 
-                            <a href="#"
-                               class="btn btn-sm btn-outline-primary">
+                            <a href="{% url 'usuarios:editar' usuario.pk %}"
+                                class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-pencil-square me-1"></i>
                                 Editar
                             </a>
 

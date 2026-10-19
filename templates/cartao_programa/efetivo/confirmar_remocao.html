@@ -1,0 +1,122 @@
+
+{% extends "base.html" %}
+
+{% block title %}Remover GCM da Viatura - RECOM{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-7">
+
+            <!-- CABEÇALHO -->
+            <div class="d-flex align-items-center mb-4">
+
+                <a href="{% url 'cartao_programa:listar_efetivo' plantao.pk viatura.pk %}"
+                   class="btn btn-outline-secondary me-3">
+
+                    <i class="bi bi-arrow-left"></i>
+                    Voltar
+
+                </a>
+
+                <h2 class="mb-0">
+
+                    <i class="bi bi-person-dash me-2"></i>
+                    Remover Integrante
+
+                </h2>
+
+            </div>
+
+            <!-- CONFIRMAÇÃO -->
+            <div class="card shadow-sm">
+
+                <div class="card-body p-4">
+
+                    <div class="alert alert-warning">
+
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+
+                        Você tem certeza de que deseja remover
+                        este GCM do efetivo da viatura?
+
+                    </div>
+
+                    <div class="mb-4">
+
+                        <p>
+                            <strong>GCM:</strong>
+                            {{ integrante.gcm.nome }}
+                        </p>
+
+                        <p>
+                            <strong>Matrícula:</strong>
+                            {{ integrante.gcm.matricula }}
+                        </p>
+
+                        <p>
+                            <strong>Viatura:</strong>
+                            {{ viatura.identificacao }}
+                        </p>
+
+                        <p>
+                            <strong>Plantão:</strong>
+                            {{ plantao.data|date:"d/m/Y" }}
+                        </p>
+
+                        <p>
+                            <strong>Função:</strong>
+                            {{ integrante.get_funcao_display }}
+                        </p>
+
+                    </div>
+
+                    <p class="text-muted small">
+
+                        Esta operação removerá apenas o GCM
+                        do efetivo desta viatura.
+
+                        Seu cadastro, matrícula e vínculo
+                        com a equipe fixa permanecerão
+                        no sistema RECOM.
+
+                    </p>
+
+                    <!-- CONFIRMAÇÃO POR POST -->
+                    <form method="post">
+
+                        {% csrf_token %}
+
+                        <div class="d-flex justify-content-end gap-2">
+
+                            <a href="{% url 'cartao_programa:listar_efetivo' plantao.pk viatura.pk %}"
+                               class="btn btn-secondary">
+
+                                Cancelar
+
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-danger">
+
+                                <i class="bi bi-person-dash me-1"></i>
+                                Confirmar Remoção
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

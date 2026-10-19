@@ -1,0 +1,280 @@
+
+{% extends "base.html" %}
+
+{% block title %}{{ titulo }} - RECOM{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+
+            <!-- CABEÇALHO -->
+            <div class="d-flex align-items-center mb-4 flex-wrap gap-2">
+
+                <a href="{% url 'cartao_programa:listar_viaturas' plantao.pk %}"
+                   class="btn btn-outline-secondary me-2">
+                    <i class="bi bi-arrow-left"></i>
+                    Voltar
+                </a>
+
+                <h2 class="mb-0">
+
+                    {% if edicao %}
+                        <i class="bi bi-pencil-square me-2"></i>
+                    {% else %}
+                        <i class="bi bi-truck-front me-2"></i>
+                    {% endif %}
+
+                    {{ titulo }}
+
+                </h2>
+
+            </div>
+
+            <!-- FORMULÁRIO -->
+            <div class="card shadow-sm">
+
+                <div class="card-body p-4">
+
+                    <h5 class="mb-3">
+                        <i class="bi bi-calendar-check me-2"></i>
+                        Plantão: {{ plantao.data|date:"d/m/Y" }}
+                    </h5>
+
+                    <p class="text-muted mb-4">
+                        Informe os dados da viatura que será
+                        utilizada neste plantão.
+                    </p>
+
+                    <form method="post">
+
+                        {% csrf_token %}
+
+                        <!-- ERROS GERAIS -->
+                        {% if form.non_field_errors %}
+
+                            <div class="alert alert-danger">
+                                {{ form.non_field_errors }}
+                            </div>
+
+                        {% endif %}
+
+                        <!-- IDENTIFICAÇÃO -->
+                        <div class="mb-3">
+
+                            <label for="{{ form.identificacao.id_for_label }}"
+                                   class="form-label">
+                                Identificação da viatura
+                                <span class="text-danger">*</span>
+                            </label>
+
+                            {{ form.identificacao }}
+
+                            {% for error in form.identificacao.errors %}
+                                <div class="text-danger small">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+
+                        </div>
+
+                        <!-- MODELO -->
+                        <div class="mb-3">
+
+                            <label for="{{ form.modelo.id_for_label }}"
+                                   class="form-label">
+                                Modelo da viatura
+                            </label>
+
+                            {{ form.modelo }}
+
+                            {% for error in form.modelo.errors %}
+                                <div class="text-danger small">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+
+                        </div>
+
+                        <!-- TIPO DE SERVIÇO -->
+                        <div class="mb-3">
+
+                            <label for="{{ form.tipo_servico.id_for_label }}"
+                                   class="form-label">
+                                Tipo de serviço
+                                <span class="text-danger">*</span>
+                            </label>
+
+                            {{ form.tipo_servico }}
+
+                            {% for error in form.tipo_servico.errors %}
+                                <div class="text-danger small">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+
+                        </div>
+
+                        <!-- EQUIPE FIXA -->
+                        <div class="mb-3" id="campo-equipe">
+
+                            <label for="{{ form.equipe.id_for_label }}"
+                                   class="form-label">
+                                Equipe fixa
+                            </label>
+
+                            {{ form.equipe }}
+
+                            <div class="form-text">
+                                Obrigatória para serviço ordinário.
+                                No serviço extraordinário, deixe em branco.
+                            </div>
+
+                            {% for error in form.equipe.errors %}
+                                <div class="text-danger small">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+
+                        </div>
+
+                        <!-- QUILOMETRAGEM -->
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+
+                                <label for="{{ form.km_inicial.id_for_label }}"
+                                       class="form-label">
+                                    Quilometragem inicial
+                                </label>
+
+                                {{ form.km_inicial }}
+
+                                {% for error in form.km_inicial.errors %}
+                                    <div class="text-danger small">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label for="{{ form.km_final.id_for_label }}"
+                                       class="form-label">
+                                    Quilometragem final
+                                </label>
+
+                                {{ form.km_final }}
+
+                                <div class="form-text">
+                                    Pode ser informada ao término do plantão.
+                                </div>
+
+                                {% for error in form.km_final.errors %}
+                                    <div class="text-danger small">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+
+                            </div>
+
+                        </div>
+
+                        <!-- INFORMAÇÃO -->
+                        <div class="alert alert-info">
+
+                            <i class="bi bi-info-circle me-2"></i>
+
+                            Cada viatura deverá possuir um comandante
+                            e um motorista para completar seu efetivo.
+                            Os integrantes serão cadastrados
+                            na próxima etapa.
+
+                        </div>
+
+                        <!-- BOTÕES -->
+                        <div class="d-flex justify-content-end gap-2">
+
+                            <a href="{% url 'cartao_programa:listar_viaturas' plantao.pk %}"
+                               class="btn btn-secondary">
+                                Cancelar
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-primary">
+
+                                <i class="bi bi-check-circle me-1"></i>
+
+                                {% if edicao %}
+                                    Salvar Alterações
+                                {% else %}
+                                    Salvar Viatura
+                                {% endif %}
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- CONTROLE VISUAL DO CAMPO EQUIPE -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const tipoServico = document.getElementById(
+        "{{ form.tipo_servico.id_for_label }}"
+    );
+
+    const campoEquipe = document.getElementById(
+        "campo-equipe"
+    );
+
+    const equipeSelect = document.getElementById(
+        "{{ form.equipe.id_for_label }}"
+    );
+
+    function atualizarCampoEquipe() {
+
+        if (!tipoServico || !campoEquipe || !equipeSelect) {
+            return;
+        }
+
+        if (tipoServico.value === "EXTRAORDINARIO") {
+
+            campoEquipe.style.display = "none";
+
+            // Limpa a equipe ao selecionar
+            // o serviço extraordinário.
+            equipeSelect.value = "";
+
+        } else {
+
+            campoEquipe.style.display = "block";
+
+        }
+    }
+
+    if (tipoServico) {
+
+        tipoServico.addEventListener(
+            "change",
+            atualizarCampoEquipe
+        );
+
+        atualizarCampoEquipe();
+
+    }
+
+});
+</script>
+
+{% endblock %}

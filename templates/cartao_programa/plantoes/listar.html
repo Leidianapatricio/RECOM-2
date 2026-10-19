@@ -1,0 +1,212 @@
+
+{% extends "base.html" %}
+
+{% block title %}Plantões - RECOM{% endblock %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <!-- ========================================== -->
+    <!-- CABEÇALHO PADRONIZADO RECOM -->
+    <!-- ========================================== -->
+
+    <div class="rounded-3 p-4 mb-4"
+         style="background-color: #092B49;">
+
+        <div class="d-flex flex-column flex-md-row
+                    justify-content-between
+                    align-items-md-center gap-3">
+
+            <div>
+
+                <h2 class="fw-bold text-white mb-1">
+
+                    <i class="bi bi-calendar-week-fill me-2"></i>
+                    Plantões RECOM
+
+                </h2>
+
+                <p class="mb-0"
+                   style="color: #D9E4ED;">
+
+                    Gerenciamento dos plantões da
+                    Ronda Escolar Comunitária.
+
+                </p>
+
+            </div>
+
+            <!-- NOVO PLANTÃO -->
+            <div>
+
+                <a href="{% url 'cartao_programa:criar_plantao' %}"
+                   class="btn fw-semibold px-3 py-2"
+                   style="
+                       background-color: #FFFFFF;
+                       color: #092B49;
+                       border: 1px solid #FFFFFF;
+                       border-radius: 6px;
+                   ">
+
+                    <i class="bi bi-plus-circle me-1"></i>
+                    Novo Plantão
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================== -->
+    <!-- LISTAGEM DOS PLANTÕES -->
+    <!-- ========================================== -->
+
+    <div class="card shadow-sm border-0">
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-striped table-hover align-middle">
+
+                    <thead>
+                        <tr style="--bs-table-bg: #092B49;
+                                   --bs-table-color: #FFFFFF;">
+
+                            <th>Data</th>
+                            <th>Tipo de serviço</th>
+                            <th>Local de descanso</th>
+                            <th>Observações</th>
+                            <th class="text-center">Ações</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for plantao in plantoes %}
+
+                        <tr>
+
+                            <!-- DATA -->
+                            <td>
+
+                                <i class="bi bi-calendar-event me-1"></i>
+                                {{ plantao.data|date:"d/m/Y" }}
+
+                            </td>
+
+                            <!-- TIPO DE SERVIÇO -->
+                            <td>
+
+                                {% if plantao.tipo_servico == "ORDINARIO" %}
+
+                                    <span class="badge bg-primary">
+                                        Ordinário
+                                    </span>
+
+                                {% elif plantao.tipo_servico == "EXTRAORDINARIO" %}
+
+                                    <span class="badge bg-warning text-dark">
+                                        Extraordinário
+                                    </span>
+
+                                {% else %}
+
+                                    {{ plantao.get_tipo_servico_display }}
+
+                                {% endif %}
+
+                            </td>
+
+                            <!-- LOCAL DE DESCANSO -->
+                            <td>
+
+                                {{ plantao.local_descanso|default:"Não informado" }}
+
+                            </td>
+
+                            <!-- OBSERVAÇÕES -->
+                            <td>
+
+                                {{ plantao.observacoes|default:"—"|truncatechars:80 }}
+
+                            </td>
+
+                            <!-- ================================= -->
+                            <!-- AÇÕES -->
+                            <!-- ================================= -->
+
+                            <td class="text-center">
+
+                                <div class="d-flex justify-content-center
+                                            align-items-center gap-2">
+
+                                    <!-- VIATURAS -->
+                                    <a href="{% url 'cartao_programa:listar_viaturas' plantao.pk %}"
+                                       class="btn btn-sm btn-outline-primary"
+                                       title="Gerenciar viaturas deste plantão">
+
+                                        <i class="bi bi-truck-front me-1"></i>
+                                        Viaturas
+
+                                    </a>
+
+                                    <!-- EXCLUIR -->
+                                    <form method="post"
+                                          action="{% url 'cartao_programa:excluir_plantao' plantao.pk %}"
+                                          class="m-0"
+                                          onsubmit="return confirm('Deseja realmente excluir o plantão de {{ plantao.data|date:'d/m/Y' }}? Esta ação não poderá ser desfeita.');">
+
+                                        {% csrf_token %}
+
+                                        <button type="submit"
+                                                class="btn btn-sm btn-outline-danger"
+                                                title="Excluir plantão">
+
+                                            <i class="bi bi-trash me-1"></i>
+                                            Excluir
+
+                                        </button>
+
+                                    </form>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                        {% empty %}
+
+                        <tr>
+
+                            <td colspan="5"
+                                class="text-center text-muted py-4">
+
+                                <i class="bi bi-info-circle me-1"></i>
+                                Nenhum plantão cadastrado até o momento.
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
