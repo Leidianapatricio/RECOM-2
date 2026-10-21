@@ -189,39 +189,57 @@ class ViaturaPlantao(models.Model):
 
         return self.km_final - self.km_inicial
 
+    
     def clean(self):
         super().clean()
-
         erros = {}
 
         if self.tipo_servico == "ORDINARIO" and not self.equipe_id:
-            erros["equipe"] = (
-                "Selecione a equipe fixa responsável "
-                "pelo serviço ordinário."
+            erros["equipe"] = "Selecione a equipe responsável pelo serviço ordinário."
+
+        if self.plantao_id and self.equipe_id:
+            ordinarias = (
+                ViaturaPlantao.objects.filter(
+                    plantao__data=self.plantao.data,
+                    tipo_servico="ORDINARIO",
+                )
+                .exclude(pk=self.pk)
+                .exclude(equipe__isnull=True)
             )
 
-        if (
-            self.tipo_servico == "EXTRAORDINARIO"
-            and self.equipe_id
-        ):
-            erros["equipe"] = (
-                "No serviço extraordinário, a equipe "
-                "é formada pelos GCMs escalados. "
-                "Não selecione uma equipe fixa."
-            )
+            if self.tipo_servico == "ORDINARIO":
+                if ordinarias.exclude(equipe_id=self.equipe_id).exists():
+                    erros["equipe"] = (
+                        "Já existe outra equipe responsável pelo serviço ordinário "
+                        "nesta data. Todas as viaturas ordinárias devem usar a mesma equipe."
+                    )
+                elif ViaturaPlantao.objects.filter(
+                    plantao__data=self.plantao.data,
+                    tipo_servico="EXTRAORDINARIO",
+                    equipe_id=self.equipe_id,
+                ).exclude(pk=self.pk).exists():
+                    erros["equipe"] = (
+                        "Esta equipe já está vinculada a uma viatura extraordinária "
+                        "nesta data. Não pode assumir também o serviço ordinário."
+                    )
+
+            elif self.tipo_servico == "EXTRAORDINARIO":
+                if ordinarias.filter(equipe_id=self.equipe_id).exists():
+                    erros["equipe"] = (
+                        "A equipe do serviço extraordinário deve ser diferente "
+                        "da equipe ordinária desta data."
+                    )
 
         if (
             self.km_inicial is not None
             and self.km_final is not None
             and self.km_final < self.km_inicial
         ):
-            erros["km_final"] = (
-                "A KM final não pode ser menor "
-                "que a KM inicial."
-            )
+            erros["km_final"] = "A KM final não pode ser menor que a KM inicial."
 
         if erros:
             raise ValidationError(erros)
+
 
     def __str__(self):
         return (
@@ -279,32 +297,36 @@ class EfetivoViatura(models.Model):
 
     def clean(self):
         super().clean()
-
         erros = {}
 
         if self.gcm_id and self.gcm.perfil != "GCM":
-            erros["gcm"] = (
-                "Somente usuários com perfil GCM "
-                "podem integrar o efetivo."
-            )
+            erros["gcm"] = "Somente usuários com perfil GCM podem integrar o efetivo."
 
         if self.gcm_id and self.viatura_id:
+            data = self.viatura.plantao.data
 
-            plantao_id = self.viatura.plantao_id
-
-            escalas_existentes = (
-                EfetivoViatura.objects.filter(
-                    gcm_id=self.gcm_id,
-                    viatura__plantao_id=plantao_id
-                )
-                .exclude(pk=self.pk)
-            )
-
+            escalas_existentes = EfetivoViatura.objects.filter(
+                gcm_id=self.gcm_id,
+                viatura__plantao__data=data,
+            ).exclude(pk=self.pk)
             if escalas_existentes.exists():
-                erros["gcm"] = (
-                    "Este GCM já está escalado em outra "
-                    "VTR neste mesmo plantão."
-                )
+                erros["gcm"] = "Este GCM já está escalado em outra VTR nesta data."
+
+            # A equipe do ordinário não pode compor o efetivo extraordinário.
+            if self.viatura.tipo_servico == "EXTRAORDINARIO":
+                equipes_ordinarias = ViaturaPlantao.objects.filter(
+                    plantao__data=data,
+                    tipo_servico="ORDINARIO",
+                    equipe__isnull=False,
+                ).values_list("equipe_id", flat=True)
+                if IntegranteEquipe.objects.filter(
+                    gcm_id=self.gcm_id,
+                    equipe_id__in=equipes_ordinarias,
+                ).exists():
+                    erros["gcm"] = (
+                        "Este GCM pertence à equipe responsável pelo ordinário "
+                        "nesta data e não pode integrar o extraordinário."
+                    )
 
         if erros:
             raise ValidationError(erros)

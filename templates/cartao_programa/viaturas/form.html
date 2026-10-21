@@ -4,6 +4,7 @@
 {% block title %}{{ titulo }} - RECOM{% endblock %}
 
 {% block content %}
+
 <div class="container py-4">
 
     <div class="row justify-content-center">
@@ -12,14 +13,13 @@
             <!-- CABEÇALHO -->
             <div class="d-flex align-items-center mb-4 flex-wrap gap-2">
 
-                <a href="{% url 'cartao_programa:listar_viaturas' plantao.pk %}"
+                <a href="{% url 'cartao_programa:listar_viaturas' plantao.pk %}{% if fluxo_cartao %}?fluxo=cartao{% endif %}"
                    class="btn btn-outline-secondary me-2">
                     <i class="bi bi-arrow-left"></i>
                     Voltar
                 </a>
 
                 <h2 class="mb-0">
-
                     {% if edicao %}
                         <i class="bi bi-pencil-square me-2"></i>
                     {% else %}
@@ -27,7 +27,6 @@
                     {% endif %}
 
                     {{ titulo }}
-
                 </h2>
 
             </div>
@@ -53,11 +52,9 @@
 
                         <!-- ERROS GERAIS -->
                         {% if form.non_field_errors %}
-
                             <div class="alert alert-danger">
                                 {{ form.non_field_errors }}
                             </div>
-
                         {% endif %}
 
                         <!-- IDENTIFICAÇÃO -->
@@ -116,19 +113,20 @@
 
                         </div>
 
-                        <!-- EQUIPE FIXA -->
+                        <!-- EQUIPE -->
                         <div class="mb-3" id="campo-equipe">
 
                             <label for="{{ form.equipe.id_for_label }}"
                                    class="form-label">
-                                Equipe fixa
+                                Equipe
+                                <span id="equipe-obrigatoria"
+                                      class="text-danger">*</span>
                             </label>
 
                             {{ form.equipe }}
 
-                            <div class="form-text">
-                                Obrigatória para serviço ordinário.
-                                No serviço extraordinário, deixe em branco.
+                            <div class="form-text" id="ajuda-equipe">
+                                Selecione a equipe responsável.
                             </div>
 
                             {% for error in form.equipe.errors %}
@@ -182,22 +180,24 @@
 
                         </div>
 
-                        <!-- INFORMAÇÃO -->
-                        <div class="alert alert-info">
+                        <!-- INFORMAÇÕES SOBRE O EFETIVO -->
+                        <div class="alert alert-info"
+                             id="informacao-efetivo">
 
                             <i class="bi bi-info-circle me-2"></i>
 
-                            Cada viatura deverá possuir um comandante
-                            e um motorista para completar seu efetivo.
-                            Os integrantes serão cadastrados
-                            na próxima etapa.
+                            <span id="texto-informacao-efetivo">
+                                Ao selecionar uma equipe, os GCMs
+                                cadastrados serão adicionados
+                                automaticamente ao efetivo da viatura.
+                            </span>
 
                         </div>
 
                         <!-- BOTÕES -->
-                        <div class="d-flex justify-content-end gap-2">
+                        <div class="d-flex justify-content-end gap-2 flex-wrap">
 
-                            <a href="{% url 'cartao_programa:listar_viaturas' plantao.pk %}"
+                            <a href="{% url 'cartao_programa:listar_viaturas' plantao.pk %}{% if fluxo_cartao %}?fluxo=cartao{% endif %}"
                                class="btn btn-secondary">
                                 Cancelar
                             </a>
@@ -220,13 +220,15 @@
                     </form>
 
                 </div>
+
             </div>
 
         </div>
     </div>
+
 </div>
 
-<!-- CONTROLE VISUAL DO CAMPO EQUIPE -->
+<!-- CONTROLE DO CAMPO EQUIPE -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -234,45 +236,103 @@ document.addEventListener("DOMContentLoaded", function () {
         "{{ form.tipo_servico.id_for_label }}"
     );
 
-    const campoEquipe = document.getElementById(
-        "campo-equipe"
-    );
-
     const equipeSelect = document.getElementById(
         "{{ form.equipe.id_for_label }}"
     );
 
+    const campoEquipe = document.getElementById(
+        "campo-equipe"
+    );
+
+    const equipeObrigatoria = document.getElementById(
+        "equipe-obrigatoria"
+    );
+
+    const ajudaEquipe = document.getElementById(
+        "ajuda-equipe"
+    );
+
+    const textoInformacaoEfetivo = document.getElementById(
+        "texto-informacao-efetivo"
+    );
+
+    if (!tipoServico || !equipeSelect) {
+        return;
+    }
+
     function atualizarCampoEquipe() {
 
-        if (!tipoServico || !campoEquipe || !equipeSelect) {
-            return;
-        }
-
-        if (tipoServico.value === "EXTRAORDINARIO") {
-
-            campoEquipe.style.display = "none";
-
-            // Limpa a equipe ao selecionar
-            // o serviço extraordinário.
-            equipeSelect.value = "";
-
-        } else {
-
-            campoEquipe.style.display = "block";
-
-        }
-    }
-
-    if (tipoServico) {
-
-        tipoServico.addEventListener(
-            "change",
-            atualizarCampoEquipe
+        const ordinario = (
+            tipoServico.value === "ORDINARIO"
         );
 
-        atualizarCampoEquipe();
+        // Equipe visível em ambos os serviços.
+        if (campoEquipe) {
+            campoEquipe.style.display = "block";
+            campoEquipe.classList.remove("d-none");
+        }
 
+        // Equipe obrigatória somente no ordinário.
+        equipeSelect.required = ordinario;
+
+        if (equipeObrigatoria) {
+            equipeObrigatoria.style.display = ordinario
+                ? "inline"
+                : "none";
+        }
+
+        // Atualiza as instruções conforme o serviço.
+        if (ajudaEquipe) {
+
+            if (ordinario) {
+
+                ajudaEquipe.textContent =
+                    "Obrigatória para o serviço ordinário. " +
+                    "Todas as viaturas ordinárias da mesma " +
+                    "data devem pertencer à mesma equipe.";
+
+            } else {
+
+                ajudaEquipe.textContent =
+                    "Opcional. Selecione uma equipe para " +
+                    "preencher automaticamente o efetivo " +
+                    "ou deixe em branco para cadastrar " +
+                    "os GCMs manualmente.";
+
+            }
+        }
+
+        if (textoInformacaoEfetivo) {
+
+            if (ordinario) {
+
+                textoInformacaoEfetivo.textContent =
+                    "Ao salvar, os integrantes cadastrados " +
+                    "na equipe selecionada serão adicionados " +
+                    "automaticamente ao efetivo da viatura. " +
+                    "Cada viatura deverá possuir Comandante " +
+                    "e Motorista.";
+
+            } else {
+
+                textoInformacaoEfetivo.textContent =
+                    "No serviço extraordinário, você pode " +
+                    "selecionar uma equipe para preencher " +
+                    "automaticamente o efetivo ou deixar " +
+                    "o campo vazio para adicionar GCMs " +
+                    "manualmente. A equipe ordinária da " +
+                    "mesma data não poderá ser utilizada.";
+
+            }
+        }
     }
+
+    tipoServico.addEventListener(
+        "change",
+        atualizarCampoEquipe
+    );
+
+    atualizarCampoEquipe();
 
 });
 </script>

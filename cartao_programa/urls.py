@@ -1,10 +1,29 @@
 
 from django.urls import path
+
 from . import views
+
 
 app_name = "cartao_programa"
 
+
 urlpatterns = [
+
+    # =====================================================
+    # ÁREA DO GCM - CARTÃO PROGRAMA INDIVIDUAL
+    # =====================================================
+
+    path(
+        "meu-cartao/",
+        views.meu_cartao_programa,
+        name="meu_cartao_programa"
+    ),
+
+    path(
+        "meu-cartao/viaturas/<int:viatura_id>/quilometragem/",
+        views.registrar_quilometragem_gcm,
+        name="registrar_quilometragem_gcm"
+    ),
 
     # =====================================================
     # EQUIPES
@@ -123,7 +142,7 @@ urlpatterns = [
     ),
 
     # =====================================================
-    # CARTÃO PROGRAMA
+    # CARTÃO PROGRAMA - GESTÃO
     # =====================================================
 
     path(
@@ -154,14 +173,14 @@ urlpatterns = [
         name="listar_missoes"
     ),
 
-    # Cadastro individual
+    # Cadastro individual de missão
     path(
         "plantoes/<int:plantao_id>/cartao/missoes/nova/",
         views.criar_missao,
         name="criar_missao"
     ),
 
-    # NOVO: cadastro de várias missões por polo
+    # Cadastro de várias missões por polo
     path(
         "plantoes/<int:plantao_id>/cartao/missoes/lote/",
         views.criar_missoes_em_lote,
@@ -179,19 +198,37 @@ urlpatterns = [
         views.remover_missao,
         name="remover_missao"
     ),
-    
+
+    # =====================================================
+    # LISTAGEM DOS CARTÕES PROGRAMA
+    # =====================================================
+
     path(
         "cartoes/",
         views.listar_cartoes,
         name="listar_cartoes"
-    
     ),
-    
+
+    # =====================================================
+    # EXCLUIR PLANTÃO
+    # =====================================================
+
     path(
         "plantoes/<int:plantao_id>/excluir/",
         views.excluir_plantao,
-        name="excluir_plantao",
+        name="excluir_plantao"
     ),
     
+    path(
+        "meu-cartao/",
+        views.meu_cartao_programa,
+        name="meu_cartao_programa"
+    ),
+
+    path(
+        "meu-cartao/viaturas/<int:viatura_id>/quilometragem/",
+        views.registrar_quilometragem_gcm,
+        name="registrar_quilometragem_gcm"
+    ),
 
 ]

@@ -1,218 +1,245 @@
+
 {% extends 'base.html' %}
 
 {% block content %}
 
 <section class="container py-4">
 
-    <div class="card card-examesus p-4 mb-4">
+    <!-- CABEÇALHO -->
+    <div class="rounded-3 p-4 mb-4"
+         style="background-color: #092B49;">
 
-        <h2 class="fw-bold">
+        <h2 class="fw-bold text-white mb-2">
+            <i class="bi bi-speedometer2 me-2"></i>
             Painel Administrativo
         </h2>
 
-        <p class="text-muted mb-0">
-            Bem-vindo ao ExameSUS. Utilize os módulos abaixo para administrar o sistema.
+        <p class="mb-0" style="color: #D9E4ED;">
+            Gerenciamento e acompanhamento das atividades
+            do Sistema RECOM.
         </p>
 
     </div>
 
-    <!-- Módulos -->
+    <!-- INDICADORES -->
+    <div class="row g-3 mb-4">
 
-    <div class="row g-4 mb-5">
-
-        <div class="col-md-6 col-lg-4">
-
-            <a href="{% url 'usuarios:listar' %}" class="text-decoration-none">
-
-                <div class="card dashboard-card bg-gradiente p-4 h-100">
-
-                    <h4>
-                        <i class="bi bi-people"></i>
-                        Usuários
-                    </h4>
-
-                    <p>Gerenciar cidadãos cadastrados.</p>
-
+        <div class="col-md-3 col-sm-6">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body">
+                    <div class="text-muted small mb-2">
+                        Usuários cadastrados
+                    </div>
+                    <h2 class="fw-bold text-primary mb-0">
+                        {{ total_usuarios|default:0 }}
+                    </h2>
                 </div>
-
-            </a>
-
+            </div>
         </div>
 
-        <div class="col-md-6 col-lg-4">
-
-            <a href="{% url 'unidades:listar' %}" class="text-decoration-none">
-
-                <div class="card dashboard-card bg-verde p-4 h-100">
-
-                    <h4>
-
-                        <i class="bi bi-hospital"></i>
-
-                        Unidades
-
-                    </h4>
-
-                    <p>
-
-                        Cadastro das unidades de saúde.
-
-                    </p>
-
+        <div class="col-md-3 col-sm-6">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body">
+                    <div class="text-muted small mb-2">
+                        Escolas ativas
+                    </div>
+                    <h2 class="fw-bold text-success mb-0">
+                        {{ total_escolas|default:0 }}
+                    </h2>
                 </div>
-
-            </a>
-
+            </div>
         </div>
 
-        <div class="col-md-6 col-lg-4">
-
-            <a href="{% url 'unidades:listar_profissionais' %}" class="text-decoration-none">
-
-                <div class="card dashboard-card bg-gradiente p-4 h-100">
-
-                    <h4>
-
-                        <i class="bi bi-person-badge"></i>
-
-                        Profissionais
-
-                    </h4>
-
-                    <p>
-
-                        Cadastro dos profissionais.
-
-                    </p>
-
+        <div class="col-md-3 col-sm-6">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body">
+                    <div class="text-muted small mb-2">
+                        GCMs ativos
+                    </div>
+                    <h2 class="fw-bold mb-0">
+                        {{ total_gcms|default:0 }}
+                    </h2>
                 </div>
-
-            </a>
-
+            </div>
         </div>
 
-        <div class="col-md-6 col-lg-4">
-
-            <a href="{% url 'exames:listar_tipos' %}" class="text-decoration-none">
-
-                <div class="card dashboard-card bg-verde p-4 h-100">
-
-                    <h4>
-
-                        <i class="bi bi-clipboard2-pulse"></i>
-
-                        Exames
-
-                    </h4>
-
-                    <p>
-
-                        Cadastro dos tipos de exames.
-
-                    </p>
-
+        <div class="col-md-3 col-sm-6">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body">
+                    <div class="text-muted small mb-2">
+                        Mediadores ativos
+                    </div>
+                    <h2 class="fw-bold mb-0">
+                        {{ total_mediadores|default:0 }}
+                    </h2>
                 </div>
-
-            </a>
-
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-
-            <a href="{% url 'core:relatorios' %}" class="text-decoration-none">
-
-                <div class="card dashboard-card bg-laranja p-4 h-100">
-
-                    <h4>
-
-                        <i class="bi bi-bar-chart"></i>
-
-                        Relatórios
-
-                    </h4>
-
-                    <p>
-
-                        Indicadores do sistema.
-
-                    </p>
-
-                </div>
-
-            </a>
-
+            </div>
         </div>
 
     </div>
 
-    <!-- Resumo -->
+    <!-- TÍTULO DOS MÓDULOS -->
+    <h4 class="fw-bold mb-3" style="color: #092B49;">
+        <i class="bi bi-grid-3x3-gap me-2"></i>
+        Gerenciamento do Sistema
+    </h4>
 
-    <div class="card card-examesus">
+    <div class="row g-4">
 
-        <div class="card-header">
+        <!-- USUÁRIOS -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm border-0 rounded-3 h-100">
+                <div class="card-body p-4">
 
-            <h4 class="mb-0">
+                    <i class="bi bi-people-fill fs-2 text-primary"></i>
 
-                Resumo do Sistema
+                    <h5 class="fw-bold mt-3">
+                        Usuários
+                    </h5>
 
-            </h4>
+                    <p class="text-muted">
+                        Cadastre, edite e gerencie usuários,
+                        perfis e redefinições de senha.
+                    </p>
 
+                    <a href="{% url 'usuarios:listar' %}"
+                       class="btn btn-outline-primary">
+                        Gerenciar usuários
+                        <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+
+                </div>
+            </div>
         </div>
 
-        <div class="card-body">
+        <!-- ESCOLAS -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm border-0 rounded-3 h-100">
+                <div class="card-body p-4">
 
-            <div class="row text-center">
+                    <i class="bi bi-building fs-2 text-success"></i>
 
-                <div class="col-md-3">
+                    <h5 class="fw-bold mt-3">
+                        Escolas
+                    </h5>
 
-                    <h2 class="fw-bold text-primary">
+                    <p class="text-muted">
+                        Consulte as escolas cadastradas,
+                        seus polos e informações.
+                    </p>
 
-                        {{ total_usuarios }}
-
-                    </h2>
-
-                    <p>Usuários</p>
-
-                </div>
-
-                <div class="col-md-3">
-
-                    <h2 class="fw-bold text-success">
-
-                        {{ total_unidades }}
-
-                    </h2>
-
-                    <p>Unidades</p>
+                    <a href="/escolas/"
+                       class="btn btn-outline-success">
+                        Gerenciar escolas
+                        <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
 
                 </div>
-
-                <div class="col-md-3">
-
-                    <h2 class="fw-bold text-warning">
-
-                        {{ total_profissionais }}
-
-                    </h2>
-
-                    <p>Profissionais</p>
-
-                </div>
-
-                <div class="col-md-3">
-
-                    <h2 class="fw-bold text-danger">
-
-                        {{ total_tipos_exames }}
-
-                    </h2>
-
-                    <p>Tipos de Exames</p>
-
-                </div>
-
             </div>
+        </div>
 
+        <!-- EQUIPES -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm border-0 rounded-3 h-100">
+                <div class="card-body p-4">
+
+                    <i class="bi bi-person-lines-fill fs-2 text-primary"></i>
+
+                    <h5 class="fw-bold mt-3">
+                        Equipes
+                    </h5>
+
+                    <p class="text-muted">
+                        Organize as equipes da RECOM
+                        e seus integrantes.
+                    </p>
+
+                    <a href="/cartao-programa/equipes/"
+                       class="btn btn-outline-primary">
+                        Gerenciar equipes
+                        <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- PLANTÕES -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm border-0 rounded-3 h-100">
+                <div class="card-body p-4">
+
+                    <i class="bi bi-calendar-check fs-2 text-primary"></i>
+
+                    <h5 class="fw-bold mt-3">
+                        Plantões
+                    </h5>
+
+                    <p class="text-muted">
+                        Cadastre e acompanhe os plantões
+                        e a distribuição do efetivo.
+                    </p>
+
+                    <a href="/cartao-programa/plantoes/"
+                       class="btn btn-outline-primary">
+                        Gerenciar plantões
+                        <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- CARTÃO PROGRAMA -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm border-0 rounded-3 h-100">
+                <div class="card-body p-4">
+
+                    <i class="bi bi-card-checklist fs-2 text-success"></i>
+
+                    <h5 class="fw-bold mt-3">
+                        Cartão Programa
+                    </h5>
+
+                    <p class="text-muted">
+                        Acompanhe as missões, viaturas
+                        e atividades programadas.
+                    </p>
+
+                    <a href="/cartao-programa/cartoes/"
+                       class="btn btn-outline-success">
+                        Consultar cartões
+                        <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- VISITAS ESCOLARES -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm border-0 rounded-3 h-100">
+                <div class="card-body p-4">
+
+                    <i class="bi bi-clipboard-check fs-2 text-primary"></i>
+
+                    <h5 class="fw-bold mt-3">
+                        Visitas Escolares
+                    </h5>
+
+                    <p class="text-muted">
+                        Consulte os registros das rondas
+                        e visitas realizadas nas escolas.
+                    </p>
+
+                    <a href="/visitas/"
+                       class="btn btn-outline-primary">
+                        Consultar visitas
+                        <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+
+                </div>
+            </div>
         </div>
 
     </div>

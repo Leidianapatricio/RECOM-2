@@ -3,7 +3,6 @@
 from django import forms
 
 
-
 from .models import (
 
     Equipe,
@@ -23,12 +22,8 @@ from .models import (
 )
 
 
-
 from usuarios.models import Usuario
 from escolas.models import Escola
-
-
-
 
 
 # =====================================================
@@ -38,9 +33,7 @@ from escolas.models import Escola
 # =====================================================
 
 
-
 class EquipeForm(forms.ModelForm):
-
 
 
     class Meta:
@@ -48,7 +41,6 @@ class EquipeForm(forms.ModelForm):
         model = Equipe
 
         fields = ["nome", "descricao", "ativa"]
-
 
 
         widgets = {
@@ -80,9 +72,6 @@ class EquipeForm(forms.ModelForm):
         }
 
 
-
-
-
 # =====================================================
 
 # INTEGRANTES DAS EQUIPES FIXAS
@@ -90,9 +79,7 @@ class EquipeForm(forms.ModelForm):
 # =====================================================
 
 
-
 class IntegranteEquipeForm(forms.ModelForm):
-
 
 
     class Meta:
@@ -100,7 +87,6 @@ class IntegranteEquipeForm(forms.ModelForm):
         model = IntegranteEquipe
 
         fields = ["equipe", "gcm", "funcao_habitual"]
-
 
 
         widgets = {
@@ -126,15 +112,12 @@ class IntegranteEquipeForm(forms.ModelForm):
         }
 
 
-
     def __init__(self, *args, **kwargs):
 
         super().__init__(*args, **kwargs)
 
 
-
         equipes = Equipe.objects.filter(ativa=True)
-
 
 
         if self.instance.pk and self.instance.equipe_id:
@@ -148,9 +131,7 @@ class IntegranteEquipeForm(forms.ModelForm):
             )
 
 
-
         self.fields["equipe"].queryset = equipes.order_by("nome")
-
 
 
         vinculados = IntegranteEquipe.objects.exclude(
@@ -158,7 +139,6 @@ class IntegranteEquipeForm(forms.ModelForm):
             pk=self.instance.pk
 
         ).values_list("gcm_id", flat=True)
-
 
 
         gcms = Usuario.objects.filter(
@@ -170,7 +150,6 @@ class IntegranteEquipeForm(forms.ModelForm):
         ).exclude(pk__in=vinculados)
 
 
-
         if self.instance.pk and self.instance.gcm_id:
 
             gcms = gcms | Usuario.objects.filter(
@@ -180,15 +159,11 @@ class IntegranteEquipeForm(forms.ModelForm):
             )
 
 
-
         self.fields["gcm"].queryset = (
 
             gcms.distinct().order_by("nome")
 
         )
-
-
-
 
 
 # =====================================================
@@ -198,15 +173,12 @@ class IntegranteEquipeForm(forms.ModelForm):
 # =====================================================
 
 
-
 class PlantaoForm(forms.ModelForm):
-
 
 
     class Meta:
 
         model = Plantao
-
 
 
         fields = [
@@ -220,7 +192,6 @@ class PlantaoForm(forms.ModelForm):
             "observacoes",
 
         ]
-
 
 
         widgets = {
@@ -266,15 +237,12 @@ class PlantaoForm(forms.ModelForm):
         }
 
 
-
     def __init__(self, *args, **kwargs):
 
         super().__init__(*args, **kwargs)
 
 
-
         self.fields["data"].input_formats = ["%Y-%m-%d"]
-
 
 
         self.fields["data"].label = "Data do plantão"
@@ -286,11 +254,7 @@ class PlantaoForm(forms.ModelForm):
         self.fields["observacoes"].label = "Observações"
 
 
-
         self.fields["observacoes"].required = False
-
-
-
 
 
 # =====================================================
@@ -300,508 +264,198 @@ class PlantaoForm(forms.ModelForm):
 # =====================================================
 
 
-
 class ViaturaPlantaoForm(forms.ModelForm):
-
-
-
     class Meta:
-
         model = ViaturaPlantao
-
-
-
         fields = [
-
-            "identificacao",
-
-            "modelo",
-
-            "tipo_servico",
-
-            "equipe",
-
-            "km_inicial",
-
-            "km_final",
-
+            "identificacao", "modelo", "tipo_servico", "equipe",
+            "km_inicial", "km_final",
         ]
-
-
-
         widgets = {
-
             "identificacao": forms.TextInput(attrs={
-
-                "class": "form-control",
-
-                "placeholder": "Ex.: VTR 01",
-
+                "class": "form-control", "placeholder": "Ex.: VTR 01",
             }),
-
             "modelo": forms.TextInput(attrs={
-
-                "class": "form-control",
-
-                "placeholder": "Ex.: Duster",
-
+                "class": "form-control", "placeholder": "Ex.: Duster",
             }),
-
-            "tipo_servico": forms.Select(attrs={
-
-                "class": "form-select",
-
-            }),
-
-            "equipe": forms.Select(attrs={
-
-                "class": "form-select",
-
-            }),
-
+            "tipo_servico": forms.Select(attrs={"class": "form-select"}),
+            "equipe": forms.Select(attrs={"class": "form-select"}),
             "km_inicial": forms.NumberInput(attrs={
-
-                "class": "form-control",
-
-                "min": "0",
-
-                "step": "1",
-
+                "class": "form-control", "min": "0", "step": "1",
                 "placeholder": "Será informada pelo GCM",
-
-                
             }),
-
             "km_final": forms.NumberInput(attrs={
-
-                "class": "form-control",
-
-                "min": "0",
-
-                "step": "1",
-
+                "class": "form-control", "min": "0", "step": "1",
                 "placeholder": "Ex.: 15120",
-
             }),
-
         }
 
-
-
     def __init__(self, *args, **kwargs):
-
         self.plantao = kwargs.pop("plantao", None)
-
         super().__init__(*args, **kwargs)
-
-
 
         if self.plantao is None and self.instance.pk:
-
             self.plantao = self.instance.plantao
-
-
-
         if self.plantao is not None:
-
             self.instance.plantao = self.plantao
 
-
-
         equipes = Equipe.objects.filter(ativa=True)
-
-
-
         if self.instance.pk and self.instance.equipe_id:
-
             equipes = Equipe.objects.filter(
-
                 pk__in=list(equipes.values_list("pk", flat=True))
-
                 + [self.instance.equipe_id]
-
             )
-
-
-
         self.fields["equipe"].queryset = equipes.order_by("nome")
-
-
+        self.fields["equipe"].empty_label = "Selecione uma equipe (opcional no extraordinário)"
 
         self.fields["identificacao"].label = "Identificação da viatura"
-
         self.fields["modelo"].label = "Modelo da viatura"
-
         self.fields["tipo_servico"].label = "Tipo de serviço"
-
-        self.fields["equipe"].label = "Equipe fixa"
-
+        self.fields["equipe"].label = "Equipe"
+        self.fields["equipe"].help_text = (
+            "Ordinário: obrigatório, com uma única equipe por data. "
+            "Extraordinário: opcional; ao selecionar uma equipe, "
+            "seus integrantes disponíveis serão adicionados automaticamente."
+        )
         self.fields["km_inicial"].label = "Quilometragem inicial"
-
         self.fields["km_final"].label = "Quilometragem final"
-
-
-
         self.fields["km_inicial"].required = False
-
         self.fields["km_final"].required = False
-
         self.fields["equipe"].required = False
+        self.fields["km_inicial"].widget.attrs.pop("required", None)
+        self.fields["km_final"].widget.attrs.pop("required", None)
 
-
-
-        
     def clean(self):
-
-        cleaned_data = super().clean()
-
-
-
-        identificacao = cleaned_data.get("identificacao")
-
-        tipo_servico = cleaned_data.get("tipo_servico")
-
-        equipe = cleaned_data.get("equipe")
-
-        km_inicial = cleaned_data.get("km_inicial")
-
-        km_final = cleaned_data.get("km_final")
-
-
-
+        dados = super().clean()
         if self.plantao is None:
+            raise forms.ValidationError("Não foi possível identificar o plantão.")
 
-            raise forms.ValidationError(
+        identificacao = dados.get("identificacao")
+        tipo = dados.get("tipo_servico")
+        equipe = dados.get("equipe")
+        inicial = dados.get("km_inicial")
+        final = dados.get("km_final")
 
-                "Não foi possível identificar o plantão."
-
+        if identificacao and ViaturaPlantao.objects.filter(
+            plantao=self.plantao, identificacao=identificacao,
+        ).exclude(pk=self.instance.pk).exists():
+            self.add_error(
+                "identificacao",
+                "Já existe uma viatura com essa identificação neste plantão.",
             )
 
+        ordinarias = ViaturaPlantao.objects.filter(
+            plantao__data=self.plantao.data,
+            tipo_servico="ORDINARIO",
+            equipe__isnull=False,
+        ).exclude(pk=self.instance.pk)
 
-
-        if identificacao:
-
-            existentes = ViaturaPlantao.objects.filter(
-
-                plantao=self.plantao,
-
-                identificacao=identificacao,
-
-            ).exclude(pk=self.instance.pk)
-
-
-
-            if existentes.exists():
-
+        if tipo == "ORDINARIO":
+            if not equipe:
                 self.add_error(
-
-                    "identificacao",
-
-                    "Já existe uma viatura com essa identificação neste plantão."
-
+                    "equipe", "Selecione a equipe responsável pelo serviço ordinário."
+                )
+            elif ordinarias.exclude(equipe=equipe).exists():
+                self.add_error(
+                    "equipe",
+                    "Nesta data já existe outra equipe no serviço ordinário. "
+                    "Todas as viaturas ordinárias devem utilizar a mesma equipe.",
                 )
 
+        if tipo == "EXTRAORDINARIO" and equipe:
+            # O extraordinário aceita várias equipes, mas não a equipe
+            # que está cumprindo o serviço ordinário na mesma data.
+            if ordinarias.filter(equipe=equipe).exists():
+                self.add_error(
+                    "equipe",
+                    "Esta equipe já está no serviço ordinário nesta data. "
+                    "Selecione outra equipe para o extraordinário.",
+                )
 
-
-        if tipo_servico == "ORDINARIO" and not equipe:
-
+        if inicial is not None and final is not None and final < inicial:
             self.add_error(
-
-                "equipe",
-
-                "Selecione a equipe fixa para o serviço ordinário."
-
+                "km_final", "A quilometragem final não pode ser menor que a inicial."
             )
-
-
-
-        if tipo_servico == "EXTRAORDINARIO" and equipe:
-
-            self.add_error(
-
-                "equipe",
-
-                "No serviço extraordinário, não selecione uma equipe fixa."
-
-            )
-
-
-
-        if (
-
-            km_inicial is not None
-
-            and km_final is not None
-
-            and km_final < km_inicial
-
-        ):
-
-            self.add_error(
-
-                "km_final",
-
-                "A quilometragem final não pode ser menor que a inicial."
-
-            )
-
-
-
-        return cleaned_data
-
-
-
+        return dados
 
 
 # =====================================================
-
 # EFETIVO DAS VIATURAS
-
 # =====================================================
-
-
 
 class EfetivoViaturaForm(forms.ModelForm):
-
-
-
     class Meta:
-
         model = EfetivoViatura
-
-
-
         fields = ["gcm", "funcao", "observacao"]
-
-
-
         widgets = {
-
-            "gcm": forms.Select(attrs={
-
-                "class": "form-select",
-
-            }),
-
-            "funcao": forms.Select(attrs={
-
-                "class": "form-select",
-
-            }),
-
+            "gcm": forms.Select(attrs={"class": "form-select"}),
+            "funcao": forms.Select(attrs={"class": "form-select"}),
             "observacao": forms.TextInput(attrs={
-
                 "class": "form-control",
-
                 "placeholder": "Ex.: Substituição temporária",
-
             }),
-
         }
 
-
-
     def __init__(self, *args, **kwargs):
-
         self.viatura = kwargs.pop("viatura", None)
-
         super().__init__(*args, **kwargs)
-
-
-
         if self.viatura is None and self.instance.pk:
-
             self.viatura = self.instance.viatura
-
-
-
         if self.viatura is not None:
-
             self.instance.viatura = self.viatura
 
-
-
         self.fields["gcm"].label = "GCM"
-
         self.fields["funcao"].label = "Função na viatura"
-
         self.fields["observacao"].label = "Observação"
-
         self.fields["observacao"].required = False
 
-
-
-        gcms = Usuario.objects.filter(
-
-            perfil="GCM",
-
-            ativo=True,
-
-        )
-
-
-
+        gcms = Usuario.objects.filter(perfil="GCM", ativo=True)
         if self.viatura is not None:
-
             escalados = EfetivoViatura.objects.filter(
-
-                viatura__plantao=self.viatura.plantao
-
-            ).exclude(
-
-                pk=self.instance.pk
-
-            ).values_list("gcm_id", flat=True)
-
-
-
+                viatura__plantao__data=self.viatura.plantao.data,
+            ).exclude(pk=self.instance.pk).values_list("gcm_id", flat=True)
             gcms = gcms.exclude(pk__in=escalados)
 
-
-
         if self.instance.pk and self.instance.gcm_id:
-
-            gcms = gcms | Usuario.objects.filter(
-
-                pk=self.instance.gcm_id
-
-            )
-
-
-
-        self.fields["gcm"].queryset = (
-
-            gcms.distinct().order_by("nome")
-
-        )
-
-
+            gcms = gcms | Usuario.objects.filter(pk=self.instance.gcm_id)
+        self.fields["gcm"].queryset = gcms.distinct().order_by("nome")
 
         if self.viatura is not None:
-
-            ocupadas = set(
-
-                EfetivoViatura.objects.filter(
-
-                    viatura=self.viatura
-
-                ).exclude(
-
-                    pk=self.instance.pk
-
-                ).values_list("funcao", flat=True)
-
-            )
-
-
-
+            ocupadas = set(EfetivoViatura.objects.filter(
+                viatura=self.viatura,
+            ).exclude(pk=self.instance.pk).values_list("funcao", flat=True))
             self.fields["funcao"].choices = [
-
                 (valor, descricao)
-
                 for valor, descricao in EfetivoViatura.FUNCAO_CHOICES
-
                 if valor not in ocupadas
-
             ]
 
-
-
     def clean(self):
-
-        cleaned_data = super().clean()
-
-
-
-        gcm = cleaned_data.get("gcm")
-
-        funcao = cleaned_data.get("funcao")
-
-
-
+        dados = super().clean()
         if self.viatura is None:
+            raise forms.ValidationError("Não foi possível identificar a viatura.")
 
-            raise forms.ValidationError(
+        gcm = dados.get("gcm")
+        funcao = dados.get("funcao")
+        outros = EfetivoViatura.objects.filter(
+            viatura=self.viatura,
+        ).exclude(pk=self.instance.pk)
 
-                "Não foi possível identificar a viatura do plantão."
+        if outros.count() >= 4:
+            raise forms.ValidationError("Esta viatura já possui quatro integrantes.")
 
+        if funcao and outros.filter(funcao=funcao).exists():
+            self.add_error("funcao", "Esta função já está ocupada na viatura.")
+
+        if gcm and EfetivoViatura.objects.filter(
+            gcm=gcm,
+            viatura__plantao__data=self.viatura.plantao.data,
+        ).exclude(pk=self.instance.pk).exists():
+            self.add_error(
+                "gcm", "Este GCM já está escalado em outra viatura nesta data."
             )
+        return dados
 
-
-
-        if gcm:
-
-            if gcm.perfil != "GCM":
-
-                self.add_error(
-
-                    "gcm",
-
-                    "Somente usuários com perfil GCM podem integrar o efetivo."
-
-                )
-
-
-
-            if not gcm.ativo:
-
-                self.add_error(
-
-                    "gcm",
-
-                    "Este GCM está inativo."
-
-                )
-
-
-
-            escalas = EfetivoViatura.objects.filter(
-
-                gcm=gcm,
-
-                viatura__plantao=self.viatura.plantao,
-
-            ).exclude(pk=self.instance.pk)
-
-
-
-            if escalas.exists():
-
-                self.add_error(
-
-                    "gcm",
-
-                    "Este GCM já está escalado em uma viatura neste plantão."
-
-                )
-
-
-
-        if funcao:
-
-            existente = EfetivoViatura.objects.filter(
-
-                viatura=self.viatura,
-
-                funcao=funcao,
-
-            ).exclude(pk=self.instance.pk)
-
-
-
-            if existente.exists():
-
-                self.add_error(
-
-                    "funcao",
-
-                    "Esta função já está ocupada por outro GCM nesta viatura."
-
-                )
-
-
-
-        return cleaned_data
 
 # =====================================================
 # CARTÃO PROGRAMA
@@ -855,15 +509,12 @@ class CartaoProgramaForm(forms.ModelForm):
 # =====================================================
 
 
-
 class MissaoCartaoForm(forms.ModelForm):
-
 
 
     class Meta:
 
         model = MissaoCartao
-
 
 
         fields = [
@@ -889,7 +540,6 @@ class MissaoCartaoForm(forms.ModelForm):
             "observacoes",
 
         ]
-
 
 
         widgets = {
@@ -985,7 +635,6 @@ class MissaoCartaoForm(forms.ModelForm):
         }
 
 
-
     def __init__(self, *args, **kwargs):
 
         self.cartao = kwargs.pop("cartao", None)
@@ -993,17 +642,14 @@ class MissaoCartaoForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
 
-
         if self.cartao is None and self.instance.pk:
 
             self.cartao = self.instance.cartao
 
 
-
         if self.cartao is not None:
 
             self.instance.cartao = self.cartao
-
 
 
             self.fields["viatura"].queryset = (
@@ -1023,7 +669,6 @@ class MissaoCartaoForm(forms.ModelForm):
                 ViaturaPlantao.objects.none()
 
             )
-
 
 
         self.fields["numero"].label = "Número da missão"
@@ -1047,7 +692,6 @@ class MissaoCartaoForm(forms.ModelForm):
         self.fields["observacoes"].label = "Observações"
 
 
-
         self.fields["escola"].required = False
 
         self.fields["local"].required = False
@@ -1059,7 +703,6 @@ class MissaoCartaoForm(forms.ModelForm):
         self.fields["horario_fim"].required = False
 
         self.fields["observacoes"].required = False
-
 
 
         self.fields["horario_inicio"].input_formats = [
@@ -1079,7 +722,6 @@ class MissaoCartaoForm(forms.ModelForm):
         ]
 
 
-
         if self.cartao is not None and not self.instance.pk:
 
             ultimo_numero = (
@@ -1097,7 +739,6 @@ class MissaoCartaoForm(forms.ModelForm):
             )
 
 
-
             self.fields["numero"].initial = (
 
                 (ultimo_numero or 0) + 1
@@ -1105,11 +746,9 @@ class MissaoCartaoForm(forms.ModelForm):
             )
 
 
-
     def clean(self):
 
         cleaned_data = super().clean()
-
 
 
         numero = cleaned_data.get("numero")
@@ -1125,7 +764,6 @@ class MissaoCartaoForm(forms.ModelForm):
         fim = cleaned_data.get("horario_fim")
 
 
-
         if self.cartao is None:
 
             raise forms.ValidationError(
@@ -1133,7 +771,6 @@ class MissaoCartaoForm(forms.ModelForm):
                 "Não foi possível identificar o Cartão Programa."
 
             )
-
 
 
         if numero is not None:
@@ -1147,7 +784,6 @@ class MissaoCartaoForm(forms.ModelForm):
             ).exclude(pk=self.instance.pk)
 
 
-
             if existente.exists():
 
                 self.add_error(
@@ -1157,7 +793,6 @@ class MissaoCartaoForm(forms.ModelForm):
                     "Já existe uma missão com esse número neste Cartão Programa."
 
                 )
-
 
 
         if viatura and viatura.plantao_id != self.cartao.plantao_id:
@@ -1171,7 +806,6 @@ class MissaoCartaoForm(forms.ModelForm):
             )
 
 
-
         if not escola and not local:
 
             self.add_error(
@@ -1183,7 +817,6 @@ class MissaoCartaoForm(forms.ModelForm):
             )
 
 
-
         if inicio and fim and inicio >= fim:
 
             self.add_error(
@@ -1193,7 +826,6 @@ class MissaoCartaoForm(forms.ModelForm):
                 "O horário final deve ser posterior ao horário inicial."
 
             )
-
 
 
         return cleaned_data

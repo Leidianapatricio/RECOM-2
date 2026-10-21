@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 
 {% block title %}
@@ -6,46 +7,75 @@ Dashboard do GCM
 
 {% block content %}
 
-<div class="container mt-4 mb-5">
+<section class="container py-4">
 
-    <!-- TÍTULO -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <!-- ====================================== -->
+    <!-- CABEÇALHO PADRONIZADO RECOM -->
+    <!-- ====================================== -->
 
-        <div>
-            <h2 class="mb-1">
-                Dashboard do GCM
-            </h2>
+    <div class="rounded-3 p-4 mb-4"
+         style="background-color: #092B49;">
 
-            <p class="text-muted mb-0">
-                Acesso às atividades operacionais da Ronda Escolar Comunitária.
-            </p>
+        <div class="d-flex align-items-center gap-3">
+
+            <i class="bi bi-shield-check text-white"
+               style="font-size: 2rem;"></i>
+
+            <div>
+                <h2 class="fw-bold text-white mb-1">
+                    Dashboard do GCM
+                </h2>
+
+                <p class="mb-0"
+                   style="color: #D9E4ED;">
+                    Acesso e acompanhamento das atividades
+                    operacionais da Ronda Escolar Comunitária.
+                </p>
+            </div>
+
         </div>
 
     </div>
 
 
-    <!-- IDENTIFICAÇÃO DO USUÁRIO -->
-    <div class="card shadow-sm mb-4">
+    <!-- ====================================== -->
+    <!-- IDENTIFICAÇÃO DO GCM -->
+    <!-- ====================================== -->
 
-        <div class="card-body">
+    <div class="card border-0 shadow-sm rounded-3 mb-4">
 
-            <div class="d-flex align-items-center">
+        <div class="card-body p-4">
 
-                <div class="me-3">
-                    <i class="bi bi-person-badge fs-1 text-primary"></i>
+            <div class="d-flex align-items-center gap-3">
+
+                <div class="rounded-circle d-flex
+                            align-items-center justify-content-center"
+                     style="
+                        width: 58px;
+                        height: 58px;
+                        background-color: #EAF1F7;
+                        color: #092B49;
+                        flex-shrink: 0;
+                     ">
+
+                    <i class="bi bi-person-badge"
+                       style="font-size: 1.8rem;"></i>
+
                 </div>
 
                 <div>
-                    <h5 class="mb-1">
+                    <h5 class="fw-bold mb-1"
+                        style="color: #092B49;">
                         {{ usuario.nome }}
                     </h5>
 
-                    <p class="text-muted mb-0">
+                    <p class="text-muted mb-1">
                         Matrícula:
                         <strong>{{ usuario.matricula }}</strong>
                     </p>
 
-                    <span class="badge bg-primary mt-2">
+                    <span class="badge"
+                          style="background-color: #092B49;">
                         Guarda Civil Municipal
                     </span>
                 </div>
@@ -57,138 +87,250 @@ Dashboard do GCM
     </div>
 
 
+    <!-- ====================================== -->
     <!-- ACESSO RÁPIDO -->
-    <div class="card shadow-sm mb-4">
+    <!-- ====================================== -->
 
-        <div class="card-header">
-            <strong>
+    <div class="card border-0 shadow-sm rounded-3 mb-4">
+
+        <div class="card-header border-0 py-3"
+             style="background-color: #092B49;">
+
+            <h6 class="fw-bold text-white mb-0">
+                <i class="bi bi-grid me-2"></i>
                 Acesso Rápido
-            </strong>
+            </h6>
+
         </div>
 
-        <div class="card-body">
+        <div class="card-body p-3">
 
             <div class="row g-3">
 
-                <!-- CARTÃO PROGRAMA -->
-                <div class="col-md-6 col-lg-3">
+                <!-- ============================== -->
+                <!-- MEU CARTÃO PROGRAMA - ATIVO -->
+                <!-- ============================== -->
 
-                    <button
-                        type="button"
-                        class="btn btn-outline-primary w-100 py-3"
-                        disabled
-                    >
-                        <i class="bi bi-card-checklist me-2"></i>
-                        Meu Cartão Programa
-                    </button>
+                <div class="col-12 col-sm-6 col-lg-4">
+
+                    <a href="{% url 'cartao_programa:meu_cartao_programa' %}"
+                       class="text-decoration-none d-block h-100">
+
+                        <div class="card h-100 rounded-3
+                                    border p-4 text-center"
+                             style="min-height: 145px;">
+
+                            <div class="card-body d-flex
+                                        flex-column
+                                        justify-content-center
+                                        align-items-center">
+
+                                <i class="bi bi-card-checklist mb-3"
+                                   style="
+                                      font-size: 2rem;
+                                      color: #C59028;
+                                   "></i>
+
+                                <h6 class="fw-semibold mb-0"
+                                    style="color: #092B49;">
+                                    Meu Cartão Programa
+                                </h6>
+
+                            </div>
+
+                        </div>
+
+                    </a>
 
                 </div>
 
 
+                <!-- ============================== -->
                 <!-- ESCOLAS -->
-                <div class="col-md-6 col-lg-3">
+                <!-- ============================== -->
 
-                    <a
-                        href="{% url 'escolas:listar_escolas' %}"
-                        class="btn btn-outline-primary w-100 py-3"
-                    >
-                        <i class="bi bi-building me-2"></i>
-                        Escolas
+                <div class="col-12 col-sm-6 col-lg-4">
+
+                    <a href="{% url 'escolas:listar_escolas' %}"
+                       class="text-decoration-none d-block h-100">
+
+                        <div class="card h-100 rounded-3
+                                    border p-4 text-center"
+                             style="min-height: 145px;">
+
+                            <div class="card-body d-flex
+                                        flex-column
+                                        justify-content-center
+                                        align-items-center">
+
+                                <i class="bi bi-building mb-3"
+                                   style="
+                                      font-size: 2rem;
+                                      color: #C59028;
+                                   "></i>
+
+                                <h6 class="fw-semibold mb-0"
+                                    style="color: #092B49;">
+                                    Escolas
+                                </h6>
+
+                            </div>
+
+                        </div>
+
                     </a>
 
                 </div>
 
 
+                <!-- ============================== -->
                 <!-- REGISTRAR VISITA -->
-                <div class="col-md-6 col-lg-3">
+                <!-- ============================== -->
 
-                    <a
-                        href="{% url 'visitas:cadastrar_visita' %}"
-                        class="btn btn-outline-success w-100 py-3"
-                    >
-                        <i class="bi bi-clipboard-check me-2"></i>
-                        Registrar Visita
+                <div class="col-12 col-sm-6 col-lg-4">
+
+                    <a href="{% url 'visitas:cadastrar_visita' %}"
+                       class="text-decoration-none d-block h-100">
+
+                        <div class="card h-100 rounded-3
+                                    border p-4 text-center"
+                             style="min-height: 145px;">
+
+                            <div class="card-body d-flex
+                                        flex-column
+                                        justify-content-center
+                                        align-items-center">
+
+                                <i class="bi bi-clipboard-check mb-3"
+                                   style="
+                                      font-size: 2rem;
+                                      color: #C59028;
+                                   "></i>
+
+                                <h6 class="fw-semibold mb-0"
+                                    style="color: #092B49;">
+                                    Registrar Visita
+                                </h6>
+
+                            </div>
+
+                        </div>
+
                     </a>
 
                 </div>
 
 
+                <!-- ============================== -->
+                <!-- RELATÓRIOS -->
+                <!-- ============================== -->
+
+                <div class="col-12 col-sm-6 col-lg-4">
+
+                    <a href="{% url 'core:relatorios' %}"
+                       class="text-decoration-none d-block h-100">
+
+                        <div class="card h-100 rounded-3
+                                    border p-4 text-center"
+                             style="min-height: 145px;">
+
+                            <div class="card-body d-flex
+                                        flex-column
+                                        justify-content-center
+                                        align-items-center">
+
+                                <i class="bi bi-bar-chart-line mb-3"
+                                   style="
+                                      font-size: 2rem;
+                                      color: #C59028;
+                                   "></i>
+
+                                <h6 class="fw-semibold mb-0"
+                                    style="color: #092B49;">
+                                    Relatórios
+                                </h6>
+
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+
+                <!-- ============================== -->
                 <!-- HISTÓRICO DE VISITAS -->
-                <div class="col-md-6 col-lg-3">
+                <!-- ============================== -->
 
-                    <button
-                        type="button"
-                        class="btn btn-outline-secondary w-100 py-3"
-                        disabled
-                    >
-                        <i class="bi bi-clock-history me-2"></i>
-                        Histórico de Visitas
-                    </button>
+                <div class="col-12 col-sm-6 col-lg-4">
+
+                    <div class="card h-100 rounded-3
+                                border p-4 text-center bg-light"
+                         style="
+                            min-height: 145px;
+                            opacity: 0.65;
+                         ">
+
+                        <div class="card-body d-flex
+                                    flex-column
+                                    justify-content-center
+                                    align-items-center">
+
+                            <i class="bi bi-clock-history mb-3"
+                               style="
+                                  font-size: 2rem;
+                                  color: #89949E;
+                               "></i>
+
+                            <h6 class="fw-semibold mb-1 text-secondary">
+                                Histórico de Visitas
+                            </h6>
+
+                            <small class="text-muted">
+                                Em desenvolvimento
+                            </small>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
 
+                <!-- ============================== -->
                 <!-- OCORRÊNCIAS -->
-                <div class="col-md-6 col-lg-3">
+                <!-- ============================== -->
 
-                    <button
-                        type="button"
-                        class="btn btn-outline-secondary w-100 py-3"
-                        disabled
-                    >
-                        <i class="bi bi-exclamation-octagon me-2"></i>
-                        Ocorrências
-                    </button>
+                <div class="col-12 col-sm-6 col-lg-4">
 
-                </div>
+                    <div class="card h-100 rounded-3
+                                border p-4 text-center bg-light"
+                         style="
+                            min-height: 145px;
+                            opacity: 0.65;
+                         ">
 
+                        <div class="card-body d-flex
+                                    flex-column
+                                    justify-content-center
+                                    align-items-center">
 
-                <!-- ENCAMINHAMENTOS -->
-                <div class="col-md-6 col-lg-3">
+                            <i class="bi bi-exclamation-octagon mb-3"
+                               style="
+                                  font-size: 2rem;
+                                  color: #89949E;
+                               "></i>
 
-                    <button
-                        type="button"
-                        class="btn btn-outline-secondary w-100 py-3"
-                        disabled
-                    >
-                        <i class="bi bi-send me-2"></i>
-                        Encaminhamentos
-                    </button>
+                            <h6 class="fw-semibold mb-1 text-secondary">
+                                Ocorrências
+                            </h6>
 
-                </div>
+                            <small class="text-muted">
+                                Em desenvolvimento
+                            </small>
 
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- INFORMAÇÕES OPERACIONAIS -->
-    <div class="row g-4">
-
-        <!-- MISSÕES -->
-        <div class="col-lg-6">
-
-            <div class="card shadow-sm h-100">
-
-                <div class="card-header">
-                    <strong>
-                        <i class="bi bi-card-checklist me-2"></i>
-                        Missões do Cartão Programa
-                    </strong>
-                </div>
-
-                <div class="card-body">
-
-                    <div class="text-center py-4">
-
-                        <i class="bi bi-card-checklist fs-1 text-muted"></i>
-
-                        <p class="text-muted mt-3 mb-0">
-                            As missões atribuídas ao GCM serão exibidas
-                            aqui após a implementação do Cartão Programa.
-                        </p>
+                        </div>
 
                     </div>
 
@@ -198,57 +340,8 @@ Dashboard do GCM
 
         </div>
 
-
-        <!-- ATIVIDADES -->
-        <div class="col-lg-6">
-
-            <div class="card shadow-sm h-100">
-
-                <div class="card-header">
-                    <strong>
-                        <i class="bi bi-clipboard-check me-2"></i>
-                        Atividades Operacionais
-                    </strong>
-                </div>
-
-                <div class="card-body">
-
-                    <p class="mb-3">
-                        Neste painel o GCM poderá acompanhar e registrar
-                        suas atividades realizadas nas unidades escolares.
-                    </p>
-
-                    <ul class="mb-0">
-                        <li class="mb-2">
-                            Consultar as missões do Cartão Programa.
-                        </li>
-
-                        <li class="mb-2">
-                            Consultar escolas atendidas pela RECOM.
-                        </li>
-
-                        <li class="mb-2">
-                            Registrar rondas e visitas escolares.
-                        </li>
-
-                        <li class="mb-2">
-                            Consultar o histórico de visitas.
-                        </li>
-
-                        <li>
-                            Registrar ocorrências e encaminhamentos
-                            quando essas funcionalidades estiverem disponíveis.
-                        </li>
-                    </ul>
-
-                </div>
-
-            </div>
-
-        </div>
-
     </div>
 
-</div>
+</section>
 
 {% endblock %}

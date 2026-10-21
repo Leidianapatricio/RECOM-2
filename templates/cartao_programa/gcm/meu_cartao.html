@@ -1,0 +1,211 @@
+
+{% extends "base.html" %}
+
+{% block title %}Meu Cartão Programa{% endblock %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <div class="mb-4">
+        <h2 class="fw-bold" style="color: #092B49;">
+            <i class="bi bi-card-checklist me-2"></i>
+            Meu Cartão Programa
+        </h2>
+
+        <p class="text-muted">
+            Consulte suas missões e os dados
+            da viatura em que está escalado.
+        </p>
+    </div>
+
+    {% for item in cartoes_gcm %}
+
+        <div class="card shadow-sm mb-4">
+
+            <div
+                class="card-header text-white"
+                style="background-color: #092B49;"
+            >
+                <div class="d-flex flex-wrap
+                            justify-content-between gap-2">
+
+                    <strong>
+                        <i class="bi bi-calendar3 me-1"></i>
+                        {{ item.plantao.data|date:"d/m/Y" }}
+                    </strong>
+
+                    <span>
+                        Viatura:
+                        {{ item.viatura.identificacao }}
+                    </span>
+
+                </div>
+            </div>
+
+            <div class="card-body">
+
+                <div class="row g-3 mb-3">
+
+                    <div class="col-md-4">
+                        <strong>Equipe:</strong>
+                        {% if item.viatura.equipe %}
+                            {{ item.viatura.equipe.nome }}
+                        {% else %}
+                            Não informada
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-4">
+                        <strong>Função:</strong>
+                        {{ item.escala.get_funcao_display }}
+                    </div>
+
+                    <div class="col-md-4">
+                        <strong>Serviço:</strong>
+                        {{ item.plantao.get_tipo_servico_display }}
+                    </div>
+
+                    <div class="col-md-4">
+                        <strong>KM inicial:</strong>
+                        {{ item.viatura.km_inicial|default_if_none:"Não informado" }}
+                    </div>
+
+                    <div class="col-md-4">
+                        <strong>KM final:</strong>
+                        {{ item.viatura.km_final|default_if_none:"Não informado" }}
+                    </div>
+
+                    <div class="col-md-4">
+                        <strong>KM percorrido:</strong>
+                        {{ item.viatura.km_percorridos|default_if_none:"—" }}
+                    </div>
+
+                </div>
+
+                {% if item.pode_registrar_km %}
+
+                    <a
+                        href="{% url 'cartao_programa:registrar_quilometragem_gcm' item.viatura.pk %}"
+                        class="btn btn-outline-primary mb-3"
+                    >
+                        <i class="bi bi-speedometer2 me-1"></i>
+                        Registrar / Atualizar KM
+                    </a>
+
+                {% endif %}
+
+                <h5 class="fw-bold mt-2 mb-3">
+                    Missões da viatura
+                </h5>
+
+                {% for missao in item.missoes %}
+
+                    <div class="border rounded p-3 mb-3">
+
+                        <div class="d-flex flex-wrap
+                                    justify-content-between gap-2 mb-2">
+
+                            <strong>
+                                Missão nº {{ missao.numero }}
+                            </strong>
+
+                            <span class="badge bg-secondary">
+                                {{ missao.get_periodo_display }}
+                            </span>
+
+                        </div>
+
+                        <p class="mb-1">
+                            <strong>Local:</strong>
+
+                            {% if missao.escola %}
+                                {{ missao.escola.nome }}
+                            {% else %}
+                                {{ missao.local }}
+                            {% endif %}
+                        </p>
+
+                        <p class="mb-1">
+                            <strong>Tipo:</strong>
+                            {{ missao.get_tipo_missao_display }}
+                        </p>
+
+                        <p class="mb-1">
+                            <strong>Horário:</strong>
+
+                            {% if missao.horario_inicio %}
+                                {{ missao.horario_inicio|time:"H:i" }}
+                            {% else %}
+                                —
+                            {% endif %}
+
+                            até
+
+                            {% if missao.horario_fim %}
+                                {{ missao.horario_fim|time:"H:i" }}
+                            {% else %}
+                                —
+                            {% endif %}
+                        </p>
+
+                        {% if missao.observacoes %}
+
+                            <p class="mb-2">
+                                <strong>Observações:</strong>
+                                {{ missao.observacoes }}
+                            </p>
+
+                        {% endif %}
+
+                        {% if missao.escola %}
+
+                            {% if item.pode_registrar_visita %}
+
+                                <a
+                                    href="{% url 'visitas:cadastrar_visita' %}?missao={{ missao.pk }}"
+                                    class="btn btn-sm btn-primary mt-2"
+                                >
+                                    <i class="bi bi-clipboard-check me-1"></i>
+                                    Registrar Visita
+                                </a>
+
+                            {% else %}
+
+                                <span class="text-muted small">
+                                    <i class="bi bi-eye me-1"></i>
+                                    Missão disponível para consulta.
+                                </span>
+
+                            {% endif %}
+
+                        {% endif %}
+
+                    </div>
+
+                {% empty %}
+
+                    <div class="alert alert-light border">
+                        Nenhuma missão cadastrada
+                        para esta viatura.
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    {% empty %}
+
+        <div class="alert alert-info">
+            <i class="bi bi-info-circle me-1"></i>
+            Você ainda não possui missões em
+            Cartões Programa cadastrados.
+        </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

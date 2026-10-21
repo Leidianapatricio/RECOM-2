@@ -1,20 +1,64 @@
+
 {% extends "base.html" %}
 
 {% block title %}
-Registrar Visita
+    {% if modo_edicao %}
+        Editar Visita
+    {% else %}
+        Registrar Visita
+    {% endif %}
 {% endblock %}
 
 
 {% block content %}
 
 <!-- =========================================================
-     TOM SELECT - ESTILO DO CAMPO DE PESQUISA
+     TOM SELECT - PESQUISA DE ESCOLAS
      ========================================================= -->
 
 <link
     href="https://cdn.jsdelivr.net/npm/tom-select@2.4.3/dist/css/tom-select.bootstrap5.min.css"
     rel="stylesheet"
 >
+
+<style>
+    .visita-titulo {
+        color: #092B49;
+    }
+
+    .visita-card {
+        border: 1px solid #e5e9ef;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .visita-card-header {
+        height: 5px;
+        background: #C59028;
+    }
+
+    .visita-info-missao {
+        background-color: #f5f8fb;
+        border-left: 4px solid #C59028;
+        border-radius: 6px;
+    }
+
+    .btn-visita-salvar {
+        background-color: #092B49;
+        border-color: #092B49;
+        color: #ffffff;
+    }
+
+    .btn-visita-salvar:hover {
+        background-color: #12436b;
+        border-color: #12436b;
+        color: #ffffff;
+    }
+
+    .campo-escola-bloqueado {
+        background-color: #f8f9fa;
+    }
+</style>
 
 
 <div class="container mt-4 mb-5">
@@ -23,28 +67,127 @@ Registrar Visita
 
         <div class="col-lg-9">
 
-            <!-- =================================================
+            <!-- ==========================================
                  TÍTULO
-                 ================================================= -->
+                 ========================================== -->
 
             <div class="mb-4">
 
-                <h2 class="fw-bold">
-                    Registrar Visita Escolar
+                <h2 class="fw-bold visita-titulo">
+
+                    <i class="bi bi-clipboard-check me-2"></i>
+
+                    {% if modo_edicao %}
+                        Editar Visita Escolar
+                    {% else %}
+                        Registrar Visita Escolar
+                    {% endif %}
+
                 </h2>
 
                 <p class="text-muted mb-0">
-                    Preencha os dados da visita realizada pela equipe da RECOM.
+
+                    {% if modo_edicao %}
+                        Atualize os dados da visita realizada
+                        pela equipe da RECOM.
+                    {% else %}
+                        Preencha os dados da visita realizada
+                        pela equipe da RECOM.
+                    {% endif %}
+
                 </p>
 
             </div>
 
 
-            <!-- =================================================
-                 CARD DO FORMULÁRIO
-                 ================================================= -->
+            <!-- ==========================================
+                 INFORMAÇÕES DA MISSÃO
+                 ========================================== -->
 
-            <div class="card shadow-sm">
+            {% if missao_cartao %}
+
+                <div class="visita-info-missao p-3 mb-4">
+
+                    <div class="fw-bold mb-2">
+
+                        <i class="bi bi-card-checklist me-1"></i>
+                        Visita vinculada ao Cartão Programa
+
+                    </div>
+
+                    <div class="row g-2 small">
+
+                        <div class="col-md-6">
+
+                            <strong>Escola:</strong>
+
+                            {{ missao_cartao.escola.nome }}
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <strong>Viatura:</strong>
+
+                            {{ missao_cartao.viatura.identificacao }}
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <strong>Data do plantão:</strong>
+
+                            {{ missao_cartao.cartao.plantao.data|date:"d/m/Y" }}
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <strong>Missão:</strong>
+
+                            Nº {{ missao_cartao.numero }}
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <strong>Período:</strong>
+
+                            {{ missao_cartao.get_periodo_display }}
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <strong>Tipo de missão:</strong>
+
+                            {{ missao_cartao.get_tipo_missao_display }}
+
+                        </div>
+
+                    </div>
+
+                    <div class="text-muted small mt-2">
+
+                        <i class="bi bi-info-circle me-1"></i>
+
+                        A escola foi definida pelo Cartão Programa
+                        e não pode ser alterada neste registro.
+
+                    </div>
+
+                </div>
+
+            {% endif %}
+
+
+            <!-- ==========================================
+                 CARD DO FORMULÁRIO
+                 ========================================== -->
+
+            <div class="card visita-card shadow-sm">
+
+                <div class="visita-card-header"></div>
 
                 <div class="card-body p-4">
 
@@ -52,14 +195,33 @@ Registrar Visita
 
                         {% csrf_token %}
 
+                        <!-- ==================================
+                             IDENTIFICAÇÃO DA MISSÃO
+                             ================================== -->
 
-                        <!-- =====================================
+                        {% if missao_cartao_id and not modo_edicao %}
+
+                            <input
+                                type="hidden"
+                                name="missao_cartao_id"
+                                value="{{ missao_cartao_id }}"
+                            >
+
+                        {% endif %}
+
+
+                        <!-- ==================================
                              ERROS GERAIS
-                             ===================================== -->
+                             ================================== -->
 
                         {% if form.non_field_errors %}
 
-                            <div class="alert alert-danger">
+                            <div
+                                class="alert alert-danger"
+                                role="alert"
+                            >
+
+                                <i class="bi bi-exclamation-triangle me-1"></i>
 
                                 {{ form.non_field_errors }}
 
@@ -68,9 +230,9 @@ Registrar Visita
                         {% endif %}
 
 
-                        <!-- =====================================
+                        <!-- ==================================
                              ESCOLA
-                             ===================================== -->
+                             ================================== -->
 
                         <div class="mb-3">
 
@@ -83,12 +245,20 @@ Registrar Visita
 
                             {{ form.escola }}
 
+                            {% if form.escola.help_text %}
+
+                                <div class="form-text">
+
+                                    {{ form.escola.help_text }}
+
+                                </div>
+
+                            {% endif %}
+
                             {% for error in form.escola.errors %}
 
                                 <div class="text-danger small mt-1">
-
                                     {{ error }}
-
                                 </div>
 
                             {% endfor %}
@@ -96,9 +266,9 @@ Registrar Visita
                         </div>
 
 
-                        <!-- =====================================
+                        <!-- ==================================
                              EQUIPE RESPONSÁVEL
-                             ===================================== -->
+                             ================================== -->
 
                         <div class="mb-3">
 
@@ -114,9 +284,7 @@ Registrar Visita
                             {% for error in form.equipe.errors %}
 
                                 <div class="text-danger small mt-1">
-
                                     {{ error }}
-
                                 </div>
 
                             {% endfor %}
@@ -124,9 +292,9 @@ Registrar Visita
                         </div>
 
 
-                        <!-- =====================================
+                        <!-- ==================================
                              DATA E HORÁRIO
-                             ===================================== -->
+                             ================================== -->
 
                         <div class="row">
 
@@ -144,9 +312,7 @@ Registrar Visita
                                 {% for error in form.data_visita.errors %}
 
                                     <div class="text-danger small mt-1">
-
                                         {{ error }}
-
                                     </div>
 
                                 {% endfor %}
@@ -168,9 +334,7 @@ Registrar Visita
                                 {% for error in form.horario.errors %}
 
                                     <div class="text-danger small mt-1">
-
                                         {{ error }}
-
                                     </div>
 
                                 {% endfor %}
@@ -180,9 +344,9 @@ Registrar Visita
                         </div>
 
 
-                        <!-- =====================================
-                             TIPO E SITUAÇÃO
-                             ===================================== -->
+                        <!-- ==================================
+                             TIPO DE VISITA E SITUAÇÃO
+                             ================================== -->
 
                         <div class="row">
 
@@ -200,9 +364,7 @@ Registrar Visita
                                 {% for error in form.tipo_visita.errors %}
 
                                     <div class="text-danger small mt-1">
-
                                         {{ error }}
-
                                     </div>
 
                                 {% endfor %}
@@ -224,9 +386,7 @@ Registrar Visita
                                 {% for error in form.situacao.errors %}
 
                                     <div class="text-danger small mt-1">
-
                                         {{ error }}
-
                                     </div>
 
                                 {% endfor %}
@@ -236,9 +396,9 @@ Registrar Visita
                         </div>
 
 
-                        <!-- =====================================
-                             RELATO
-                             ===================================== -->
+                        <!-- ==================================
+                             RELATO DA VISITA
+                             ================================== -->
 
                         <div class="mb-3">
 
@@ -254,9 +414,7 @@ Registrar Visita
                             {% for error in form.relato.errors %}
 
                                 <div class="text-danger small mt-1">
-
                                     {{ error }}
-
                                 </div>
 
                             {% endfor %}
@@ -264,9 +422,9 @@ Registrar Visita
                         </div>
 
 
-                        <!-- =====================================
+                        <!-- ==================================
                              ORIENTAÇÕES / PROVIDÊNCIAS
-                             ===================================== -->
+                             ================================== -->
 
                         <div class="mb-4">
 
@@ -282,9 +440,7 @@ Registrar Visita
                             {% for error in form.orientacoes.errors %}
 
                                 <div class="text-danger small mt-1">
-
                                     {{ error }}
-
                                 </div>
 
                             {% endfor %}
@@ -292,32 +448,55 @@ Registrar Visita
                         </div>
 
 
-                        <!-- =====================================
+                        <!-- ==================================
                              BOTÕES
-                             ===================================== -->
+                             ================================== -->
 
-                        <div class="d-flex justify-content-between">
+                        <div
+                            class="d-flex flex-wrap justify-content-between gap-2"
+                        >
 
-                            <a
-                                href="{% url 'escolas:listar_escolas' %}"
-                                class="btn btn-outline-secondary"
-                            >
+                            {% if missao_cartao and usuario and usuario.perfil == "GCM" %}
 
-                                <i class="bi bi-arrow-left me-1"></i>
+                                <a
+                                    href="{% url 'cartao_programa:meu_cartao_programa' %}"
+                                    class="btn btn-outline-secondary"
+                                >
 
-                                Cancelar
+                                    <i class="bi bi-arrow-left me-1"></i>
 
-                            </a>
+                                    Voltar ao Cartão Programa
+
+                                </a>
+
+                            {% else %}
+
+                                <a
+                                    href="{% url 'escolas:listar_escolas' %}"
+                                    class="btn btn-outline-secondary"
+                                >
+
+                                    <i class="bi bi-arrow-left me-1"></i>
+
+                                    Cancelar
+
+                                </a>
+
+                            {% endif %}
 
 
                             <button
                                 type="submit"
-                                class="btn btn-primary"
+                                class="btn btn-visita-salvar"
                             >
 
                                 <i class="bi bi-check-circle me-1"></i>
 
-                                Registrar Visita
+                                {% if modo_edicao %}
+                                    Salvar Alterações
+                                {% else %}
+                                    Registrar Visita
+                                {% endif %}
 
                             </button>
 
@@ -342,7 +521,6 @@ Registrar Visita
 
 <!-- =========================================================
      TOM SELECT
-     Permite pesquisar a escola digitando o nome
      ========================================================= -->
 
 <script
@@ -352,45 +530,64 @@ Registrar Visita
 
 <script>
 
-    document.addEventListener(
-        "DOMContentLoaded",
-        function () {
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
-            const campoEscola = document.getElementById(
-                "id_escola"
+        const campoEscola = document.getElementById(
+            "id_escola"
+        );
+
+        if (!campoEscola) {
+            return;
+        }
+
+        // A escola vinculada à missão já está
+        // definida pelo servidor.
+        // Não é necessário ativar a pesquisa
+        // quando o campo estiver desabilitado.
+
+        if (campoEscola.disabled) {
+            campoEscola.classList.add(
+                "campo-escola-bloqueado"
             );
 
+            return;
+        }
 
-            if (campoEscola) {
+        // Mantém a pesquisa de escolas nas
+        // visitas avulsas e demais formulários.
 
-                new TomSelect(
-                    campoEscola,
-                    {
-                        create: false,
+        if (typeof TomSelect !== "undefined") {
 
-                        allowEmptyOption: true,
+            new TomSelect(
+                campoEscola,
+                {
+                    create: false,
 
-                        placeholder: "Digite o nome da escola...",
+                    allowEmptyOption: true,
 
-                        searchField: [
-                            "text"
-                        ],
+                    placeholder: "Digite o nome da escola...",
 
-                        sortField: {
-                            field: "text",
-                            direction: "asc"
-                        },
+                    searchField: [
+                        "text"
+                    ],
 
-                        maxOptions: null,
+                    sortField: {
+                        field: "text",
+                        direction: "asc"
+                    },
 
-                        closeAfterSelect: true
-                    }
-                );
+                    maxOptions: null,
 
-            }
+                    closeAfterSelect: true
+                }
+            );
 
         }
-    );
+
+    }
+);
 
 </script>
 

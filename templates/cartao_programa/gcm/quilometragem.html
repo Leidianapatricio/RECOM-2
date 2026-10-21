@@ -1,0 +1,129 @@
+
+{% extends "base.html" %}
+
+{% block title %}
+    Registrar Quilometragem
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-7">
+
+            <h2 class="fw-bold mb-4"
+                style="color: #092B49;">
+
+                <i class="bi bi-speedometer2 me-2"></i>
+                Quilometragem da Viatura
+
+            </h2>
+
+            <div class="card shadow-sm">
+
+                <div
+                    class="card-header text-white"
+                    style="background-color: #092B49;"
+                >
+                    <strong>
+                        Viatura {{ viatura.identificacao }}
+                    </strong>
+                </div>
+
+                <div class="card-body p-4">
+
+                    <p>
+                        <strong>Plantão:</strong>
+                        {{ plantao.data|date:"d/m/Y" }}
+                    </p>
+
+                    <p>
+                        <strong>Função:</strong>
+                        {{ escala.get_funcao_display }}
+                    </p>
+
+                    <hr>
+
+                    <form method="post">
+
+                        {% csrf_token %}
+
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                {{ form.non_field_errors }}
+                            </div>
+                        {% endif %}
+
+                        <div class="mb-3">
+
+                            <label
+                                for="{{ form.km_inicial.id_for_label }}"
+                                class="form-label fw-semibold"
+                            >
+                                KM inicial
+                            </label>
+
+                            {{ form.km_inicial }}
+
+                            {% for erro in form.km_inicial.errors %}
+                                <div class="text-danger small">
+                                    {{ erro }}
+                                </div>
+                            {% endfor %}
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label
+                                for="{{ form.km_final.id_for_label }}"
+                                class="form-label fw-semibold"
+                            >
+                                KM final
+                            </label>
+
+                            {{ form.km_final }}
+
+                            {% for erro in form.km_final.errors %}
+                                <div class="text-danger small">
+                                    {{ erro }}
+                                </div>
+                            {% endfor %}
+
+                        </div>
+
+                        <div class="d-flex justify-content-between gap-2">
+
+                            <a
+                                href="{% url 'cartao_programa:meu_cartao_programa' %}"
+                                class="btn btn-outline-secondary"
+                            >
+                                <i class="bi bi-arrow-left me-1"></i>
+                                Voltar
+                            </a>
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                            >
+                                <i class="bi bi-check-circle me-1"></i>
+                                Salvar Quilometragem
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

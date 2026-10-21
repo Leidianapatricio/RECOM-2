@@ -1,76 +1,24 @@
 from functools import wraps
+
 from django import forms as django_forms
-
 from django.contrib import messages
-from django.db.models.deletion import ProtectedError, RestrictedError
-from django.http import HttpResponseNotAllowed
-from django.shortcuts import get_object_or_404, redirect
-
-from django.contrib import messages
-from django.db import transaction
-
 from django.contrib.auth.decorators import login_required
-
-from django.core.exceptions import (
-
-    PermissionDenied,
-
-    ValidationError,
-
-)
-
-from django.db.models import ProtectedError
+from django.core.exceptions import PermissionDenied, ValidationError
+from django.db import transaction
+from django.db.models.deletion import ProtectedError
 from django.http import HttpResponseForbidden
-from django.shortcuts import (
-
-    render,
-
-    redirect,
-
-    get_object_or_404,
-
-)
+from django.shortcuts import get_object_or_404, redirect, render
 
 from usuarios.models import Usuario
-
-
 from .models import (
-
-    Equipe,
-
-    IntegranteEquipe,
-
-    Plantao,
-
-    ViaturaPlantao,
-
-    EfetivoViatura,
-
-    CartaoPrograma,
-
-    MissaoCartao,
-
+    Equipe, IntegranteEquipe, Plantao, ViaturaPlantao,
+    EfetivoViatura, CartaoPrograma, MissaoCartao,
 )
-
 from .forms import (
-
-    EquipeForm,
-
-    IntegranteEquipeForm,
-
-    PlantaoForm,
-
-    ViaturaPlantaoForm,
-
-    EfetivoViaturaForm,
-
-    CartaoProgramaForm,
-
-    MissaoCartaoForm,
-    MissoesEmLoteForm,
-
+    EquipeForm, IntegranteEquipeForm, PlantaoForm,
+    ViaturaPlantaoForm, EfetivoViaturaForm,
+    CartaoProgramaForm, MissaoCartaoForm, MissoesEmLoteForm,
 )
-from cartao_programa import forms
 
 # =====================================================
 
@@ -785,249 +733,196 @@ def adicionar_erros_validacao(form, erro):
         form.add_error(None, erro)
 
 # =====================================================
+# PREENCHIMENTO AUTOMÁTICO DO EFETIVO
+# =====================================================
 
+
+def preencher_efetivo_automaticamente(viatura):
+    """Adiciona integrantes da equipe selecionada, sem duplicar escalas.
+
+    Funciona para ordinário e extraordinário. Não modifica integrantes
+    existentes e devolve avisos para quem não pôde ser incluído.
+    """
+    if not viatura.equipe_id:
+        return 0, []
+
+    integrantes = list(
+        IntegranteEquipe.objects.filter(
+            equipe_id=viatura.equipe_id,
+            gcm__perfil="GCM",
+            gcm__ativo=True,
+        ).select_related("gcm").order_by("gcm__nome")
+    )
+    if not integrantes:
+        return 0, ["A equipe selecionada não possui GCMs ativos cadastrados."]
+
+    quantidade = 0
+    pendentes = []
+    for integrante in integrantes:
+        # Não incluir o mesmo GCM duas vezes no mesmo dia, inclusive
+        # quando há mais de um plantão nessa data.
+        ja_escalado = EfetivoViatura.objects.filter(
+            gcm_id=integrante.gcm_id,
+            viatura__plantao__data=viatura.plantao.data,
+        ).exists()
+        if ja_escalado:
+            # Integrante já incluído nesta própria viatura não é pendência.
+            if not EfetivoViatura.objects.filter(
+                viatura=viatura, gcm_id=integrante.gcm_id
+            ).exists():
+                pendentes.append(f"{integrante.gcm.nome}: já escalado nesta data.")
+            continue
+
+        funcao_ocupada = EfetivoViatura.objects.filter(
+            viatura=viatura,
+            funcao=integrante.funcao_habitual,
+        ).exists()
+        if funcao_ocupada:
+            pendentes.append(
+                f"{integrante.gcm.nome}: função "
+                f"{integrante.funcao_habitual} já ocupada nesta viatura."
+            )
+            continue
+
+        efetivo = EfetivoViatura(
+            viatura=viatura,
+            gcm=integrante.gcm,
+            funcao=integrante.funcao_habitual,
+        )
+        efetivo.full_clean()
+        efetivo.save()
+        quantidade += 1
+
+    return quantidade, pendentes
+
+def validar_equipe_extraordinaria(viatura):
+    """Impede usar no extraordinário a equipe do ordinário da mesma data."""
+    if viatura.tipo_servico != "EXTRAORDINARIO" or not viatura.equipe_id:
+        return
+    if ViaturaPlantao.objects.filter(
+        plantao__data=viatura.plantao.data,
+        tipo_servico="ORDINARIO",
+        equipe_id=viatura.equipe_id,
+    ).exclude(pk=viatura.pk).exists():
+        raise ValidationError({
+            "equipe": "Esta equipe já está responsável pelo serviço ordinário "
+                      "nesta data. Selecione outra equipe para o extraordinário."
+        })
+
+
+# =====================================================
 # CADASTRAR VIATURA EM UM PLANTÃO
-
 # =====================================================
 
 @acesso_gestao_equipes
-
 def criar_viatura(request, plantao_id):
-
-    plantao = get_object_or_404(
-
-        Plantao,
-
-        pk=plantao_id
-
+    plantao = get_object_or_404(Plantao, pk=plantao_id)
+    form = ViaturaPlantaoForm(
+        request.POST if request.method == "POST" else None,
+        plantao=plantao,
     )
 
-    if request.method == "POST":
-
-        # Passa o plantão para o formulário,
-
-        # permitindo validar identificações duplicadas.
-
-        form = ViaturaPlantaoForm(
-
-            request.POST,
-
-            plantao=plantao
-
-        )
-
-        if form.is_valid():
-
-            viatura = form.save(
-
-                commit=False
-
+    if request.method == "POST" and form.is_valid():
+        viatura = form.save(commit=False)
+        viatura.plantao = plantao
+        try:
+            with transaction.atomic():
+                # A validação de equipe única por data fica no modelo.
+                viatura.full_clean()
+                validar_equipe_extraordinaria(viatura)
+                viatura.save()
+                quantidade, pendentes = preencher_efetivo_automaticamente(viatura)
+        except ValidationError as erro:
+            adicionar_erros_validacao(form, erro)
+        else:
+            messages.success(request, "Viatura cadastrada com sucesso!")
+            if pendentes:
+                messages.warning(
+                    request,
+                    "Confira os integrantes não incluídos automaticamente: "
+                    + " ".join(pendentes),
+                )
+            if fluxo_cartao_ativo(request):
+                return redirecionar_fluxo(
+                    request, "cartao_programa:listar_efetivo",
+                    plantao_id=plantao.pk, viatura_id=viatura.pk,
+                )
+            return redirecionar_fluxo(
+                request, "cartao_programa:listar_viaturas", plantao_id=plantao.pk
             )
 
-            # O plantão é definido pela URL.
-
-            viatura.plantao = plantao
-
-            try:
-
-                # Valida as regras do modelo.
-
-                viatura.full_clean()
-
-            except ValidationError as erro:
-
-                # Exibe os erros no formulário.
-
-                adicionar_erros_validacao(
-
-                    form,
-
-                    erro
-
-                )
-
-            else:
-
-                viatura.save()
-
-                messages.success(
-
-                    request,
-
-                    "Viatura cadastrada no plantão "
-
-                    "com sucesso!"
-
-                )
-
-                if request.GET.get("fluxo") == "cartao":
-                    resposta = redirect(
-                        "cartao_programa:listar_efetivo",
-                        plantao_id=plantao.pk,
-                        viatura_id=viatura.pk
-                    )
-                    resposta["Location"] += ("&" if "?" in resposta["Location"] else "?") + "fluxo=cartao"
-                    return resposta
-
-                return redirecionar_fluxo(
-                    request,
-                    "cartao_programa:listar_viaturas",
-                    plantao_id=plantao.pk
-                )
-
-    else:
-
-        form = ViaturaPlantaoForm(
-
-            plantao=plantao
-
-        )
-
-    return render(
-
-        request,
-
-        "cartao_programa/viaturas/form.html",
-
-        {
-
-            "form": form,
-
-            "plantao": plantao,
-
-            "titulo": "Cadastrar Viatura",
-            "fluxo_cartao": fluxo_cartao_ativo(request),
-
-            "edicao": False
-
-        }
-
-    )
+    return render(request, "cartao_programa/viaturas/form.html", {
+        "form": form,
+        "plantao": plantao,
+        "titulo": "Cadastrar Viatura",
+        "fluxo_cartao": fluxo_cartao_ativo(request),
+        "edicao": False,
+    })
 
 # =====================================================
-
 # EDITAR VIATURA DE UM PLANTÃO
-
 # =====================================================
 
 @acesso_gestao_equipes
-
 def editar_viatura(request, plantao_id, pk):
+    plantao = get_object_or_404(Plantao, pk=plantao_id)
+    viatura = get_object_or_404(ViaturaPlantao, pk=pk, plantao=plantao)
 
-    plantao = get_object_or_404(
+    # Guardar os valores antes de form.is_valid(), que altera a instância.
+    equipe_anterior_id = viatura.equipe_id
+    tipo_anterior = viatura.tipo_servico
 
-        Plantao,
-
-        pk=plantao_id
-
+    form = ViaturaPlantaoForm(
+        request.POST if request.method == "POST" else None,
+        instance=viatura, plantao=plantao,
     )
+    if request.method == "POST" and form.is_valid():
+        atualizada = form.save(commit=False)
+        atualizada.plantao = plantao
 
-    viatura = get_object_or_404(
-
-        ViaturaPlantao,
-
-        pk=pk,
-
-        plantao=plantao
-
-    )
-
-    if request.method == "POST":
-
-        # Mantém o plantão e a viatura original.
-
-        form = ViaturaPlantaoForm(
-
-            request.POST,
-
-            instance=viatura,
-
-            plantao=plantao
-
-        )
-
-        if form.is_valid():
-
-            viatura_atualizada = form.save(
-
-                commit=False
-
+        # Não manter o efetivo de uma equipe antiga como se fosse da nova.
+        mudou_equipe = equipe_anterior_id != atualizada.equipe_id
+        mudou_tipo = tipo_anterior != atualizada.tipo_servico
+        if (mudou_equipe or mudou_tipo) and EfetivoViatura.objects.filter(
+            viatura_id=atualizada.pk
+        ).exists():
+            form.add_error(
+                "equipe" if mudou_equipe else "tipo_servico",
+                "Esta viatura já possui GCMs escalados. Ajuste ou remova "
+                "o efetivo antes de alterar a equipe ou o tipo de serviço.",
             )
-
-            viatura_atualizada.plantao = plantao
-
+        else:
             try:
-
-                # Valida as regras do modelo.
-
-                viatura_atualizada.full_clean()
-
+                with transaction.atomic():
+                    atualizada.full_clean()
+                    validar_equipe_extraordinaria(atualizada)
+                    atualizada.save()
+                    quantidade, pendentes = preencher_efetivo_automaticamente(
+                        atualizada
+                    )
             except ValidationError as erro:
-
-                # Apresenta os erros no formulário.
-
-                adicionar_erros_validacao(
-
-                    form,
-
-                    erro
-
-                )
-
+                adicionar_erros_validacao(form, erro)
             else:
-
-                viatura_atualizada.save()
-
-                messages.success(
-
-                    request,
-
-                    "Viatura atualizada com sucesso!"
-
-                )
-
+                messages.success(request, "Viatura atualizada com sucesso!")
+                if pendentes:
+                    messages.warning(
+                        request,
+                        "Confira os integrantes não incluídos automaticamente: "
+                        + " ".join(pendentes),
+                    )
                 return redirecionar_fluxo(
-
-                    request,
-
-                    "cartao_programa:listar_viaturas",
-
-                    plantao_id=plantao.pk
-
+                    request, "cartao_programa:listar_viaturas",
+                    plantao_id=plantao.pk,
                 )
 
-    else:
-
-        form = ViaturaPlantaoForm(
-
-            instance=viatura,
-
-            plantao=plantao
-
-        )
-
-    return render(
-
-        request,
-
-        "cartao_programa/viaturas/form.html",
-
-        {
-
-            "form": form,
-
-            "plantao": plantao,
-
-            "viatura": viatura,
-
-            "titulo": "Editar Viatura",
-            "fluxo_cartao": fluxo_cartao_ativo(request),
-
-            "edicao": True
-
-        }
-
-    )
+    return render(request, "cartao_programa/viaturas/form.html", {
+        "form": form,
+        "plantao": plantao,
+        "viatura": viatura,
+        "titulo": "Editar Viatura",
+        "fluxo_cartao": fluxo_cartao_ativo(request),
+        "edicao": True,
+    })
 
 # =====================================================
 
@@ -1087,39 +982,31 @@ def listar_efetivo(request, plantao_id, viatura_id):
     )
 
 def _validar_e_salvar_efetivo(form, viatura):
-
-    """Aplica as validações do modelo antes de gravar o integrante."""
-
+    """Valida a escala manual, inclusive entre plantões da mesma data."""
     integrante = form.save(commit=False)
-
     integrante.viatura = viatura
-
-    # O limite de quatro pessoas vale para cada viatura.
-
     outros = EfetivoViatura.objects.filter(viatura=viatura).exclude(
-
         pk=integrante.pk
-
     )
-
     if outros.count() >= 4:
-
         form.add_error(None, "Esta viatura já possui quatro integrantes.")
+        return False
 
+    # A checagem anterior do formulário só considerava o mesmo plantão.
+    # Esta impede escala repetida em plantões distintos da mesma data.
+    if integrante.gcm_id and EfetivoViatura.objects.filter(
+        gcm_id=integrante.gcm_id,
+        viatura__plantao__data=viatura.plantao.data,
+    ).exclude(pk=integrante.pk).exists():
+        form.add_error("gcm", "Este GCM já está escalado em outra viatura nesta data.")
         return False
 
     try:
-
         integrante.full_clean()
-
     except ValidationError as erro:
-
         adicionar_erros_validacao(form, erro)
-
         return False
-
     integrante.save()
-
     return True
 
 @acesso_gestao_equipes
@@ -1402,89 +1289,192 @@ def visualizar_cartao(request, plantao_id):
 
 
 # =====================================================
-# CARTÃO PROGRAMA - CRIAR (SEM TELA EXTRA NO FLUXO)
+# CARTÃO PROGRAMA - CRIAR
 # =====================================================
 
 @acesso_gestao_equipes
 def criar_cartao(request, plantao_id):
-    plantao = get_object_or_404(Plantao, pk=plantao_id)
 
-    # No fluxo guiado, nunca abrir o formulário se o cartão já existe
-    # ou se pode ser criado automaticamente.
-    if fluxo_cartao_ativo(request):
-        cartao = _garantir_cartao(request, plantao)
-        if cartao is not None:
-            return redirecionar_fluxo(
-                request, "cartao_programa:listar_missoes", plantao_id=plantao.pk
-            )
+    plantao = get_object_or_404(
+        Plantao,
+        pk=plantao_id
+    )
 
-    elif CartaoPrograma.objects.filter(plantao=plantao).exists():
-        messages.info(request, "Este plantão já possui um Cartão Programa.")
-        return redirect("cartao_programa:visualizar_cartao", plantao_id=plantao.pk)
+    fluxo_cartao = fluxo_cartao_ativo(request)
 
     usuario = getattr(request.user, "usuario", None)
+
     if not request.user.is_active:
         raise PermissionDenied("Usuário inativo.")
 
     eh_admin = (
         request.user.is_superuser
         or request.user.is_staff
-        or (usuario is not None and usuario.ativo and usuario.perfil == "ADMIN")
+        or (
+            usuario is not None
+            and usuario.ativo
+            and usuario.perfil == "ADMIN"
+        )
     )
+
     eh_coordenador = (
-        usuario is not None and usuario.ativo and usuario.perfil == "COORDENADOR"
+        usuario is not None
+        and usuario.ativo
+        and usuario.perfil == "COORDENADOR"
     )
+
     if not (eh_admin or eh_coordenador):
-        raise PermissionDenied("Apenas administradores e coordenadores podem criar um Cartão Programa.")
+        raise PermissionDenied(
+            "Apenas administradores e coordenadores "
+            "podem criar um Cartão Programa."
+        )
+
+    # Se o cartão já existe, não abrir
+    # novamente o formulário de criação.
+    cartao_existente = CartaoPrograma.objects.filter(
+        plantao=plantao
+    ).first()
+
+    if cartao_existente:
+
+        destino = (
+            "cartao_programa:listar_missoes"
+            if fluxo_cartao
+            else "cartao_programa:visualizar_cartao"
+        )
+
+        return redirecionar_fluxo(
+            request,
+            destino,
+            plantao_id=plantao.pk
+        )
 
     coordenadores = Usuario.objects.filter(
-        perfil="COORDENADOR", ativo=True
+        perfil="COORDENADOR",
+        ativo=True
     ).order_by("nome")
-    selecionar_coordenador = eh_admin and not eh_coordenador
+
+    quantidade_coordenadores = coordenadores.count()
+
+    # Coordenador logado tem prioridade.
+    if eh_coordenador:
+        coordenador_automatico = usuario
+
+    # Um único coordenador ativo:
+    # seleção automática.
+    elif quantidade_coordenadores == 1:
+        coordenador_automatico = coordenadores.first()
+
+    else:
+        coordenador_automatico = None
+
+    selecionar_coordenador = (
+        coordenador_automatico is None
+        and quantidade_coordenadores > 1
+    )
 
     form = CartaoProgramaForm(
         request.POST if request.method == "POST" else None,
-        plantao=plantao,
+        plantao=plantao
     )
+
     if selecionar_coordenador:
         form.fields["coordenador"] = django_forms.ModelChoiceField(
             queryset=coordenadores,
             label="Coordenador responsável",
             required=True,
             empty_label="Selecione um coordenador",
-            widget=django_forms.Select(attrs={"class": "form-select"}),
+            widget=django_forms.Select(
+                attrs={"class": "form-select"}
+            )
         )
 
-    if request.method == "POST" and form.is_valid():
-        cartao = form.save(commit=False)
-        cartao.plantao = plantao
-        cartao.coordenador = (
-            form.cleaned_data["coordenador"] if selecionar_coordenador else usuario
+    # Criação automática quando existe
+    # um coordenador definido.
+    if (
+        request.method == "GET"
+        and fluxo_cartao
+        and coordenador_automatico is not None
+    ):
+        cartao = CartaoPrograma(
+            plantao=plantao,
+            coordenador=coordenador_automatico
         )
+
         try:
             cartao.full_clean()
+            cartao.save()
+
         except ValidationError as erro:
             adicionar_erros_validacao(form, erro)
-        else:
-            cartao.save()
-            messages.success(request, "Cartão Programa criado com sucesso!")
-            destino = (
-                "cartao_programa:listar_missoes"
-                if fluxo_cartao_ativo(request)
-                else "cartao_programa:visualizar_cartao"
-            )
-            return redirecionar_fluxo(request, destino, plantao_id=plantao.pk)
 
-    return render(request, "cartao_programa/cartoes/form.html", {
-        "plantao": plantao,
-        "form": form,
-        "coordenador": usuario if eh_coordenador else None,
-        "coordenadores_disponiveis": coordenadores.exists(),
-        "selecionar_coordenador": selecionar_coordenador,
-        "titulo": "Criar Cartão Programa",
-        "fluxo_cartao": fluxo_cartao_ativo(request),
-        "edicao": False,
-    })
+        else:
+            return redirecionar_fluxo(
+                request,
+                "cartao_programa:listar_missoes",
+                plantao_id=plantao.pk
+            )
+
+    # Criação manual quando necessário.
+    if request.method == "POST" and form.is_valid():
+
+        cartao = form.save(commit=False)
+        cartao.plantao = plantao
+
+        if selecionar_coordenador:
+            cartao.coordenador = form.cleaned_data["coordenador"]
+        else:
+            cartao.coordenador = coordenador_automatico
+
+        if cartao.coordenador is None:
+            form.add_error(
+                None,
+                "Não existe coordenador ativo disponível. "
+                "Cadastre ou ative um coordenador."
+            )
+
+        else:
+            try:
+                cartao.full_clean()
+
+            except ValidationError as erro:
+                adicionar_erros_validacao(form, erro)
+
+            else:
+                cartao.save()
+
+                messages.success(
+                    request,
+                    "Cartão Programa criado com sucesso!"
+                )
+
+                destino = (
+                    "cartao_programa:listar_missoes"
+                    if fluxo_cartao
+                    else "cartao_programa:visualizar_cartao"
+                )
+
+                return redirecionar_fluxo(
+                    request,
+                    destino,
+                    plantao_id=plantao.pk
+                )
+
+    return render(
+        request,
+        "cartao_programa/cartoes/form.html",
+        {
+            "plantao": plantao,
+            "form": form,
+            "coordenador": coordenador_automatico,
+            "coordenadores_disponiveis": quantidade_coordenadores > 0,
+            "selecionar_coordenador": selecionar_coordenador,
+            "titulo": "Criar Cartão Programa",
+            "fluxo_cartao": fluxo_cartao,
+            "edicao": False,
+        }
+    )
+
 
 
 # =====================================================
@@ -1872,92 +1862,69 @@ def listar_cartoes(request):
         }
     )
 
+
+
 # =====================================================
-# EXCLUIR PLANTÃO
+# EXCLUIR PLANTÃO E REGISTROS VINCULADOS
 # =====================================================
 
 @acesso_gestao_equipes
 def excluir_plantao(request, plantao_id):
-
-    if request.method != "POST":
-        return HttpResponseForbidden(
-            "A exclusão deve ser realizada pelo formulário."
-        )
 
     plantao = get_object_or_404(
         Plantao,
         pk=plantao_id
     )
 
-    # Impede excluir um plantão que já possui
-    # viaturas ou Cartão Programa.
-    if (
-        plantao.viaturas.exists()
-        or CartaoPrograma.objects.filter(
-            plantao=plantao
-        ).exists()
-    ):
-        messages.error(
+    # Exclusão permitida somente via POST.
+    if request.method != "POST":
+        messages.warning(
             request,
-            "Não é possível excluir este plantão porque "
-            "ele possui viaturas ou Cartão Programa vinculados."
+            "Confirme a exclusão do plantão."
         )
-
         return redirect(
             "cartao_programa:listar_plantoes"
         )
 
     try:
         with transaction.atomic():
-            plantao.delete()
 
-        messages.success(
-            request,
-            "Plantão excluído com sucesso!"
-        )
+            # Excluir missões vinculadas ao cartão.
+            MissaoCartao.objects.filter(
+                cartao__plantao=plantao
+            ).delete()
+
+            # Excluir o Cartão Programa.
+            CartaoPrograma.objects.filter(
+                plantao=plantao
+            ).delete()
+
+            # Excluir os integrantes das viaturas.
+            EfetivoViatura.objects.filter(
+                viatura__plantao=plantao
+            ).delete()
+
+            # Excluir as viaturas do plantão.
+            ViaturaPlantao.objects.filter(
+                plantao=plantao
+            ).delete()
+
+            # Excluir o plantão.
+            plantao.delete()
 
     except ProtectedError:
         messages.error(
             request,
-            "Este plantão possui registros protegidos "
-            "e não pode ser excluído."
-        )
-
-    return redirect(
-        "cartao_programa:listar_plantoes"
-    )
-    
-@acesso_gestao_equipes
-def excluir_plantao(request, plantao_id):
-
-    if request.method != "POST":
-        return HttpResponseNotAllowed(["POST"])
-
-    plantao = get_object_or_404(
-        Plantao,
-        pk=plantao_id
-    )
-
-    data_plantao = plantao.data.strftime("%d/%m/%Y")
-
-    try:
-        with transaction.atomic():
-
-            # Exclui o plantão e os registros relacionados
-            # configurados com on_delete=CASCADE.
-            plantao.delete()
-
-    except (ProtectedError, RestrictedError):
-        messages.error(
-            request,
-            "Não foi possível excluir o plantão porque "
-            "existem registros protegidos vinculados."
+            "Não foi possível excluir o plantão "
+            "porque existem outros registros "
+            "protegidos vinculados."
         )
 
     else:
         messages.success(
             request,
-            f"Plantão de {data_plantao} excluído com sucesso!"
+            "Plantão e todos os registros vinculados "
+            "excluídos com sucesso!"
         )
 
     return redirect(
@@ -1965,3 +1932,350 @@ def excluir_plantao(request, plantao_id):
     )
 
 
+# =========================================================
+# ÁREA DO GCM - FUNÇÕES AUXILIARES
+# =========================================================
+
+def obter_gcm_logado(request):
+    """
+    Retorna o cadastro do GCM autenticado.
+
+    Apenas usuários ativos com perfil GCM
+    podem acessar a área operacional.
+    """
+
+    if not request.user.is_active:
+        raise PermissionDenied(
+            "Sua conta está inativa."
+        )
+
+    usuario = Usuario.objects.filter(
+        user=request.user,
+        ativo=True,
+        perfil="GCM",
+    ).first()
+
+    if usuario is None:
+        raise PermissionDenied(
+            "Esta área é exclusiva para GCMs ativos."
+        )
+
+    return usuario
+
+
+def obter_escala_gcm(request, viatura_id):
+    """
+    Obtém a escala real do GCM na viatura.
+
+    Não utiliza a função habitual da equipe.
+    """
+
+    usuario = obter_gcm_logado(request)
+
+    escala = get_object_or_404(
+        EfetivoViatura.objects.select_related(
+            "viatura",
+            "viatura__plantao",
+            "viatura__equipe",
+        ),
+        viatura_id=viatura_id,
+        gcm=usuario,
+    )
+
+    return escala
+
+
+# =========================================================
+# MEU CARTÃO PROGRAMA - GCM
+# =========================================================
+
+@login_required
+def meu_cartao_programa(request):
+    """
+    Exibe somente os cartões e as missões
+    correspondentes às viaturas nas quais
+    o GCM está escalado.
+    """
+
+    usuario = obter_gcm_logado(request)
+
+    escalas = list(
+        EfetivoViatura.objects.filter(
+            gcm=usuario,
+            viatura__plantao__cartao_programa__isnull=False,
+        )
+        .select_related(
+            "viatura",
+            "viatura__plantao",
+            "viatura__equipe",
+            "viatura__plantao__cartao_programa",
+        )
+        .order_by(
+            "-viatura__plantao__data",
+            "-viatura__plantao_id",
+            "viatura__identificacao",
+        )
+    )
+
+    # Consulta somente missões pertencentes
+    # às viaturas efetivamente escaladas.
+    viatura_ids = [
+        escala.viatura_id
+        for escala in escalas
+    ]
+
+    missoes = (
+        MissaoCartao.objects.filter(
+            viatura_id__in=viatura_ids,
+            cartao__plantao_id__in=[
+                escala.viatura.plantao_id
+                for escala in escalas
+            ],
+        )
+        .select_related(
+            "escola",
+            "viatura",
+            "cartao",
+        )
+        .order_by(
+            "numero"
+        )
+    )
+
+    # Agrupa as missões por viatura e plantão,
+    # evitando exibir missões de outros efetivos.
+    missoes_por_viatura = {}
+
+    for missao in missoes:
+
+        if (
+            missao.cartao.plantao_id
+            != missao.viatura.plantao_id
+        ):
+            continue
+
+        missoes_por_viatura.setdefault(
+            missao.viatura_id,
+            []
+        ).append(missao)
+
+    cartoes_gcm = []
+
+    for escala in escalas:
+
+        viatura = escala.viatura
+
+        cartoes_gcm.append({
+            "escala": escala,
+            "viatura": viatura,
+            "plantao": viatura.plantao,
+            "cartao": (
+                viatura.plantao.cartao_programa
+            ),
+            "missoes": missoes_por_viatura.get(
+                viatura.pk,
+                []
+            ),
+            "pode_registrar_visita": (
+                escala.funcao in ["C", "P1", "P2"]
+            ),
+            "pode_registrar_km": (
+                escala.funcao in ["C", "M"]
+            ),
+        })
+
+    return render(
+        request,
+        "cartao_programa/gcm/meu_cartao.html",
+        {
+            "usuario": usuario,
+            "cartoes_gcm": cartoes_gcm,
+        }
+    )
+
+
+# =========================================================
+# FORMULÁRIO DE QUILOMETRAGEM
+# =========================================================
+
+class QuilometragemGCMForm(django_forms.ModelForm):
+    """
+    Permite alterar exclusivamente os campos
+    de quilometragem da viatura.
+    """
+
+    class Meta:
+
+        model = ViaturaPlantao
+
+        fields = [
+            "km_inicial",
+            "km_final",
+        ]
+
+        labels = {
+            "km_inicial": "KM inicial",
+            "km_final": "KM final",
+        }
+
+        widgets = {
+            "km_inicial": django_forms.NumberInput(
+                attrs={
+                    "class": "form-control",
+                    "min": "0",
+                    "step": "1",
+                    "placeholder": "Informe o KM inicial",
+                }
+            ),
+            "km_final": django_forms.NumberInput(
+                attrs={
+                    "class": "form-control",
+                    "min": "0",
+                    "step": "1",
+                    "placeholder": "Informe o KM final",
+                }
+            ),
+        }
+
+    def clean(self):
+
+        dados = super().clean()
+
+        km_inicial = dados.get("km_inicial")
+        km_final = dados.get("km_final")
+
+        if (
+            km_inicial is not None
+            and km_final is not None
+            and km_final < km_inicial
+        ):
+            self.add_error(
+                "km_final",
+                "O KM final não pode ser menor "
+                "que o KM inicial."
+            )
+
+        return dados
+
+
+# =========================================================
+# REGISTRAR QUILOMETRAGEM - GCM
+# =========================================================
+
+@login_required
+def registrar_quilometragem_gcm(request, viatura_id):
+    """
+    Permite registrar ou atualizar a quilometragem
+    somente quando o GCM estiver escalado como:
+
+    C = Comandante
+    M = Motorista
+
+    P1 e P2 não podem alterar quilometragem.
+    """
+
+    escala = obter_escala_gcm(
+        request,
+        viatura_id
+    )
+
+    if escala.funcao not in ["C", "M"]:
+        raise PermissionDenied(
+            "Somente o Comandante e o Motorista "
+            "podem registrar a quilometragem."
+        )
+
+    viatura = escala.viatura
+
+    # A área operacional utiliza apenas
+    # viaturas pertencentes a cartões existentes.
+    if not CartaoPrograma.objects.filter(
+        plantao_id=viatura.plantao_id
+    ).exists():
+        raise PermissionDenied(
+            "Esta viatura ainda não possui "
+            "um Cartão Programa cadastrado."
+        )
+
+    if request.method == "POST":
+
+        # Bloqueia a linha durante a atualização
+        # em bancos que oferecem suporte a
+        # SELECT FOR UPDATE.
+        with transaction.atomic():
+
+            viatura = get_object_or_404(
+                ViaturaPlantao.objects.select_for_update(),
+                pk=viatura_id
+            )
+
+            # Revalida a escala dentro da transação.
+            usuario = obter_gcm_logado(request)
+
+            if not EfetivoViatura.objects.filter(
+                viatura=viatura,
+                gcm=usuario,
+                funcao__in=["C", "M"],
+            ).exists():
+                raise PermissionDenied(
+                    "Você não possui autorização "
+                    "para alterar esta quilometragem."
+                )
+
+            form = QuilometragemGCMForm(
+                request.POST,
+                instance=viatura
+            )
+
+            if form.is_valid():
+
+                atualizada = form.save(
+                    commit=False
+                )
+
+                try:
+
+                    atualizada.full_clean()
+
+                except ValidationError as erro:
+
+                    adicionar_erros_validacao(
+                        form,
+                        erro
+                    )
+
+                else:
+
+                    atualizada.save(
+                        update_fields=[
+                            "km_inicial",
+                            "km_final",
+                        ]
+                    )
+
+                    messages.success(
+                        request,
+                        "Quilometragem registrada "
+                        "com sucesso!"
+                    )
+
+                    return redirect(
+                        "cartao_programa:meu_cartao_programa"
+                    )
+
+    else:
+
+        form = QuilometragemGCMForm(
+            instance=viatura
+        )
+
+    return render(
+        request,
+        "cartao_programa/gcm/quilometragem.html",
+        {
+            "form": form,
+            "viatura": viatura,
+            "plantao": viatura.plantao,
+            "escala": escala,
+        }
+    )

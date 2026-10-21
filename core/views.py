@@ -1,7 +1,8 @@
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.db.models import Count
 from django.shortcuts import redirect, render
+from django.views.decorators.cache import never_cache
 
 from escolas.models import (
     Escola,
@@ -33,8 +34,14 @@ def redirecionar_por_perfil(usuario):
     return redirect("core:home")
 
 
+@never_cache
 def login_view(request):
     if request.user.is_authenticated:
+        if not request.user.is_active:
+            logout(request)
+            messages.error(request, "Este usuário está inativo.")
+            return redirect("core:login")
+
         if request.user.is_superuser:
             return redirect("core:dashboard_admin")
 
@@ -92,6 +99,15 @@ def login_view(request):
             )
             return render(request, "login.html")
 
+        # O superusuário Django pode usar login alfanumérico (ex.: admin).
+        # Os demais usuários RECOM devem usar matrícula numérica.
+        if not user.is_superuser and not matricula.isdigit():
+            messages.error(
+                request,
+                "A matrícula deve conter somente números."
+            )
+            return render(request, "login.html")
+
         # Mantém o acesso do superusuário do Django.
         if user.is_superuser:
             login(request, user)
@@ -123,6 +139,7 @@ def login_view(request):
     return render(request, "login.html")
 
 
+@never_cache
 def primeiro_acesso(request):
     if not request.user.is_authenticated:
         return redirect("core:login")
@@ -171,6 +188,10 @@ def primeiro_acesso(request):
             )
             return render(request, "primeiro_acesso.html")
 
+        if nova_senha == "1234":
+            messages.error(request, "A nova senha deve ser diferente da senha provisória.")
+            return render(request, "primeiro_acesso.html")
+
         if nova_senha != confirmar_senha:
             messages.error(
                 request,
@@ -179,14 +200,12 @@ def primeiro_acesso(request):
             return render(request, "primeiro_acesso.html")
 
         request.user.set_password(nova_senha)
-        request.user.save()
+        request.user.save(update_fields=["password"])
+        update_session_auth_hash(request, request.user)
 
         usuario.primeiro_acesso = False
         usuario.save(update_fields=["primeiro_acesso"])
 
-        # set_password altera a sessão de autenticação.
-        # Fazemos o login novamente para manter o usuário conectado.
-        login(request, request.user)
 
         messages.success(
             request,
@@ -199,8 +218,6 @@ def primeiro_acesso(request):
 
 
 def logout_view(request):
-    request.session.flush()
-
     logout(
         request
     )
@@ -276,6 +293,10 @@ def verificar_acesso_dashboard(request, perfil_permitido):
     return redirecionar_por_perfil(usuario)
 
 def dashboard_admin(request):
+    acesso = verificar_acesso_dashboard(request, "ADMIN")
+    if acesso:
+        return acesso
+
     contexto = {
         "total_usuarios": Usuario.objects.count(),
 
@@ -302,6 +323,10 @@ def dashboard_admin(request):
 
 
 def dashboard_coordenador(request):
+    acesso = verificar_acesso_dashboard(request, "COORDENADOR")
+    if acesso:
+        return acesso
+
     total_escolas = Escola.objects.count()
 
     escolas_ativas = Escola.objects.filter(
@@ -408,6 +433,10 @@ def dashboard_gcm(request):
     )
 
 def dashboard_mediador(request):
+    acesso = verificar_acesso_dashboard(request, "MEDIADOR")
+    if acesso:
+        return acesso
+
     usuario = Usuario.objects.filter(
         user=request.user
     ).first()

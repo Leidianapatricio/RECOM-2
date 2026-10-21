@@ -24,11 +24,23 @@
 
         <div class="d-flex gap-2">
 
-            <a href="{% url 'cartao_programa:listar_viaturas' plantao.pk %}"
-               class="btn btn-outline-secondary">
-                <i class="bi bi-arrow-left"></i>
-                Voltar
-            </a>
+            <div class="d-flex gap-2 justify-content-end">
+
+                <a href="{% url 'cartao_programa:listar_viaturas' plantao.pk %}?fluxo=cartao"
+                class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i>
+                    Voltar
+                </a>
+
+                {% if fluxo_cartao %}
+                <a href="{% url 'cartao_programa:listar_viaturas' plantao.pk %}?fluxo=cartao"
+                class="btn btn-primary">
+                    Avançar
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+                {% endif %}
+
+            </div>
 
             {% if pode_adicionar %}
             <a href="{% url 'cartao_programa:adicionar_efetivo' plantao.pk viatura.pk %}"

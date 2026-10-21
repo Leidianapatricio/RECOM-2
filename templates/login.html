@@ -1,26 +1,33 @@
+
 {% extends 'base.html' %}
 
 {% block content %}
+
 <section class="container py-5">
 
     <div class="row justify-content-center">
         <div class="col-md-6 col-lg-5">
 
-            <div class="card card-examesus p-4">
-                <div class="card-body">
+            <div class="card card-examesus shadow-sm border-0 rounded-4">
+                <div class="card-body p-4 p-md-5">
 
-                    <div class="icon-circle mb-4">
-                        <i class="bi bi-person"></i>
+                    <!-- Ícone -->
+                    <div class="text-center mb-3">
+                        <div class="icon-circle mx-auto">
+                            <i class="bi bi-shield-lock"></i>
+                        </div>
                     </div>
 
-                    <h2 class="text-center fw-bold">
+                    <!-- Título -->
+                    <h2 class="text-center fw-bold mb-2">
                         Bem-vindo ao RECOM
                     </h2>
 
                     <p class="text-center text-muted mb-4">
-                        Acesse o sistema com sua matrícula e senha
+                        Informe sua matrícula e senha para acessar o sistema.
                     </p>
 
+                    <!-- Mensagens -->
                     {% if messages %}
                         {% for message in messages %}
                             <div class="alert
@@ -36,67 +43,244 @@
 
                                 <button type="button"
                                         class="btn-close"
-                                        data-bs-dismiss="alert">
+                                        data-bs-dismiss="alert"
+                                        aria-label="Fechar">
                                 </button>
                             </div>
                         {% endfor %}
                     {% endif %}
 
-                    <form method="post">
+                    <!-- Formulário -->
+                    <form method="post" action="{% url 'core:login' %}">
                         {% csrf_token %}
 
+                                                
+                        <!-- MATRÍCULA / USUÁRIO -->
                         <div class="mb-3">
+
                             <label for="matricula"
-                                   class="form-label fw-semibold">
-                                Matrícula
+                                class="form-label fw-semibold">
+                                Matrícula ou usuário
                             </label>
 
-                            <input
-                                type="text"
-                                name="matricula"
-                                id="matricula"
-                                class="form-control form-control-lg"
-                                placeholder="Digite sua matrícula"
-                                autocomplete="username"
-                                required>
+                            <div class="input-group">
+
+                                <span class="input-group-text bg-light">
+                                    <i class="bi bi-person-badge"></i>
+                                </span>
+
+                                <input
+                                    type="text"
+                                    name="matricula"
+                                    id="matricula"
+                                    class="form-control form-control-lg"
+                                    placeholder="Digite sua matrícula ou usuário"
+                                    value="{{ request.POST.matricula|default:'' }}"
+                                    autocomplete="username"
+                                    autofocus
+                                    required>
+
+                            </div>
+
                         </div>
 
-                        <div class="mb-4">
+
+                        <!-- Senha -->
+                        <div class="mb-3">
+
                             <label for="senha"
                                    class="form-label fw-semibold">
                                 Senha
                             </label>
 
-                            <input
-                                type="password"
-                                name="senha"
-                                id="senha"
-                                class="form-control form-control-lg"
-                                placeholder="Digite sua senha"
-                                autocomplete="current-password"
-                                required>
+                            <div class="input-group">
+
+                                <span class="input-group-text bg-light">
+                                    <i class="bi bi-lock"></i>
+                                </span>
+
+                                <input
+                                    type="password"
+                                    name="senha"
+                                    id="senha"
+                                    class="form-control form-control-lg"
+                                    placeholder="Digite sua senha"
+                                    autocomplete="current-password"
+                                    required>
+
+                                <button
+                                    class="btn btn-outline-secondary"
+                                    type="button"
+                                    id="mostrarSenha"
+                                    aria-label="Mostrar senha"
+                                    aria-pressed="false">
+
+                                    <i class="bi bi-eye" id="iconeSenha"></i>
+
+                                </button>
+
+                            </div>
+
                         </div>
 
-                        <button type="submit"
-                                class="btn btn-examesus btn-lg w-100">
-                            <i class="bi bi-box-arrow-in-right"></i>
-                            Entrar
+                        <!-- Orientação para senha esquecida -->
+                        <div class="text-end mb-4">
+                            <button
+                                type="button"
+                                class="btn btn-link btn-sm text-decoration-none p-0"
+                                data-bs-toggle="modal"
+                                data-bs-target="#modalSenha">
+
+                                Esqueceu sua senha?
+
+                            </button>
+                        </div>
+
+                        <!-- Entrar -->
+                        <button
+                            type="submit"
+                            class="btn btn-examesus btn-lg w-100">
+
+                            <i class="bi bi-box-arrow-in-right me-2"></i>
+                            Entrar no sistema
+
                         </button>
 
                     </form>
 
-                    <div class="text-center mt-4">
-                        <small class="text-muted">
-                            No primeiro acesso, utilize a senha inicial
-                            fornecida pelo administrador.
-                        </small>
+                    <!-- Primeiro acesso -->
+                    <div class="alert alert-light border mt-4 mb-0">
+
+                        <div class="d-flex align-items-start gap-2">
+
+                            <i class="bi bi-info-circle text-primary"></i>
+
+                            <small class="text-muted">
+                                <strong>Primeiro acesso:</strong>
+                                utilize a senha inicial
+                                <strong>1234</strong>.
+                                O sistema solicitará a criação
+                                de uma nova senha.
+                            </small>
+
+                        </div>
+
                     </div>
 
                 </div>
             </div>
 
+            <p class="text-center text-muted small mt-3">
+                RECOM — Sistema de Gestão da Ronda Escolar
+            </p>
+
         </div>
     </div>
 
 </section>
+
+<!-- Modal: Esqueceu a senha -->
+<div class="modal fade"
+     id="modalSenha"
+     tabindex="-1"
+     aria-labelledby="tituloModalSenha"
+     aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content rounded-4">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title fw-bold"
+                    id="tituloModalSenha">
+
+                    <i class="bi bi-key me-2"></i>
+                    Recuperação de senha
+
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Fechar">
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <p>
+                    Caso tenha esquecido sua senha,
+                    solicite a redefinição ao
+                    <strong>administrador do RECOM</strong>.
+                </p>
+
+                <p class="mb-0 text-muted small">
+                    Após a redefinição, sua senha provisória
+                    será <strong>1234</strong>.
+                    No próximo acesso, será necessário
+                    cadastrar uma nova senha.
+                </p>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal">
+
+                    Entendi
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Mostrar ou ocultar senha -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const botao = document.getElementById("mostrarSenha");
+    const campoSenha = document.getElementById("senha");
+    const icone = document.getElementById("iconeSenha");
+
+    if (botao && campoSenha && icone) {
+
+        botao.addEventListener("click", function () {
+
+            const senhaVisivel = campoSenha.type === "text";
+
+            campoSenha.type = senhaVisivel
+                ? "password"
+                : "text";
+
+            icone.classList.toggle("bi-eye", senhaVisivel);
+            icone.classList.toggle("bi-eye-slash", !senhaVisivel);
+
+            botao.setAttribute(
+                "aria-label",
+                senhaVisivel ? "Mostrar senha" : "Ocultar senha"
+            );
+
+            botao.setAttribute(
+                "aria-pressed",
+                String(!senhaVisivel)
+            );
+
+        });
+
+    }
+
+});
+</script>
+
 {% endblock %}

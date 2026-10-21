@@ -1,60 +1,49 @@
+
 {% extends 'base.html' %}
 
 {% block content %}
+
 <section class="container py-4">
 
-    
     <!-- CABEÇALHO PADRONIZADO RECOM -->
     <div class="rounded-3 p-4 mb-4"
-        style="background-color: #092B49;">
+         style="background-color: #092B49;">
 
         <div class="d-flex flex-column flex-md-row
                     justify-content-between
                     align-items-md-center gap-3">
 
-            <!-- TÍTULO -->
             <div>
-
                 <h2 class="fw-bold text-white mb-1">
-
                     <i class="bi bi-people-fill me-2"></i>
                     Usuários
-
                 </h2>
 
                 <p class="mb-0"
-                style="color: #D9E4ED;">
-
+                   style="color: #D9E4ED;">
                     Usuários cadastrados no Sistema RECOM.
-
                 </p>
-
             </div>
 
-            <!-- BOTÃO NOVO USUÁRIO -->
             <div>
-
                 <a href="{% url 'usuarios:criar' %}"
-                class="btn fw-semibold px-3 py-2"
-                style="
-                    background-color: #FFFFFF;
-                    color: #092B49;
-                    border: 1px solid #FFFFFF;
-                    border-radius: 6px;
-                ">
+                   class="btn fw-semibold px-3 py-2"
+                   style="
+                       background-color: #FFFFFF;
+                       color: #092B49;
+                       border: 1px solid #FFFFFF;
+                       border-radius: 6px;
+                   ">
 
                     <i class="bi bi-plus-circle me-1"></i>
                     Novo Usuário
-
                 </a>
-
             </div>
 
         </div>
-
     </div>
 
-
+    <!-- TABELA DE USUÁRIOS -->
     <div class="card card-examesus">
 
         <div class="table-responsive">
@@ -95,7 +84,6 @@
                         </td>
 
                         <td>
-
                             {% if usuario.ativo %}
 
                                 <span class="badge text-bg-success">
@@ -109,32 +97,73 @@
                                 </span>
 
                             {% endif %}
-
                         </td>
 
                         <td class="text-end">
 
-                            <a href="{% url 'usuarios:editar' usuario.pk %}"
-                                class="btn btn-sm btn-outline-primary">
-                                <i class="bi bi-pencil-square me-1"></i>
-                                Editar
-                            </a>
+                            <div class="d-flex flex-wrap
+                                        justify-content-end
+                                        align-items-center gap-2">
 
-                            {% if usuario.ativo %}
+                                <!-- EDITAR -->
+                                <a href="{% url 'usuarios:editar' usuario.pk %}"
+                                   class="btn btn-sm btn-outline-primary"
+                                   title="Editar usuário">
 
-                                <a href="#"
-                                   class="btn btn-sm btn-outline-danger">
-                                    Inativar
+                                    <i class="bi bi-pencil-square me-1"></i>
+                                    Editar
+
                                 </a>
 
-                            {% else %}
+                                <!-- REDEFINIR SENHA -->
+                                {% if request.user.is_superuser or perfil_logado == "ADMIN" %}
 
-                                <a href="#"
-                                   class="btn btn-sm btn-outline-success">
-                                    Reativar
-                                </a>
+                                    {% if usuario.user_id != request.user.id %}
 
-                            {% endif %}
+                                        <button
+                                            type="button"
+                                            class="btn btn-sm btn-outline-warning"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modalRedefinirSenha"
+                                            data-usuario-nome="{{ usuario.nome }}"
+                                            data-url="{% url 'usuarios:redefinir_senha' usuario.pk %}"
+                                            title="Redefinir senha">
+
+                                            <i class="bi bi-key me-1"></i>
+                                            Redefinir senha
+
+                                        </button>
+
+                                    {% endif %}
+
+                                {% endif %}
+
+                                <!-- SITUAÇÃO -->
+                                {% if usuario.ativo %}
+
+                                    <a href="#"
+                                       class="btn btn-sm btn-outline-danger"
+                                       title="Inativar usuário">
+
+                                        <i class="bi bi-person-x me-1"></i>
+                                        Inativar
+
+                                    </a>
+
+                                {% else %}
+
+                                    <a href="#"
+                                       class="btn btn-sm btn-outline-success"
+                                       title="Reativar usuário">
+
+                                        <i class="bi bi-person-check me-1"></i>
+                                        Reativar
+
+                                    </a>
+
+                                {% endif %}
+
+                            </div>
 
                         </td>
 
@@ -159,47 +188,174 @@
 
         </div>
 
-        <div class="card-footer bg-white">
+        <!-- PAGINAÇÃO -->
+        {% if page_obj.paginator.num_pages > 1 %}
 
-            <nav>
+            <div class="card-footer bg-white">
 
-                <ul class="pagination justify-content-center mb-0">
+                <nav aria-label="Paginação de usuários">
 
-                    {% if page_obj.has_previous %}
+                    <ul class="pagination justify-content-center mb-0">
 
-                    <li class="page-item">
-                        <a class="page-link"
-                           href="?page={{ page_obj.previous_page_number }}">
-                            Anterior
-                        </a>
-                    </li>
+                        {% if page_obj.has_previous %}
 
-                    {% endif %}
+                            <li class="page-item">
+                                <a class="page-link"
+                                   href="?page={{ page_obj.previous_page_number }}">
+                                    Anterior
+                                </a>
+                            </li>
 
-                    <li class="page-item active">
-                        <span class="page-link">
-                            {{ page_obj.number }}
-                        </span>
-                    </li>
+                        {% endif %}
 
-                    {% if page_obj.has_next %}
+                        <li class="page-item active">
+                            <span class="page-link">
+                                {{ page_obj.number }}
+                                de {{ page_obj.paginator.num_pages }}
+                            </span>
+                        </li>
 
-                    <li class="page-item">
-                        <a class="page-link"
-                           href="?page={{ page_obj.next_page_number }}">
-                            Próxima
-                        </a>
-                    </li>
+                        {% if page_obj.has_next %}
 
-                    {% endif %}
+                            <li class="page-item">
+                                <a class="page-link"
+                                   href="?page={{ page_obj.next_page_number }}">
+                                    Próxima
+                                </a>
+                            </li>
 
-                </ul>
+                        {% endif %}
 
-            </nav>
+                    </ul>
+
+                </nav>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+<!-- MODAL DE REDEFINIÇÃO DE SENHA -->
+<div class="modal fade"
+     id="modalRedefinirSenha"
+     tabindex="-1"
+     aria-labelledby="tituloModalRedefinir"
+     aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content rounded-3">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title fw-bold"
+                    id="tituloModalRedefinir">
+
+                    <i class="bi bi-key-fill me-2 text-warning"></i>
+                    Redefinir senha
+
+                </h5>
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Fechar">
+                </button>
+
+            </div>
+
+            <form method="post"
+                  id="formRedefinirSenha">
+
+                {% csrf_token %}
+
+                <div class="modal-body">
+
+                    <p class="mb-3">
+                        Deseja realmente redefinir a senha de
+                        <strong id="nomeUsuarioRedefinir"></strong>?
+                    </p>
+
+                    <div class="alert alert-warning mb-3">
+
+                        <i class="bi bi-exclamation-triangle me-1"></i>
+
+                        A senha atual será substituída pela senha
+                        provisória <strong>1234</strong>.
+
+                    </div>
+
+                    <p class="text-muted small mb-0">
+                        No próximo acesso, o usuário deverá
+                        cadastrar uma nova senha.
+                    </p>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="button"
+                            class="btn btn-outline-secondary"
+                            data-bs-dismiss="modal">
+                        Cancelar
+                    </button>
+
+                    <button type="submit"
+                            class="btn btn-warning fw-semibold">
+
+                        <i class="bi bi-arrow-clockwise me-1"></i>
+                        Confirmar redefinição
+
+                    </button>
+
+                </div>
+
+            </form>
 
         </div>
 
     </div>
 
-</section>
+</div>
+
+<!-- CONFIGURAÇÃO DO MODAL -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const modal = document.getElementById("modalRedefinirSenha");
+
+    if (!modal) {
+        return;
+    }
+
+    modal.addEventListener("show.bs.modal", function (event) {
+
+        const botao = event.relatedTarget;
+
+        if (!botao) {
+            return;
+        }
+
+        const nomeUsuario = botao.getAttribute("data-usuario-nome");
+        const urlRedefinir = botao.getAttribute("data-url");
+
+        const campoNome = document.getElementById(
+            "nomeUsuarioRedefinir"
+        );
+
+        const formulario = document.getElementById(
+            "formRedefinirSenha"
+        );
+
+        campoNome.textContent = nomeUsuario || "";
+        formulario.action = urlRedefinir || "";
+
+    });
+
+});
+</script>
+
 {% endblock %}
