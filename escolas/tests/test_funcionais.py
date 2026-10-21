@@ -1,13 +1,11 @@
-"""Testes funcionais do módulo de Gestão de Escolas (F01 e F02)."""
+import re
 
 import pytest
 from django.urls import reverse
 
 from escolas.models import Escola, EscolaProblematica, TipoProblematica
 
-
 pytestmark = pytest.mark.django_db
-
 
 @pytest.fixture
 def dados_escola():
@@ -38,6 +36,7 @@ def tipos_problematicas():
     ]
 
 def test_ca01_1_tela_de_cadastro_apresenta_os_campos_exigidos(client):
+    """CA01.1: valida a presença dos campos exigidos no cadastro."""
     response = client.get(reverse("escolas:cadastrar_escola"))
 
     assert response.status_code == 200
@@ -60,6 +59,7 @@ def test_ca01_1_tela_de_cadastro_apresenta_os_campos_exigidos(client):
 def test_ca01_2_nome_polo_e_endereco_sao_obrigatorios(
     client, dados_escola, campo
 ):
+    """CA01.2: valida os três campos obrigatórios do cadastro."""
     dados = dados_escola.copy()
     dados[campo] = ""
 
@@ -67,11 +67,13 @@ def test_ca01_2_nome_polo_e_endereco_sao_obrigatorios(
 
     assert response.status_code == 200
     assert campo in response.context["form"].errors
+    assert "Este campo é obrigatório." in response.context["form"].errors[campo]
     assert Escola.objects.count() == 0
 
 def test_ca01_3_nao_permite_escola_com_nome_duplicado(
     client, escola, dados_escola
 ):
+    """CA01.3: valida que duas escolas não tenham o mesmo nome."""
     dados = dados_escola.copy()
     dados["nome"] = escola.nome.lower()
 
@@ -79,9 +81,12 @@ def test_ca01_3_nao_permite_escola_com_nome_duplicado(
 
     assert response.status_code == 200
     assert "nome" in response.context["form"].errors
+    mensagem = "Já existe uma escola cadastrada com este nome."
+    assert mensagem in response.context["form"].errors["nome"]
     assert Escola.objects.count() == 1
 
 def test_ca01_4_polo_disponibiliza_opcoes_de_1_a_9(client):
+    """CA01.4: valida a seleção dos polos de 1 a 9."""
     response = client.get(reverse("escolas:cadastrar_escola"))
 
     escolhas = list(response.context["form"].fields["polo"].choices)
@@ -95,6 +100,7 @@ def test_ca01_4_polo_disponibiliza_opcoes_de_1_a_9(client):
 
 @pytest.mark.parametrize("campo", ["monitoramento", "botao_panico"])
 def test_ca01_5_campos_booleanos_disponibilizam_apenas_sim_e_nao(client, campo):
+    """CA01.5: valida as opções Sim e Não nos campos booleanos."""
     response = client.get(reverse("escolas:cadastrar_escola"))
 
     escolhas = response.context["form"].fields[campo].choices
@@ -112,6 +118,7 @@ def test_ca01_5_campos_booleanos_disponibilizam_apenas_sim_e_nao(client, campo):
 def test_ca01_6_quantidades_aceitam_somente_inteiros_nao_negativos(
     client, dados_escola, campo, valor
 ):
+    """CA01.6: rejeita quantidades negativas ou fracionárias."""
     dados = dados_escola.copy()
     dados[campo] = valor
 
@@ -124,6 +131,7 @@ def test_ca01_6_quantidades_aceitam_somente_inteiros_nao_negativos(
 def test_ca01_7_e_ca02_1_cadastro_valido_fica_disponivel_na_consulta(
     client, dados_escola
 ):
+    """CA01.7 e CA02.1: valida o cadastro e sua presença na consulta."""
     cadastro = client.post(reverse("escolas:cadastrar_escola"), dados_escola)
 
     assert cadastro.status_code == 302
@@ -134,7 +142,9 @@ def test_ca01_7_e_ca02_1_cadastro_valido_fica_disponivel_na_consulta(
     assert consulta.status_code == 200
     assert escola.nome in consulta.content.decode()
 
+
 def test_ca02_2_consulta_de_detalhe_exibe_informacoes_da_escola(client, escola):
+    """CA02.2: valida as informações exibidas para a escola selecionada."""
     response = client.get(
         reverse("escolas:detalhe_escola", kwargs={"pk": escola.pk})
     )
@@ -144,6 +154,7 @@ def test_ca02_2_consulta_de_detalhe_exibe_informacoes_da_escola(client, escola):
     for valor in (
         escola.nome,
         escola.endereco,
+        escola.bairro,
         escola.gestor,
         escola.telefone,
         escola.modalidade,
@@ -153,22 +164,41 @@ def test_ca02_2_consulta_de_detalhe_exibe_informacoes_da_escola(client, escola):
     ):
         assert valor in conteudo
 
+    assert re.search(r"<strong>Polo</strong>\s*<div>\s*1\s*</div>", conteudo)
+    assert re.search(r"Monitoramento.*?Sim", conteudo, re.DOTALL)
+    assert re.search(r"Botão do Pânico.*?Não", conteudo, re.DOTALL)
+
+
 def test_ca02_3_consulta_sem_escolas_informa_inexistencia_de_registros(client):
+    """CA02.3: valida a mensagem exibida quando não existem escolas."""
     response = client.get(reverse("escolas:listar_escolas"))
 
     assert response.status_code == 200
     assert "Nenhuma escola encontrada." in response.content.decode()
 
-def test_ca03_1_registro_de_problematica_exige_escola_cadastrada(client):
-    response = client.get(
-        reverse("escolas:cadastrar_problematica", kwargs={"pk": 99999})
+@pytest.mark.parametrize("metodo", ["get", "post"])
+def test_ca03_1_registro_de_problematica_exige_escola_cadastrada(
+    client, metodo
+):
+    """CA03.1: impede acessar ou registrar sem uma escola válida."""
+    url = reverse("escolas:cadastrar_problematica", kwargs={"pk": 99999})
+    requisicao = getattr(client, metodo)
+    response = requisicao(
+        url,
+        {
+            "tipo_problematica": "1",
+            "situacao": "ATIVA",
+            "observacoes": "Registro sem escola válida.",
+        },
     )
 
     assert response.status_code == 404
+    assert EscolaProblematica.objects.count() == 0
 
 def test_ca03_2_a_ca03_6_registra_problematica_vinculada_com_dados(
     client, escola, tipos_problematicas
 ):
+    """CA03.2 a CA03.6: valida os dados e o vínculo da problemática."""
     tipo = tipos_problematicas[0]
     dados = {
         "tipo_problematica": str(tipo.pk),
@@ -191,9 +221,17 @@ def test_ca03_2_a_ca03_6_registra_problematica_vinculada_com_dados(
     assert problematica.situacao == dados["situacao"]
     assert problematica.observacoes == dados["observacoes"]
 
+    consulta = client.get(response.url)
+    conteudo = consulta.content.decode()
+    assert consulta.status_code == 200
+    assert tipo.nome in conteudo
+    assert problematica.get_situacao_display() in conteudo
+    assert dados["observacoes"] in conteudo
+
 def test_ca03_3_uma_escola_pode_ter_mais_de_uma_problematica(
     client, escola, tipos_problematicas
 ):
+    """CA03.3: valida múltiplas problemáticas para uma escola."""
     url = reverse("escolas:cadastrar_problematica", kwargs={"pk": escola.pk})
     for tipo in tipos_problematicas:
         response = client.post(
@@ -211,6 +249,7 @@ def test_ca03_3_uma_escola_pode_ter_mais_de_uma_problematica(
 def test_ca04_1_ca04_2_e_ca04_4_consulta_exibe_apenas_problematicas_da_escola(
     client, escola, tipos_problematicas, dados_escola
 ):
+    """CA04.1, CA04.2 e CA04.4: valida a consulta por escola."""
     outra_escola = Escola.objects.create(
         **{**dados_escola, "nome": "Escola Municipal Aurora"}
     )
@@ -241,9 +280,11 @@ def test_ca04_1_ca04_2_e_ca04_4_consulta_exibe_apenas_problematicas_da_escola(
 def test_ca04_3_escola_sem_problematicas_informa_inexistencia_de_registros(
     client, escola
 ):
+    """CA04.3: valida a mensagem para escola sem problemáticas."""
     response = client.get(
         reverse("escolas:detalhe_escola", kwargs={"pk": escola.pk})
     )
 
     assert response.status_code == 200
-    assert "Nenhuma problemática registrada para esta escola." in response.content.decode()
+    mensagem = "Nenhuma problemática registrada para esta escola."
+    assert mensagem in response.content.decode()
