@@ -472,7 +472,7 @@ testes passaram na execução final.
 
 ## Conclusão da sprint 2
 
-Os testes confirmaram o cadastro de usuários, as validações de matrícula e CPF,
+Os testes confirmaram o cadastro de usuários, as validações de matrícula,
 a senha inicial, o primeiro acesso, o bloqueio de credenciais inválidas e de
 usuários inativos, bem como os principais fluxos de criação e consulta do
 Cartão Programa. Foram registradas cinco não conformidades distintas: ausência
